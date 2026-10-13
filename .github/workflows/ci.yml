@@ -48,5 +48,7 @@ jobs:
           python -c "import interceptor_sim; import video_interceptor_testbench; import model_manager; print('ALL CORE MODULES IMPORTED SUCCESSFULLY')"
 
       - name: Run Test Suite
+        env:
+          PYTHONPATH: .
         run: |
-          pytest tests/ -v -k "not test_physical_webcam"
+          python -m pytest tests/ -v -k "not test_physical_webcam"
