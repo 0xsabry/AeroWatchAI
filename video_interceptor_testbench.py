@@ -84,8 +84,17 @@ def run_video_missile_interception(
     fourcc = cv2.VideoWriter_fourcc(*"mp4v")
     writer = cv2.VideoWriter(str(out_raw_path), fourcc, fps, (width, height))
 
-    # Ensure model is ready
-    model_manager.ensure_model_loaded()
+    # Ensure model is ready (defensive: handle stale cached ModelManager)
+    if hasattr(model_manager, "ensure_model_loaded"):
+        model_manager.ensure_model_loaded()
+    elif hasattr(model_manager, "load_model"):
+        if model_manager._model is None:
+            from pathlib import Path as _P
+            _wdir = _P("weights")
+            for _c in [_wdir / "aerowatch_v7_balanced.pt", _wdir / "best.pt"]:
+                if _c.exists():
+                    model_manager.load_model(_c, device="cpu")
+                    break
 
     # Target Kinematic Tracker (Alpha-Beta Filter)
     target_x = width * 0.5

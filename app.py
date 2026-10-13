@@ -1054,7 +1054,7 @@ def init_session_state():
 
 init_session_state()
 mm = get_global_model_manager()
-if not hasattr(mm, "filter_airspace_detections"):
+if not hasattr(mm, "filter_airspace_detections") or not hasattr(mm, "ensure_model_loaded"):
     st.cache_resource.clear()
     import importlib
     import model_manager
