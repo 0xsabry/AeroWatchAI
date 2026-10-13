@@ -1,0 +1,26 @@
+name: "💡 Feature Request"
+description: "Suggest a new defense algorithm, sensor integration, or capability for AeroWatch AI"
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: "Have an idea to make AeroWatch AI more capable or accurate? We would love to hear it!"
+  - type: textarea
+    id: feature_summary
+    attributes:
+      label: "Feature Proposal"
+      description: "Explain the proposed capability or enhancement."
+    validations:
+      required: true
+  - type: textarea
+    id: operational_context
+    attributes:
+      label: "Operational / Defense Use Case"
+      description: "How does this benefit airspace defense, drone neutralization, or C2 surveillance?"
+    validations:
+      required: true
+  - type: textarea
+    id: technical_approach
+    attributes:
+      label: "Technical Implementation Ideas"
+      description: "Any relevant papers, algorithms, sensor protocols, or architecture suggestions."

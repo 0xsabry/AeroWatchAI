@@ -1,0 +1,47 @@
+name: "🐛 Bug Report"
+description: "Report an issue, tracking glitch, or execution error in AeroWatch AI"
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: "Thanks for taking the time to report an issue in AeroWatch AI!"
+  - type: input
+    id: system_info
+    attributes:
+      label: "System & Hardware Environment"
+      description: "OS (e.g. Windows 11, Ubuntu 22.04), Python version, GPU model, CUDA version."
+      placeholder: "Windows 11 64-bit, Python 3.12, NVIDIA RTX 4060, CUDA 12.2"
+    validations:
+      required: true
+  - type: textarea
+    id: bug_description
+    attributes:
+      label: "Describe the Bug"
+      description: "A clear and concise description of what the bug is."
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction_steps
+    attributes:
+      label: "Steps to Reproduce"
+      description: "Steps to reproduce the behavior."
+      placeholder: |
+        1. Run `streamlit run app.py`
+        2. Navigate to module X
+        3. Click button Y
+        4. See error Z
+    validations:
+      required: true
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: "Expected Behavior"
+      description: "What did you expect to happen?"
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: "Relevant Logs or Traceback"
+      description: "Copy and paste terminal output or stack traces."
+      render: shell
