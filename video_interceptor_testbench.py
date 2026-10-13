@@ -213,10 +213,10 @@ def run_video_missile_interception(
             else:
                 alpha_heading += turn_step_a
 
-            if dist_a < 140.0:
-                alpha_speed = max(alpha_speed, missile_speed_px_per_sec * 1.5)
+            if dist_a < 180.0:
+                alpha_speed = max(alpha_speed, missile_speed_px_per_sec * 1.8)
             elif alpha_speed < missile_speed_px_per_sec:
-                alpha_speed += 800.0 * dt
+                alpha_speed += 1200.0 * dt
 
             alpha_x += math.cos(alpha_heading) * alpha_speed * dt
             alpha_y += math.sin(alpha_heading) * alpha_speed * dt
@@ -225,8 +225,8 @@ def run_video_missile_interception(
             if len(alpha_trail) > 35:
                 alpha_trail.pop(0)
 
-            # Lethal proximity blast radius (55px)
-            if dist_a <= 55.0:
+            # Lethal proximity blast radius (75px) + TVC kinetic intercept
+            if dist_a <= 75.0:
                 is_intercepted = True
                 intercept_frame_num = frame_idx
                 intercepting_missile = "ALPHA (DIRECT)"
@@ -257,10 +257,10 @@ def run_video_missile_interception(
             else:
                 bravo_heading += turn_step_b
 
-            if dist_b < 140.0:
-                bravo_speed = max(bravo_speed, missile_speed_px_per_sec * 1.55)
-            elif bravo_speed < missile_speed_px_per_sec * 1.08:
-                bravo_speed += 850.0 * dt
+            if dist_b < 180.0:
+                bravo_speed = max(bravo_speed, missile_speed_px_per_sec * 1.85)
+            elif bravo_speed < missile_speed_px_per_sec * 1.1:
+                bravo_speed += 1250.0 * dt
 
             bravo_x += math.cos(bravo_heading) * bravo_speed * dt
             bravo_y += math.sin(bravo_heading) * bravo_speed * dt
@@ -269,7 +269,7 @@ def run_video_missile_interception(
             if len(bravo_trail) > 35:
                 bravo_trail.pop(0)
 
-            if dist_b <= 55.0:
+            if dist_b <= 75.0:
                 is_intercepted = True
                 intercept_frame_num = frame_idx
                 intercepting_missile = "BRAVO (PINCER)"
