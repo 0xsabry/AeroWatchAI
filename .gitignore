@@ -47,6 +47,7 @@ data/
 runs/train/
 runs/detect/
 runs/predict/
+runs/interceptor_runs/
 
 # ==============================================================================
 # IDE, OS & Streamlit Local Secrets

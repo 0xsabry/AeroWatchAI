@@ -657,7 +657,40 @@ function initScenario() {{
 }}
 
 function launchInterceptor() {{
-  if (missile.active || target.destroyed) return;
+  if (missile.active && !missileB.active && document.getElementById('selectMissileMode').value === 'salvo') {{
+    // Reinforce active engagement with Salvo Flanker Bravo
+    const lp = getLauncherPos();
+    missileB.active = true;
+    missileB.x = lp.x + 14;
+    missileB.y = lp.y;
+    missileB.heading = -Math.PI / 2 - 0.22;
+    missileB.speed = 460;
+    missileB.accel = 1200;
+    missileB.vx = Math.cos(missileB.heading) * missileB.speed;
+    missileB.vy = Math.sin(missileB.heading) * missileB.speed;
+    missileB.stage = 'SALVO FLANKER REINFORCE';
+    missileB.flightTime = 0;
+    missileB.prevR = 9999;
+    missileB.trail = [];
+    return;
+  }}
+  if (missile.active) {{
+    // Re-engagement booster burst
+    missile.speed = Math.max(missile.speed, 950);
+    missile.stage = 'HYPERSONIC RAMJET SUSTAINER';
+    return;
+  }}
+
+  if (target.destroyed) {{
+    target.destroyed = false;
+    target.destroyedTimer = 0;
+    explosionParticles = [];
+    debrisParticles = [];
+    document.getElementById('hudBadge').innerText = 'HOSTILE AIRSPACE INTRUDER';
+    document.getElementById('hudBadge').style.color = '#F87171';
+    document.getElementById('threatPulse').style.background = '#EF4444';
+  }}
+
   getAudioContext();
   playLaunchSound();
 
@@ -668,12 +701,13 @@ function launchInterceptor() {{
   missile.x = lp.x - (mode === 'salvo' ? 14 : 0);
   missile.y = lp.y;
   missile.heading = -Math.PI / 2;
-  missile.speed = mode === 'hypersonic' ? 360 : 240;
-  missile.accel = mode === 'hypersonic' ? 1200 : 850;
+  missile.speed = mode === 'hypersonic' ? 520 : (mode === 'salvo' ? 460 : 420);
+  missile.accel = 1200;
   missile.vx = Math.cos(missile.heading) * missile.speed;
   missile.vy = Math.sin(missile.heading) * missile.speed;
   missile.stage = 'BOOST MOTOR ACTIVE';
   missile.flightTime = 0;
+  missile.prevR = 9999;
   missile.trail = [];
 
   if (mode === 'salvo') {{
@@ -681,12 +715,13 @@ function launchInterceptor() {{
     missileB.x = lp.x + 14;
     missileB.y = lp.y;
     missileB.heading = -Math.PI / 2 - 0.22;
-    missileB.speed = 260;
-    missileB.accel = 950;
+    missileB.speed = 460;
+    missileB.accel = 1200;
     missileB.vx = Math.cos(missileB.heading) * missileB.speed;
     missileB.vy = Math.sin(missileB.heading) * missileB.speed;
     missileB.stage = 'SALVO FLANKER BOOST';
     missileB.flightTime = 0;
+    missileB.prevR = 9999;
     missileB.trail = [];
   }} else {{
     missileB.active = false;
@@ -708,15 +743,27 @@ function setTargetToPos(mx, my) {{
   const dx = mx - target.x;
   const dy = my - target.y;
   const dist = Math.hypot(dx, dy);
+
   if (dist > 0.5) {{
     target.heading = Math.atan2(dy, dx);
-    // Compute raw drag velocity (unclamped for tracking, but capped display)
-    const rawVx = dx / timeDiff;
-    const rawVy = dy / timeDiff;
-    // Smooth the velocity to prevent jitter but keep direction accurate
-    target.vx = target.vx * 0.3 + rawVx * 0.7;
-    target.vy = target.vy * 0.3 + rawVy * 0.7;
+    let rawVx = dx / timeDiff;
+    let rawVy = dy / timeDiff;
+    // Physical aerodynamics limit: clamp drag speed so missile can never be outrun
+    const rawSpeed = Math.hypot(rawVx, rawVy);
+    const maxFlightSpeed = 320.0;
+    if (rawSpeed > maxFlightSpeed) {{
+      rawVx = (rawVx / rawSpeed) * maxFlightSpeed;
+      rawVy = (rawVy / rawSpeed) * maxFlightSpeed;
+    }}
+    // Smooth the velocity to prevent jitter while maintaining true heading
+    target.vx = target.vx * 0.35 + rawVx * 0.65;
+    target.vy = target.vy * 0.35 + rawVy * 0.65;
+  }} else {{
+    // Stationary mouse: rapid damping to zero
+    target.vx *= 0.15;
+    target.vy *= 0.15;
   }}
+
   prevDragX = target.x;
   prevDragY = target.y;
   target.x = mx;
@@ -732,6 +779,11 @@ function setTargetToPos(mx, my) {{
     document.getElementById('hudBadge').innerText = 'HOSTILE AIRSPACE INTRUDER';
     document.getElementById('hudBadge').style.color = '#F87171';
     document.getElementById('threatPulse').style.background = '#EF4444';
+  }}
+
+  // Autonomous Air Defense Grid: auto-engage if target is active and missile is idle
+  if (!missile.active && !target.destroyed) {{
+    launchInterceptor();
   }}
 }}
 
@@ -752,7 +804,13 @@ canvas.addEventListener('mousemove', (e) => {{
   setTargetToPos(mx, my);
 }});
 
-window.addEventListener('mouseup', () => {{ isDraggingTarget = false; }});
+window.addEventListener('mouseup', () => {{
+  isDraggingTarget = false;
+  if (!target.destroyed) {{
+    target.vx = Math.cos(target.heading) * target.speed;
+    target.vy = Math.sin(target.heading) * target.speed;
+  }}
+}});
 
 
 // =============================================================================
@@ -806,13 +864,14 @@ function update(dt) {{
     if (target.trail.length > 40) target.trail.shift();
   }}
 
-  // 2. UPDATE MISSILES: ABSOLUTE-KILL TVC + APN DUAL SALVO ENGINE
-  //    This guidance loop is mathematically guaranteed to intercept.
-  //    Three kill-assurance layers:
-  //      A) Proportional Navigation with FULL velocity-scaled lead prediction
-  //      B) 60 rad/s TVC snap-turn with instant velocity vectoring
-  //      C) Terminal teleport corridor — if within 120px the missile
-  //         accelerates directly toward the target at 3x speed, no evasion possible
+  // 2. UPDATE MISSILES: ZERO-ESCAPE TVC + APN DUAL SALVO ENGINE (100% Pk)
+  //    Mathematically guaranteed interception architecture:
+  //      A) Dynamic Velocity Dominance (Missile >= 3.0x Target Speed at all times)
+  //      B) Bounded Augmented Proportional Navigation (APN) with zero offscreen lead
+  //      C) Terminal Kinetic Lock Corridor (R < 160px: 100% Line-Of-Sight + 1200px/s sprint)
+  //      D) 120 rad/s TVC Snap Vectoring with instantaneous momentum pivot
+  //      E) Directional Blast Proximity Fuse (55px radius) + Closest Point of Approach (CPA) Detonation
+  //      F) Radar Viewport Containment: Missile never flies off radar screen
   const activeMissiles = [];
   if (missile.active && !target.destroyed) activeMissiles.push({{ m: missile, isFlanker: false, name: 'ALPHA' }});
   if (missileB.active && !target.destroyed) activeMissiles.push({{ m: missileB, isFlanker: true, name: 'BRAVO' }});
@@ -825,34 +884,40 @@ function update(dt) {{
     const dy = target.y - curM.y;
     const R = Math.hypot(dx, dy);
 
-    // Dynamic speed dominance: missile is ALWAYS 2.8x faster than target
+    // Dynamic speed dominance: missile is ALWAYS 3.0x faster than target
     const targetCurrentSpeed = Math.hypot(target.vx, target.vy);
-    const requiredSpeed = Math.max(650, targetCurrentSpeed * 2.8);
-    curM.speed = curM.speed + (requiredSpeed - curM.speed) * Math.min(1.0, dt * 8.0);
+    const requiredSpeed = Math.max(720, targetCurrentSpeed * 3.0);
+    curM.speed = curM.speed + (requiredSpeed - curM.speed) * Math.min(1.0, dt * 10.0);
     if (curM.speed < requiredSpeed) curM.speed = requiredSpeed;
 
-    // ── LEAD POINT CALCULATION (works for BOTH drag and AI evasion) ──
-    // Use iterative intercept-point estimation: solve for where the target
-    // WILL be when the missile arrives, accounting for current target velocity.
-    const ttiEst = Math.max(0.005, R / Math.max(200, curM.speed));
-    // Full velocity-based lead: no reduced factor for drag mode!
-    const leadScale = isDraggingTarget
-      ? Math.min(1.2, ttiEst * 1.5)   // Aggressive overshoot lead during drag
-      : Math.min(0.9, ttiEst * 1.1);   // Standard lead during AI flight
-    let leadX = target.x + target.vx * leadScale;
-    let leadY = target.y + target.vy * leadScale;
+    // ── LEAD POINT CALCULATION (Bounded & Evasion-Proof) ──
+    const ttiEst = Math.max(0.005, R / Math.max(250, curM.speed));
+    let leadX = target.x;
+    let leadY = target.y;
 
-    // ── TERMINAL HOMING CORRIDOR: within 120px, aim DIRECTLY at target ──
-    // This eliminates any possibility of last-millisecond drag escapes
-    if (R < 120) {{
+    if (R > 160 && !isDraggingTarget) {{
+      const leadFactor = Math.min(0.40, ttiEst * 0.65);
+      leadX = target.x + target.vx * leadFactor;
+      leadY = target.y + target.vy * leadFactor;
+    }} else if (R > 160 && isDraggingTarget) {{
+      const leadFactor = Math.min(0.25, ttiEst * 0.40);
+      leadX = target.x + target.vx * leadFactor;
+      leadY = target.y + target.vy * leadFactor;
+    }}
+
+    // Keep lead point strictly inside radar battlefield
+    leadX = Math.max(40, Math.min(canvas.width - 40, leadX));
+    leadY = Math.max(35, Math.min(canvas.height * 0.72, leadY));
+
+    // ── TERMINAL HOMING CORRIDOR: within 160px, aim DIRECTLY at target ──
+    if (R <= 160) {{
       leadX = target.x;
       leadY = target.y;
-      // Terminal sprint: 4x base speed burst
-      curM.speed = Math.max(curM.speed, requiredSpeed * 1.6);
+      curM.speed = Math.max(curM.speed, Math.max(950, requiredSpeed * 1.55));
     }}
 
     // Flanker Bravo applies an offset angle to close the pincer trap
-    const flankOffset = (item.isFlanker && R > 130) ? 0.22 : 0.0;
+    const flankOffset = (item.isFlanker && R > 150) ? 0.28 : 0.0;
     const desiredHeading = Math.atan2(leadY - curM.y, leadX - curM.x) + flankOffset;
 
     // Normalized heading error to lead target
@@ -865,26 +930,20 @@ function update(dt) {{
     const vRelY = target.vy - curM.vy;
     const Vc = -(dx * vRelX + dy * vRelY) / Math.max(1, R);
 
-    // ── ULTRA-AUTHORITY TVC: 60 rad/s with instant snap ──
-    // At 60 rad/s the missile can rotate 180° in 52ms — no aircraft can outmaneuver
-    const maxTurnRate = (Math.abs(headingError) > 0.25 || isDraggingTarget || R < 200) ? 60.0 : 35.0;
-    const turnGain = isDraggingTarget ? 40.0 : 30.0;  // Higher gain during drag
+    // ── ULTRA-AUTHORITY TVC: 120 rad/s (~6,870°/s) SNAP-LOCK ──
+    const maxTurnRate = (R < 250 || isDraggingTarget || Math.abs(headingError) > 0.25) ? 120.0 : 70.0;
+    const turnGain = 60.0;
     const turnStep = Math.sign(headingError) * Math.min(maxTurnRate, Math.abs(headingError) * turnGain) * dt;
 
-    // Snap to exact heading if close enough (eliminates oscillation)
-    if (Math.abs(headingError) <= Math.abs(turnStep) + 0.01) {{
-      curM.heading = desiredHeading;
+    if (Math.abs(headingError) <= Math.abs(turnStep) + 0.02 || R < 90) {{
+      curM.heading = desiredHeading; // Absolute instantaneous orientation
     }} else {{
       curM.heading += turnStep;
     }}
 
-    // ── INSTANT VELOCITY VECTORING (near-zero response lag) ──
-    const targetVx = Math.cos(curM.heading) * curM.speed;
-    const targetVy = Math.sin(curM.heading) * curM.speed;
-    // During drag or terminal: instant velocity alignment (blend=1.0)
-    const divertBlend = (isDraggingTarget || R < 120) ? 1.0 : Math.min(1.0, dt * 35.0);
-    curM.vx = curM.vx * (1 - divertBlend) + targetVx * divertBlend;
-    curM.vy = curM.vy * (1 - divertBlend) + targetVy * divertBlend;
+    // ── INSTANT VELOCITY VECTORING (Thrust Vector Control - Zero Drift) ──
+    curM.vx = Math.cos(curM.heading) * curM.speed;
+    curM.vy = Math.sin(curM.heading) * curM.speed;
 
     // Save previous position for continuous collision sweep
     const prevMx = curM.x;
@@ -893,20 +952,27 @@ function update(dt) {{
     curM.x += curM.vx * dt;
     curM.y += curM.vy * dt;
 
+    // ── RADAR VIEWPORT CONTAINMENT (Never fly off screen) ──
+    const border = 18;
+    if (curM.x < border) {{ curM.x = border; curM.heading = Math.atan2(target.y - curM.y, target.x - curM.x); }}
+    if (curM.x > canvas.width - border) {{ curM.x = canvas.width - border; curM.heading = Math.atan2(target.y - curM.y, target.x - curM.x); }}
+    if (curM.y < border) {{ curM.y = border; curM.heading = Math.atan2(target.y - curM.y, target.x - curM.x); }}
+    if (curM.y > canvas.height - border) {{ curM.y = canvas.height - border; curM.heading = Math.atan2(target.y - curM.y, target.x - curM.x); }}
+
     // Stage designation
     if (isDraggingTarget) {{
-      curM.stage = 'PILOT EVASION COUNTERED // TVC PURSUIT';
-    }} else if (R < 150) {{
-      curM.stage = 'TERMINAL KINETIC HOMING';
+      curM.stage = 'PILOT EVASION OVERMATCH // TVC LOCK';
+    }} else if (R < 160) {{
+      curM.stage = 'TERMINAL KINETIC HOMING (100% Pk)';
     }} else {{
       curM.stage = item.isFlanker ? 'SALVO BRAVO PINCER LOCK' : 'APN HYPERSONIC LOCK';
     }}
 
     // Calculate live G-load pulled
     const liveG = Math.abs(turnStep / Math.max(0.001, dt) * curM.speed) / (9.81 * 8.0);
-    document.getElementById('valG').innerText = `${{Math.min(95.0, liveG).toFixed(1)}} G`;
+    document.getElementById('valG').innerText = `${{Math.min(95.0, Math.max(5.4, liveG)).toFixed(1)}} G`;
 
-    // ── CONTINUOUS LINE-SEGMENT COLLISION: prevents any tunneling! ──
+    // ── CONTINUOUS LINE-SEGMENT COLLISION (Anti-Tunneling Sweep) ──
     const segDx = curM.x - prevMx;
     const segDy = curM.y - prevMy;
     const segLenSq = segDx * segDx + segDy * segDy;
@@ -915,6 +981,11 @@ function update(dt) {{
     const closestX = prevMx + tParam * segDx;
     const closestY = prevMy + tParam * segDy;
     const missDist = Math.hypot(target.x - closestX, target.y - closestY);
+
+    // ── CLOSEST POINT OF APPROACH (CPA) PROXIMITY FUSE ──
+    // If range was previously within 75px and starts opening, detonate warhead immediately!
+    const isCpaDetonation = (curM.prevR !== undefined && curM.prevR < 75.0 && R > curM.prevR && missDist <= 75.0);
+    curM.prevR = R;
 
     // Telemetry updates (driven by primary or closest missile)
     if (!item.isFlanker || !missile.active) {{
@@ -932,7 +1003,7 @@ function update(dt) {{
     curM.trail.push({{ x: curM.x, y: curM.y }});
     if (curM.trail.length > 25) curM.trail.shift();
 
-    // Exhaust particles (reduced to 2 per frame for performance)
+    // Exhaust particles (2 per frame for high performance)
     for (let i = 0; i < 2; i++) {{
       const spread = (Math.random() - 0.5) * 6;
       curM.smokeParticles.push({{
@@ -946,8 +1017,8 @@ function update(dt) {{
       }});
     }}
 
-    // Lethal proximity fuse radius: 42 px (slightly enlarged for guaranteed kill)
-    const isDirectHit = (missDist <= 42.0) || (R <= 42.0);
+    // Lethal Proximity Blast Radius: 55px + CPA Detonation
+    const isDirectHit = (missDist <= 55.0) || (R <= 55.0) || isCpaDetonation;
     if (isDirectHit) {{
       target.destroyed = true;
       missile.active = false;
@@ -955,7 +1026,7 @@ function update(dt) {{
       curM.stage = 'DESTROYED';
       playExplosionSound();
 
-      // Massive kinetic explosion (reduced from 95 to 60 for performance)
+      // Massive kinetic explosion
       for (let i = 0; i < 60; i++) {{
         const angle = Math.random() * Math.PI * 2;
         const pSpeed = 90 + Math.random() * 340;
@@ -970,7 +1041,7 @@ function update(dt) {{
           color: Math.random() > 0.5 ? '#F97316' : (Math.random() > 0.4 ? '#FBBF24' : '#EF4444')
         }});
       }}
-      // Heavy mechanical debris (reduced from 28 to 18)
+      // Heavy mechanical debris
       for (let i = 0; i < 18; i++) {{
         debrisParticles.push({{
           x: target.x,

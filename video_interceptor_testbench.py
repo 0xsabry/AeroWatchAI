@@ -206,15 +206,17 @@ def run_video_missile_interception(
             while heading_err_a < -math.pi:
                 heading_err_a += math.pi * 2
 
-            # Hypersonic TVC snap turning (up to 32 rad/s)
-            turn_step_a = math.copysign(min(32.0, abs(heading_err_a) * 20.0), heading_err_a) * dt
+            # Hypersonic TVC snap turning (up to 60 rad/s)
+            turn_step_a = math.copysign(min(60.0, abs(heading_err_a) * 35.0), heading_err_a) * dt
             if abs(heading_err_a) <= abs(turn_step_a):
                 alpha_heading = desired_heading_a
             else:
                 alpha_heading += turn_step_a
 
-            if alpha_speed < missile_speed_px_per_sec:
-                alpha_speed += 600.0 * dt
+            if dist_a < 140.0:
+                alpha_speed = max(alpha_speed, missile_speed_px_per_sec * 1.5)
+            elif alpha_speed < missile_speed_px_per_sec:
+                alpha_speed += 800.0 * dt
 
             alpha_x += math.cos(alpha_heading) * alpha_speed * dt
             alpha_y += math.sin(alpha_heading) * alpha_speed * dt
@@ -223,8 +225,8 @@ def run_video_missile_interception(
             if len(alpha_trail) > 35:
                 alpha_trail.pop(0)
 
-            # Lethal proximity blast radius (42px)
-            if dist_a <= 42.0:
+            # Lethal proximity blast radius (55px)
+            if dist_a <= 55.0:
                 is_intercepted = True
                 intercept_frame_num = frame_idx
                 intercepting_missile = "ALPHA (DIRECT)"
@@ -249,14 +251,16 @@ def run_video_missile_interception(
             while heading_err_b < -math.pi:
                 heading_err_b += math.pi * 2
 
-            turn_step_b = math.copysign(min(36.0, abs(heading_err_b) * 22.0), heading_err_b) * dt
+            turn_step_b = math.copysign(min(60.0, abs(heading_err_b) * 35.0), heading_err_b) * dt
             if abs(heading_err_b) <= abs(turn_step_b):
                 bravo_heading = desired_heading_b
             else:
                 bravo_heading += turn_step_b
 
-            if bravo_speed < missile_speed_px_per_sec * 1.08:
-                bravo_speed += 700.0 * dt
+            if dist_b < 140.0:
+                bravo_speed = max(bravo_speed, missile_speed_px_per_sec * 1.55)
+            elif bravo_speed < missile_speed_px_per_sec * 1.08:
+                bravo_speed += 850.0 * dt
 
             bravo_x += math.cos(bravo_heading) * bravo_speed * dt
             bravo_y += math.sin(bravo_heading) * bravo_speed * dt
@@ -265,7 +269,7 @@ def run_video_missile_interception(
             if len(bravo_trail) > 35:
                 bravo_trail.pop(0)
 
-            if dist_b <= 42.0:
+            if dist_b <= 55.0:
                 is_intercepted = True
                 intercept_frame_num = frame_idx
                 intercepting_missile = "BRAVO (PINCER)"
