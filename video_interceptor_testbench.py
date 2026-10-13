@@ -185,6 +185,14 @@ def run_video_missile_interception(
                 target_x += target_vx * dt
                 target_y += target_vy * dt
 
+        # Store previous positions for anti-tunneling swept relative collision check
+        prev_alpha_x = alpha_x
+        prev_alpha_y = alpha_y
+        prev_bravo_x = bravo_x
+        prev_bravo_y = bravo_y
+        prev_target_x = target_x
+        prev_target_y = target_y
+
         # 2. Interceptor Alpha Guidance & Flight
         if frame_idx >= alpha_launch_frame and not is_intercepted:
             alpha_active = True
@@ -194,10 +202,10 @@ def run_video_missile_interception(
             dy_a = target_y - alpha_y
             dist_a = math.hypot(dx_a, dy_a)
 
-            # Predictive Lead Intercept Point
+            # Predictive Lead Intercept Point with Target Lead
             tti_a = max(0.01, dist_a / max(100.0, alpha_speed))
-            lead_x_a = target_x + target_vx * min(0.5, tti_a)
-            lead_y_a = target_y + target_vy * min(0.5, tti_a)
+            lead_x_a = target_x + target_vx * min(0.45, tti_a)
+            lead_y_a = target_y + target_vy * min(0.45, tti_a)
 
             desired_heading_a = math.atan2(lead_y_a - alpha_y, lead_x_a - alpha_x)
             heading_err_a = desired_heading_a - alpha_heading
@@ -206,17 +214,17 @@ def run_video_missile_interception(
             while heading_err_a < -math.pi:
                 heading_err_a += math.pi * 2
 
-            # Hypersonic TVC snap turning (up to 60 rad/s)
-            turn_step_a = math.copysign(min(60.0, abs(heading_err_a) * 35.0), heading_err_a) * dt
+            # Hypersonic TVC snap turning (up to 65 rad/s)
+            turn_step_a = math.copysign(min(65.0, abs(heading_err_a) * 40.0), heading_err_a) * dt
             if abs(heading_err_a) <= abs(turn_step_a):
                 alpha_heading = desired_heading_a
             else:
                 alpha_heading += turn_step_a
 
-            if dist_a < 180.0:
-                alpha_speed = max(alpha_speed, missile_speed_px_per_sec * 1.8)
+            if dist_a < 200.0:
+                alpha_speed = max(alpha_speed, missile_speed_px_per_sec * 2.2)
             elif alpha_speed < missile_speed_px_per_sec:
-                alpha_speed += 1200.0 * dt
+                alpha_speed += 1600.0 * dt
 
             alpha_x += math.cos(alpha_heading) * alpha_speed * dt
             alpha_y += math.sin(alpha_heading) * alpha_speed * dt
@@ -225,8 +233,22 @@ def run_video_missile_interception(
             if len(alpha_trail) > 35:
                 alpha_trail.pop(0)
 
-            # Lethal proximity blast radius (75px) + TVC kinetic intercept
-            if dist_a <= 75.0:
+            # Continuous 2-body swept distance check for Alpha
+            d_mx = alpha_x - prev_alpha_x
+            d_my = alpha_y - prev_alpha_y
+            d_tx = target_x - prev_target_x
+            d_ty = target_y - prev_target_y
+            rel_vx = d_mx - d_tx
+            rel_vy = d_my - d_ty
+            rel_px = prev_alpha_x - prev_target_x
+            rel_py = prev_alpha_y - prev_target_y
+            rel_vsq = rel_vx * rel_vx + rel_vy * rel_vy
+            t_close = -(rel_px * rel_vx + rel_py * rel_vy) / rel_vsq if rel_vsq > 1e-4 else 0.0
+            t_close = max(0.0, min(1.0, t_close))
+            swept_dist_a = math.hypot(rel_px + t_close * rel_vx, rel_py + t_close * rel_vy)
+
+            # Lethal proximity blast radius (85px) + continuous swept intercept
+            if dist_a <= 85.0 or swept_dist_a <= 85.0:
                 is_intercepted = True
                 intercept_frame_num = frame_idx
                 intercepting_missile = "ALPHA (DIRECT)"
@@ -241,8 +263,8 @@ def run_video_missile_interception(
             dist_b = math.hypot(dx_b, dy_b)
 
             tti_b = max(0.01, dist_b / max(100.0, bravo_speed))
-            lead_x_b = target_x + target_vx * min(0.4, tti_b)
-            lead_y_b = target_y + target_vy * min(0.4, tti_b)
+            lead_x_b = target_x + target_vx * min(0.40, tti_b)
+            lead_y_b = target_y + target_vy * min(0.40, tti_b)
 
             desired_heading_b = math.atan2(lead_y_b - bravo_y, lead_x_b - bravo_x)
             heading_err_b = desired_heading_b - bravo_heading
@@ -251,16 +273,16 @@ def run_video_missile_interception(
             while heading_err_b < -math.pi:
                 heading_err_b += math.pi * 2
 
-            turn_step_b = math.copysign(min(60.0, abs(heading_err_b) * 35.0), heading_err_b) * dt
+            turn_step_b = math.copysign(min(65.0, abs(heading_err_b) * 40.0), heading_err_b) * dt
             if abs(heading_err_b) <= abs(turn_step_b):
                 bravo_heading = desired_heading_b
             else:
                 bravo_heading += turn_step_b
 
-            if dist_b < 180.0:
-                bravo_speed = max(bravo_speed, missile_speed_px_per_sec * 1.85)
-            elif bravo_speed < missile_speed_px_per_sec * 1.1:
-                bravo_speed += 1250.0 * dt
+            if dist_b < 200.0:
+                bravo_speed = max(bravo_speed, missile_speed_px_per_sec * 2.3)
+            elif bravo_speed < missile_speed_px_per_sec * 1.15:
+                bravo_speed += 1700.0 * dt
 
             bravo_x += math.cos(bravo_heading) * bravo_speed * dt
             bravo_y += math.sin(bravo_heading) * bravo_speed * dt
@@ -269,7 +291,19 @@ def run_video_missile_interception(
             if len(bravo_trail) > 35:
                 bravo_trail.pop(0)
 
-            if dist_b <= 75.0:
+            # Continuous 2-body swept distance check for Bravo
+            d_mx_b = bravo_x - prev_bravo_x
+            d_my_b = bravo_y - prev_bravo_y
+            rel_vx_b = d_mx_b - d_tx
+            rel_vy_b = d_my_b - d_ty
+            rel_px_b = prev_bravo_x - prev_target_x
+            rel_py_b = prev_bravo_y - prev_target_y
+            rel_vsq_b = rel_vx_b * rel_vx_b + rel_vy_b * rel_vy_b
+            t_close_b = -(rel_px_b * rel_vx_b + rel_py_b * rel_vy_b) / rel_vsq_b if rel_vsq_b > 1e-4 else 0.0
+            t_close_b = max(0.0, min(1.0, t_close_b))
+            swept_dist_b = math.hypot(rel_px_b + t_close_b * rel_vx_b, rel_py_b + t_close_b * rel_vy_b)
+
+            if dist_b <= 85.0 or swept_dist_b <= 85.0:
                 is_intercepted = True
                 intercept_frame_num = frame_idx
                 intercepting_missile = "BRAVO (PINCER)"

@@ -309,8 +309,8 @@ def get_interceptor_sim_html(
     <div class="telemetry-strip">
       <div class="telem-chip" id="chipStatus">STATUS: <span class="val" id="valStatus">STANDBY</span></div>
       <div class="telem-chip active">GUIDANCE: <span class="val">TVC + APN HYBRID</span></div>
-      <div class="telem-chip">SPEED: <span class="val" id="valMach">Mach 4.2</span></div>
-      <div class="telem-chip">KINETIC ENERGY: <span class="val" id="valKe">18.5 MJ</span></div>
+      <div class="telem-chip">SPEED: <span class="val" id="valMach">Mach 6.2</span></div>
+      <div class="telem-chip">KINETIC ENERGY: <span class="val" id="valKe">24.5 MJ</span></div>
       <div class="telem-chip">KILL PROBABILITY: <span class="val" id="valPk" style="color: #34D399;">100.0% Pk</span></div>
       <div class="telem-chip">CLOSING VELOCITY: <span class="val" id="valVc">-- m/s</span></div>
       <div class="telem-chip">TVC PULL: <span class="val" id="valG">0.0 G</span></div>
@@ -359,9 +359,9 @@ def get_interceptor_sim_html(
       <div class="select-group">
         <span style="font-size: 11px; color: #94A3B8; font-weight: 600;">ROCKET WEAPON POWER:</span>
         <select class="custom-select" id="selectMissileMode">
-          <option value="salvo">🚀 Dual-Missile Salvo Battery (Alpha + Bravo Pincer • 100% Pk)</option>
-          <option value="hypersonic">⚡ Hypersonic Sprint Interceptor (Mach 4.5 • 48G TVC • 18.5 MJ)</option>
-          <option value="standard">🎯 Tactical Interceptor (Mach 3.0 • 35G)</option>
+          <option value="salvo">🚀 Hyper-Salvo Battery (Alpha + Bravo Pincer • Mach 6.2 • 100% Pk)</option>
+          <option value="hypersonic">⚡ Hypersonic Kinetic Sprint (Mach 6.5 • 68G TVC • 24.5 MJ)</option>
+          <option value="standard">🎯 AI-Guided Interceptor (Mach 5.0 • APN Lead • 100% Pk)</option>
         </select>
       </div>
 
@@ -401,10 +401,11 @@ def get_interceptor_sim_html(
 
 <script>
 // =============================================================================
-// WEB AUDIO SYNTHESIZER
+// WEB AUDIO SYNTHESIZER (ZERO-LATENCY HARDWARE CACHED)
 // =============================================================================
 let audioCtx = null;
 let soundEnabled = {str(sound_enabled).lower()};
+let cachedNoiseBuffer = null;
 
 function getAudioContext() {{
   if (!audioCtx) {{
@@ -417,34 +418,42 @@ function getAudioContext() {{
   return audioCtx;
 }}
 
+function getNoiseBuffer(ctx) {{
+  if (cachedNoiseBuffer && cachedNoiseBuffer.sampleRate === ctx.sampleRate) {{
+    return cachedNoiseBuffer;
+  }}
+  const len = Math.floor(ctx.sampleRate * 2.0);
+  cachedNoiseBuffer = ctx.createBuffer(1, len, ctx.sampleRate);
+  const data = cachedNoiseBuffer.getChannelData(0);
+  for (let i = 0; i < len; i++) {{
+    data[i] = Math.random() * 2 - 1;
+  }}
+  return cachedNoiseBuffer;
+}}
+
 function playLaunchSound() {{
   if (!soundEnabled) return;
   const ctx = getAudioContext();
   if (!ctx) return;
   try {{
-    const bufferSize = ctx.sampleRate * 1.5;
-    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-    const data = buffer.getChannelData(0);
-    for (let i = 0; i < bufferSize; i++) {{
-      data[i] = Math.random() * 2 - 1;
-    }}
     const noise = ctx.createBufferSource();
-    noise.buffer = buffer;
+    noise.buffer = getNoiseBuffer(ctx);
 
     const filter = ctx.createBiquadFilter();
     filter.type = 'bandpass';
-    filter.frequency.setValueAtTime(350, ctx.currentTime);
-    filter.frequency.exponentialRampToValueAtTime(850, ctx.currentTime + 1.2);
+    filter.frequency.setValueAtTime(360, ctx.currentTime);
+    filter.frequency.exponentialRampToValueAtTime(920, ctx.currentTime + 1.2);
 
     const gain = ctx.createGain();
     gain.gain.setValueAtTime(0.01, ctx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.5, ctx.currentTime + 0.15);
-    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 1.5);
+    gain.gain.linearRampToValueAtTime(0.5, ctx.currentTime + 0.12);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.4);
 
     noise.connect(filter);
     filter.connect(gain);
     gain.connect(ctx.destination);
     noise.start();
+    noise.stop(ctx.currentTime + 1.45);
   }} catch (e) {{}}
 }}
 
@@ -477,28 +486,23 @@ function playExplosionSound() {{
   const ctx = getAudioContext();
   if (!ctx) return;
   try {{
-    const bufferSize = ctx.sampleRate * 2.0;
-    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-    const data = buffer.getChannelData(0);
-    for (let i = 0; i < bufferSize; i++) {{
-      data[i] = (Math.random() * 2 - 1) * Math.exp(-2.5 * i / bufferSize);
-    }}
     const noise = ctx.createBufferSource();
-    noise.buffer = buffer;
+    noise.buffer = getNoiseBuffer(ctx);
 
     const filter = ctx.createBiquadFilter();
     filter.type = 'lowpass';
-    filter.frequency.setValueAtTime(260, ctx.currentTime);
-    filter.frequency.linearRampToValueAtTime(60, ctx.currentTime + 1.4);
+    filter.frequency.setValueAtTime(280, ctx.currentTime);
+    filter.frequency.linearRampToValueAtTime(45, ctx.currentTime + 1.25);
 
     const gain = ctx.createGain();
     gain.gain.setValueAtTime(0.9, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 2.0);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.8);
 
     noise.connect(filter);
     filter.connect(gain);
     gain.connect(ctx.destination);
     noise.start();
+    noise.stop(ctx.currentTime + 1.85);
   }} catch (e) {{}}
 }}
 
@@ -523,6 +527,8 @@ let target = {{
   y: 0,
   vx: 0,
   vy: 0,
+  ax: 0,
+  ay: 0,
   speed: 150,
   heading: 0,
   altitude: 850,
@@ -533,7 +539,7 @@ let target = {{
   destroyedTimer: 0
 }};
 
-// Missile State (Alpha - Primary Interceptor)
+// Missile State (Alpha - Lead Interceptor)
 let missile = {{
   active: false,
   x: 0,
@@ -541,16 +547,17 @@ let missile = {{
   vx: 0,
   vy: 0,
   speed: 0,
-  baseSpeed: 580,
-  accel: 850,
+  baseSpeed: 1850,
+  accel: 3400,
   heading: -Math.PI / 2,
   stage: 'STANDBY',
   flightTime: 0,
+  prevR: 9999,
   trail: [],
   smokeParticles: []
 }};
 
-// Missile Bravo (Flanker Interceptor for Dual-Salvo Battery)
+// Missile Bravo (Flanker Interceptor for Dual-Salvo Pincer)
 let missileB = {{
   active: false,
   x: 0,
@@ -558,11 +565,12 @@ let missileB = {{
   vx: 0,
   vy: 0,
   speed: 0,
-  baseSpeed: 620,
-  accel: 950,
+  baseSpeed: 2050,
+  accel: 3600,
   heading: -Math.PI / 2 - 0.20,
   stage: 'STANDBY',
   flightTime: 0,
+  prevR: 9999,
   trail: [],
   smokeParticles: []
 }};
@@ -571,6 +579,22 @@ let explosionParticles = [];
 let debrisParticles = [];
 let shockwaves = [];
 let radarSweepAngle = 0;
+
+// Decoupled Interactive Pointer State (Prevents High-Polling Input Thrashing)
+let isDraggingTarget = false;
+let pendingPointerPos = null;
+let hasPendingPointer = false;
+
+// Zero-allocation array compacting helper (eliminates GC micro-stutters)
+function compactArray(arr, predicate) {{
+  let write = 0;
+  for (let read = 0; read < arr.length; read++) {{
+    if (predicate(arr[read])) {{
+      arr[write++] = arr[read];
+    }}
+  }}
+  arr.length = write;
+}}
 
 function getLauncherPos() {{
   return {{ x: canvas.width / 2, y: canvas.height - 35 }};
@@ -587,6 +611,8 @@ function initScenario() {{
   target.prevX = target.x;
   target.prevY = target.y;
   target.heading = Math.PI * 0.06;
+  target.ax = 0;
+  target.ay = 0;
 
   // Set realistic speed based on threat type
   if (target.type === 'Warplane' || target.type === 'JetFighter') {{
@@ -637,12 +663,14 @@ function initScenario() {{
   debrisParticles = [];
   shockwaves = [];
   isDraggingTarget = false;
+  hasPendingPointer = false;
+  pendingPointerPos = null;
 
   document.getElementById('valStatus').innerText = 'STANDBY // READY';
   document.getElementById('valStatus').style.color = '#FFFFFF';
   document.getElementById('chipStatus').className = 'telem-chip';
-  document.getElementById('valMach').innerText = 'Mach 4.2';
-  document.getElementById('valKe').innerText = '18.5 MJ';
+  document.getElementById('valMach').innerText = 'Mach 6.2';
+  document.getElementById('valKe').innerText = '24.5 MJ';
   document.getElementById('valPk').innerText = '100.0% Pk';
   document.getElementById('valVc').innerText = '-- m/s';
   document.getElementById('valG').innerText = '0.0 G';
@@ -671,6 +699,10 @@ function launchInterceptor() {{
     target.y = canvas.height * 0.22;
     target.prevX = target.x;
     target.prevY = target.y;
+    target.vx = 0;
+    target.vy = 0;
+    target.ax = 0;
+    target.ay = 0;
     target.heading = Math.PI * 0.06;
     target.trail = [];
     explosionParticles = [];
@@ -691,8 +723,8 @@ function launchInterceptor() {{
     missileB.x = lp.x + 14;
     missileB.y = lp.y;
     missileB.heading = -Math.PI / 2 - 0.20;
-    missileB.speed = 1650;
-    missileB.accel = 2400;
+    missileB.speed = 2050;
+    missileB.accel = 3600;
     missileB.vx = Math.cos(missileB.heading) * missileB.speed;
     missileB.vy = Math.sin(missileB.heading) * missileB.speed;
     missileB.stage = 'SALVO FLANKER REINFORCE';
@@ -703,7 +735,7 @@ function launchInterceptor() {{
   }}
   if (missile.active) {{
     // Re-engagement hypersonic surge
-    missile.speed = Math.max(missile.speed, 1800);
+    missile.speed = Math.max(missile.speed, 2600);
     missile.stage = 'HYPERSONIC WARP SUSTAINER';
     return;
   }}
@@ -718,8 +750,8 @@ function launchInterceptor() {{
   missile.x = lp.x - (mode === 'salvo' ? 14 : 0);
   missile.y = lp.y;
   missile.heading = -Math.PI / 2;
-  missile.speed = mode === 'hypersonic' ? 1800 : (mode === 'salvo' ? 1500 : 1450);
-  missile.accel = 2400;
+  missile.speed = mode === 'hypersonic' ? 2200 : (mode === 'salvo' ? 1850 : 1650);
+  missile.accel = 3400;
   missile.vx = Math.cos(missile.heading) * missile.speed;
   missile.vy = Math.sin(missile.heading) * missile.speed;
   missile.stage = 'BOOST MOTOR ACTIVE';
@@ -732,8 +764,8 @@ function launchInterceptor() {{
     missileB.x = lp.x + 14;
     missileB.y = lp.y;
     missileB.heading = -Math.PI / 2 - 0.20;
-    missileB.speed = 1650;
-    missileB.accel = 2400;
+    missileB.speed = 2050;
+    missileB.accel = 3600;
     missileB.vx = Math.cos(missileB.heading) * missileB.speed;
     missileB.vy = Math.sin(missileB.heading) * missileB.speed;
     missileB.stage = 'SALVO FLANKER BOOST';
@@ -749,9 +781,6 @@ function launchInterceptor() {{
 }}
 
 // Interactive Drag & Manual Flight
-let isDraggingTarget = false;
-let lastDragTime = performance.now();
-
 function clampTargetPos(x, y) {{
   const minX = 35;
   const maxX = canvas.width - 35;
@@ -768,7 +797,6 @@ function handlePointerDown(e) {{
   const rawX = e.clientX - rect.left;
   const rawY = e.clientY - rect.top;
   const pos = clampTargetPos(rawX, rawY);
-  lastDragTime = performance.now();
 
   if (e.pointerId !== undefined && canvas.setPointerCapture) {{
     try {{ canvas.setPointerCapture(e.pointerId); }} catch (_) {{}}
@@ -785,6 +813,10 @@ function handlePointerDown(e) {{
     target.y = pos.y;
     target.prevX = pos.x;
     target.prevY = pos.y;
+    target.vx = 0;
+    target.vy = 0;
+    target.ax = 0;
+    target.ay = 0;
     target.heading = 0;
     target.trail = [];
     document.getElementById('hudBadge').innerText = 'HOSTILE AIRSPACE INTRUDER';
@@ -794,15 +826,15 @@ function handlePointerDown(e) {{
     document.getElementById('threatPulse').style.background = '#EF4444';
     document.getElementById('threatPulse').style.boxShadow = '0 0 12px #EF4444';
     isDraggingTarget = true;
+    pendingPointerPos = pos;
+    hasPendingPointer = true;
     launchInterceptor();
     return;
   }}
 
   isDraggingTarget = true;
-  target.prevX = target.x;
-  target.prevY = target.y;
-  target.x = pos.x;
-  target.y = pos.y;
+  pendingPointerPos = pos;
+  hasPendingPointer = true;
   if (!missile.active) {{
     launchInterceptor();
   }}
@@ -812,48 +844,21 @@ function handlePointerMove(e) {{
   const rect = canvas.getBoundingClientRect();
   const rawX = e.clientX - rect.left;
   const rawY = e.clientY - rect.top;
-  const pos = clampTargetPos(rawX, rawY);
-
-  if (isDraggingTarget && !target.destroyed) {{
-    const now = performance.now();
-    const dt = Math.max(0.005, (now - lastDragTime) / 1000);
-    lastDragTime = now;
-
-    const dx = pos.x - target.x;
-    const dy = pos.y - target.y;
-
-    target.prevX = target.x;
-    target.prevY = target.y;
-    target.x = pos.x;
-    target.y = pos.y;
-
-    target.vx = dx / dt;
-    target.vy = dy / dt;
-    if (Math.hypot(dx, dy) > 2.5) {{
-      target.heading = Math.atan2(dy, dx);
-    }}
-  }} else if (target.evasionMode === 'drag' && !target.destroyed) {{
-    // Continuous fly-by-wire bank towards mouse cursor in interactive mode
-    const dx = pos.x - target.x;
-    const dy = pos.y - target.y;
-    if (Math.hypot(dx, dy) > 20) {{
-      const targetAngle = Math.atan2(dy, dx);
-      let angleDiff = targetAngle - target.heading;
-      while (angleDiff > Math.PI) angleDiff -= Math.PI * 2;
-      while (angleDiff < -Math.PI) angleDiff += Math.PI * 2;
-      target.heading += angleDiff * 0.12;
-    }}
-  }}
+  pendingPointerPos = clampTargetPos(rawX, rawY);
+  hasPendingPointer = true;
 }}
 
 function handlePointerUp(e) {{
   isDraggingTarget = false;
+  hasPendingPointer = false;
   if (e.pointerId !== undefined && canvas.releasePointerCapture) {{
     try {{ canvas.releasePointerCapture(e.pointerId); }} catch (_) {{}}
   }}
   if (!target.destroyed) {{
     target.vx = Math.cos(target.heading) * target.speed;
     target.vy = Math.sin(target.heading) * target.speed;
+    target.ax = 0;
+    target.ay = 0;
   }}
 }}
 
@@ -888,7 +893,7 @@ let lastTimestamp = performance.now();
 function update(dt) {{
   radarSweepAngle += dt * 1.6;
 
-  // 1. UPDATE TARGET (If not manually dragged)
+  // 1. UPDATE TARGET (Decoupled Mouse Input & Autonomous Evasion)
   if (!target.destroyed) {{
     const lw = canvas.width;
     const lh = canvas.height;
@@ -896,7 +901,29 @@ function update(dt) {{
     target.prevX = target.x;
     target.prevY = target.y;
 
-    if (!isDraggingTarget) {{
+    if (isDraggingTarget && hasPendingPointer && pendingPointerPos) {{
+      const dx = pendingPointerPos.x - target.x;
+      const dy = pendingPointerPos.y - target.y;
+      const prevVx = target.vx;
+      const prevVy = target.vy;
+
+      target.x = pendingPointerPos.x;
+      target.y = pendingPointerPos.y;
+
+      if (dt > 0.001) {{
+        target.vx = dx / dt;
+        target.vy = dy / dt;
+        target.ax = (target.vx - prevVx) / dt;
+        target.ay = (target.vy - prevVy) / dt;
+      }}
+
+      if (Math.hypot(dx, dy) > 2.0) {{
+        target.heading = Math.atan2(dy, dx);
+      }}
+      hasPendingPointer = false;
+    }} else if (!isDraggingTarget) {{
+      target.ax = 0;
+      target.ay = 0;
       if (target.evasionMode === 'weave') {{
         // Sinusoidal oscillating weave (6.5G)
         const omega = 4.2;
@@ -948,27 +975,29 @@ function update(dt) {{
     const dy = target.y - curM.y;
     const R = Math.hypot(dx, dy);
 
-    // Dynamic speed dominance: missile is ALWAYS at least 4.2x faster than target
+    // Dynamic speed dominance: missile is ALWAYS at least 5.0x faster than target
     const targetCurrentSpeed = Math.hypot(target.vx, target.vy);
-    const minSpeed = Math.max(curM.baseSpeed || 1400, targetCurrentSpeed * 4.2);
+    const minSpeed = Math.max(curM.baseSpeed || 1850, targetCurrentSpeed * 5.0);
     curM.speed = Math.max(curM.speed, minSpeed);
 
-    // Terminal Hyper-Burn acceleration when within 220px
-    if (R < 220) {{
-      curM.speed = Math.max(curM.speed, 2200);
+    // Terminal Hyper-Burn acceleration when within 240px
+    if (R < 240) {{
+      curM.speed = Math.max(curM.speed, 2800);
     }}
 
-    // Augmented Proportional Navigation with Target Lead PIP
-    const tgo = Math.max(0.005, R / curM.speed);
+    // Augmented Proportional Navigation (APN) with 2nd-order Target Acceleration Lead
+    const tgo = Math.max(0.003, R / curM.speed);
     let aimX = target.x;
     let aimY = target.y;
-    if (R >= 160) {{
-      const leadTime = Math.min(0.55, tgo);
-      aimX = target.x + target.vx * leadTime;
-      aimY = target.y + target.vy * leadTime;
+    if (R >= 130) {{
+      const leadTime = Math.min(0.40, tgo);
+      const accX = target.ax || 0;
+      const accY = target.ay || 0;
+      aimX = target.x + target.vx * leadTime + 0.5 * accX * leadTime * leadTime;
+      aimY = target.y + target.vy * leadTime + 0.5 * accY * leadTime * leadTime;
     }}
 
-    const flankOffset = (item.isFlanker && R > 150) ? 0.20 : 0.0;
+    const flankOffset = (item.isFlanker && R > 130) ? 0.15 : 0.0;
     const desiredHeading = Math.atan2(aimY - curM.y, aimX - curM.x) + flankOffset;
 
     // Instantaneous TVC lock: heading directly tracks target lead
@@ -1011,8 +1040,8 @@ function update(dt) {{
     tClose = Math.max(0, Math.min(1, tClose));
     const sweptClosestDist = Math.hypot(relPx + tClose * relVx, relPy + tClose * relVy);
 
-    // ── CLOSEST POINT OF APPROACH (CPA) PROXIMITY FUSE ──
-    const isCpaDetonation = (curM.prevR !== undefined && curM.prevR < 100.0 && R >= curM.prevR && sweptClosestDist <= 100.0);
+    // ── CLOSEST POINT OF APPROACH (CPA) PROXIMITY FUZE ──
+    const isCpaDetonation = (curM.prevR !== undefined && curM.prevR < 110.0 && R >= curM.prevR && sweptClosestDist <= 110.0);
     curM.prevR = R;
 
     // Telemetry updates
@@ -1046,11 +1075,13 @@ function update(dt) {{
       }});
     }}
 
-    // Lethal Proximity Warhead Blast Radius: 80.0px + CPA Detonation + Dynamic Relative Sweep
-    const isDirectHit = (sweptClosestDist <= 80.0) || (R <= 80.0) || isCpaDetonation;
+    // Lethal Proximity Warhead Blast Radius: 88.0px + CPA Detonation + Dynamic Relative Sweep
+    const isDirectHit = (sweptClosestDist <= 88.0) || (R <= 88.0) || isCpaDetonation;
     if (isDirectHit) {{
       target.destroyed = true;
       isDraggingTarget = false;
+      hasPendingPointer = false;
+      pendingPointerPos = null;
       missile.active = false;
       missileB.active = false;
       curM.stage = 'DESTROYED';
@@ -1109,7 +1140,7 @@ function update(dt) {{
     }}
   }}
 
-  // Update particles
+  // Update particles with zero garbage collection allocations
   [missile.smokeParticles, missileB.smokeParticles].forEach((smokeArr) => {{
     for (let i = 0; i < smokeArr.length; i++) {{
       const p = smokeArr[i];
@@ -1118,10 +1149,8 @@ function update(dt) {{
       p.alpha -= dt * 2.8;
       p.radius += dt * 6;
     }}
-    const filtered = smokeArr.filter(p => p.alpha > 0);
-    smokeArr.length = 0;
-    for (let i = 0; i < filtered.length; i++) smokeArr.push(filtered[i]);
-    while (smokeArr.length > 40) smokeArr.shift();
+    compactArray(smokeArr, p => p.alpha > 0);
+    if (smokeArr.length > 40) smokeArr.splice(0, smokeArr.length - 40);
   }});
 
   for (let i = 0; i < explosionParticles.length; i++) {{
@@ -1132,7 +1161,7 @@ function update(dt) {{
     p.vy *= 0.93;
     p.life -= dt;
   }}
-  explosionParticles = explosionParticles.filter(p => p.life > 0);
+  compactArray(explosionParticles, p => p.life > 0);
 
   for (let i = 0; i < debrisParticles.length; i++) {{
     const d = debrisParticles[i];
@@ -1142,21 +1171,32 @@ function update(dt) {{
     d.rot += d.rotSpeed * dt;
     d.life -= dt;
   }}
-  debrisParticles = debrisParticles.filter(d => d.life > 0);
+  compactArray(debrisParticles, d => d.life > 0);
 
   for (let i = 0; i < shockwaves.length; i++) {{
     const sw = shockwaves[i];
-    sw.radius += dt * 260;
+    sw.radius += dt * 280;
     sw.alpha -= dt * 2.4;
     sw.life -= dt;
   }}
-  shockwaves = shockwaves.filter(sw => sw.life > 0 && sw.alpha > 0);
+  compactArray(shockwaves, sw => sw.life > 0 && sw.alpha > 0);
 }}
 
 
 // =============================================================================
 // RENDERING & VISUAL RADAR
 // =============================================================================
+let cachedRadarSweepGrad = null;
+function getRadarSweepGrad() {{
+  if (!cachedRadarSweepGrad) {{
+    cachedRadarSweepGrad = ctx.createConicGradient(0, 0, 0);
+    cachedRadarSweepGrad.addColorStop(0, 'rgba(56, 189, 248, 0.12)');
+    cachedRadarSweepGrad.addColorStop(0.08, 'rgba(56, 189, 248, 0.0)');
+    cachedRadarSweepGrad.addColorStop(1, 'rgba(56, 189, 248, 0.0)');
+  }}
+  return cachedRadarSweepGrad;
+}}
+
 function draw() {{
   const w = canvas.width;
   const h = canvas.height;
@@ -1186,14 +1226,11 @@ function draw() {{
   ctx.moveTo(15, cy); ctx.lineTo(w - 15, cy);
   ctx.stroke();
 
-  // Radar Sweeping Beam
+  // Radar Sweeping Beam (Re-uses Cached Shader Gradient)
   ctx.save();
   ctx.translate(cx, cy);
-  const sweepGrad = ctx.createConicGradient(radarSweepAngle, 0, 0);
-  sweepGrad.addColorStop(0, 'rgba(56, 189, 248, 0.12)');
-  sweepGrad.addColorStop(0.08, 'rgba(56, 189, 248, 0.0)');
-  sweepGrad.addColorStop(1, 'rgba(56, 189, 248, 0.0)');
-  ctx.fillStyle = sweepGrad;
+  ctx.rotate(radarSweepAngle);
+  ctx.fillStyle = getRadarSweepGrad();
   ctx.beginPath();
   ctx.arc(0, 0, h * 0.48, 0, Math.PI * 2);
   ctx.fill();
@@ -1302,13 +1339,18 @@ function draw() {{
     ctx.fillText(`${{Math.round(target.speed * 0.9)}} m/s | ALT ${{target.altitude}}m`, target.x + 22, target.y + 7);
   }}
 
-  // Smoke particles from all active missiles
-  [...missile.smokeParticles, ...missileB.smokeParticles].forEach(p => {{
-    ctx.fillStyle = `${{p.color}}${{p.alpha}})`;
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-    ctx.fill();
-  }});
+  // Smoke particles from all active missiles (zero array spread allocation)
+  function renderSmoke(smokeArr) {{
+    for (let i = 0; i < smokeArr.length; i++) {{
+      const p = smokeArr[i];
+      ctx.fillStyle = `${{p.color}}${{p.alpha}})`;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fill();
+    }}
+  }}
+  renderSmoke(missile.smokeParticles);
+  renderSmoke(missileB.smokeParticles);
 
   // Render Interceptor Missiles (Alpha & Bravo Salvo)
   const drawList = [
