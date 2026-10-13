@@ -1,0 +1,10 @@
+profile,run_index,resolution,total_frames_in_file,frames_decoded,frames_processed,frames_skipped,total_elapsed_sec,e2e_throughput_fps,inference_fps,mean_inference_ms,median_frame_e2e_ms,p95_frame_e2e_ms,avg_read_ms,avg_prep_ms,avg_post_ms,avg_render_ms,avg_write_ms,peak_vram_mb,gpu_device,precision
+Offline Complete Processing,1,640x480,84,84,84,0,1.3,64.6,79.26,12.62,14.34,17.81,0.59,0.0,0.4,0.15,1.54,72.86,NVIDIA GeForce RTX 3050 Laptop GPU,FP16 (Half-Precision)
+Offline Complete Processing,2,640x480,84,84,84,0,1.209,69.48,84.78,11.8,13.77,17.05,0.55,0.0,0.3,0.14,1.45,72.84,NVIDIA GeForce RTX 3050 Laptop GPU,FP16 (Half-Precision)
+Offline Complete Processing,3,640x480,84,84,84,0,1.241,67.71,82.68,12.1,13.91,18.48,0.58,0.0,0.29,0.14,1.49,72.84,NVIDIA GeForce RTX 3050 Laptop GPU,FP16 (Half-Precision)
+Fast Sampled Preview,1,640x480,84,84,42,42,0.579,72.59,82.86,12.07,12.59,15.37,0.5,0.0,0.3,0.14,0.0,72.84,NVIDIA GeForce RTX 3050 Laptop GPU,FP16 (Half-Precision)
+Fast Sampled Preview,2,640x480,84,84,42,42,0.561,74.84,85.46,11.7,12.07,14.54,0.5,0.0,0.28,0.13,0.0,72.84,NVIDIA GeForce RTX 3050 Laptop GPU,FP16 (Half-Precision)
+Fast Sampled Preview,3,640x480,84,84,42,42,0.587,71.5,82.14,12.17,12.38,16.79,0.54,0.0,0.31,0.14,0.0,72.84,NVIDIA GeForce RTX 3050 Laptop GPU,FP16 (Half-Precision)
+Live Preview Low-Latency,1,640x480,84,84,84,0,1.118,75.12,82.3,12.15,12.7,17.4,0.56,0.0,0.32,0.14,0.0,72.84,NVIDIA GeForce RTX 3050 Laptop GPU,FP16 (Half-Precision)
+Live Preview Low-Latency,2,640x480,84,84,84,0,1.435,58.53,63.22,15.82,11.76,44.04,0.56,0.0,0.35,0.15,0.0,72.84,NVIDIA GeForce RTX 3050 Laptop GPU,FP16 (Half-Precision)
+Live Preview Low-Latency,3,640x480,84,84,84,0,3.013,27.87,29.59,33.8,34.28,59.0,0.89,0.0,0.73,0.22,0.0,72.84,NVIDIA GeForce RTX 3050 Laptop GPU,FP16 (Half-Precision)

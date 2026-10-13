@@ -1,0 +1,10 @@
+# AeroWatch AI — Python Dependencies
+# PyTorch with CUDA is pre-installed in the .venv environment (PyTorch 2.14.1+cu132)
+ultralytics>=8.4.0
+streamlit>=1.35.0
+opencv-python>=4.8.0
+pillow>=10.0.0
+pyyaml>=6.0
+pandas>=2.0.0
+imageio>=2.34.0
+imageio-ffmpeg>=0.4.9

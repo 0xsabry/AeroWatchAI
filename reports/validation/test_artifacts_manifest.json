@@ -1,0 +1,1423 @@
+{
+  "manifest_version": "2.0.0",
+  "description": "AeroWatch AI Civilian Aerial Detection Test-Artifact Collection",
+  "canonical_classes": {
+    "0": "drone",
+    "1": "airplane",
+    "2": "bird",
+    "3": "balloon"
+  },
+  "display_classes": {
+    "0": "Drone",
+    "1": "Aircraft",
+    "2": "Bird",
+    "3": "Balloon"
+  },
+  "summary": {
+    "total_images": 30,
+    "total_negatives": 5,
+    "total_videos": 4,
+    "total_corrupt_fixtures": 5,
+    "total_artifacts": 44
+  },
+  "images": [
+    {
+      "artifact_id": "rigo_rigoleto_train0022",
+      "filename": "rigo_rigoleto_train0022.jpg",
+      "relative_path": "tests/artifacts/images/rigo_rigoleto_train0022.jpg",
+      "label_relative_path": "tests/artifacts/images/rigo_rigoleto_train0022.txt",
+      "category": "drone",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "adb39cf649422f811ecb71e00d63335df93bed274b3201d76bfec1109fc9aceb",
+      "size_bytes": 30606,
+      "width": 587,
+      "height": 285,
+      "source_name": "Rigoleto/drone-detection",
+      "license": "CC-BY 4.0",
+      "description": "Quadcopter in flight, clear daylight",
+      "visual_attributes": [
+        "clear_daylight",
+        "civilian_drone"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 0,
+          "class_name": "drone",
+          "display_name": "Drone",
+          "bbox_normalized": [
+            0.506814,
+            0.552632,
+            0.969336,
+            0.894737
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "rigo_rigoleto_train0034",
+      "filename": "rigo_rigoleto_train0034.jpg",
+      "relative_path": "tests/artifacts/images/rigo_rigoleto_train0034.jpg",
+      "label_relative_path": "tests/artifacts/images/rigo_rigoleto_train0034.txt",
+      "category": "drone",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "8eb3cbc2d5eb262c309287b174739cb8264903f86d900b3038b84cf9c90e0d7c",
+      "size_bytes": 31808,
+      "width": 800,
+      "height": 350,
+      "source_name": "Rigoleto/drone-detection",
+      "license": "CC-BY 4.0",
+      "description": "Quadcopter against complex background",
+      "visual_attributes": [
+        "cluttered_background",
+        "civilian_drone"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 0,
+          "class_name": "drone",
+          "display_name": "Drone",
+          "bbox_normalized": [
+            0.534375,
+            0.477143,
+            0.71125,
+            0.902857
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "rigo_rigoleto_train0044",
+      "filename": "rigo_rigoleto_train0044.jpg",
+      "relative_path": "tests/artifacts/images/rigo_rigoleto_train0044.jpg",
+      "label_relative_path": "tests/artifacts/images/rigo_rigoleto_train0044.txt",
+      "category": "drone",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "d717fbb3670cc63e92b213099772db8ddce1029c9092e0d2accabd4d10eaba4a",
+      "size_bytes": 2220148,
+      "width": 4000,
+      "height": 2850,
+      "source_name": "Rigoleto/drone-detection",
+      "license": "CC-BY 4.0",
+      "description": "Distant drone target",
+      "visual_attributes": [
+        "small_object",
+        "distant",
+        "civilian_drone"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 0,
+          "class_name": "drone",
+          "display_name": "Drone",
+          "bbox_normalized": [
+            0.586125,
+            0.537895,
+            0.52725,
+            0.924211
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "rigo_rigoleto_train0053",
+      "filename": "rigo_rigoleto_train0053.jpg",
+      "relative_path": "tests/artifacts/images/rigo_rigoleto_train0053.jpg",
+      "label_relative_path": "tests/artifacts/images/rigo_rigoleto_train0053.txt",
+      "category": "drone",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "d01e8d79e36b0904287edacc7f1aa4e3c09b818694a83cfc8c39f7e47c19680b",
+      "size_bytes": 56484,
+      "width": 870,
+      "height": 580,
+      "source_name": "Rigoleto/drone-detection",
+      "license": "CC-BY 4.0",
+      "description": "Drone with slight motion blur",
+      "visual_attributes": [
+        "motion_blur",
+        "civilian_drone"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 0,
+          "class_name": "drone",
+          "display_name": "Drone",
+          "bbox_normalized": [
+            0.508046,
+            0.462931,
+            0.76092,
+            0.560345
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "rigo_rigoleto_train0062",
+      "filename": "rigo_rigoleto_train0062.jpg",
+      "relative_path": "tests/artifacts/images/rigo_rigoleto_train0062.jpg",
+      "label_relative_path": "tests/artifacts/images/rigo_rigoleto_train0062.txt",
+      "category": "drone",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "cf13a87045ab6cf0527db3b0066cbbaed39e4e262fedc6d92d6e74d624ee6ae6",
+      "size_bytes": 124184,
+      "width": 1200,
+      "height": 800,
+      "source_name": "Rigoleto/drone-detection",
+      "license": "CC-BY 4.0",
+      "description": "Quadcopter low altitude",
+      "visual_attributes": [
+        "low_altitude",
+        "civilian_drone"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 0,
+          "class_name": "drone",
+          "display_name": "Drone",
+          "bbox_normalized": [
+            0.527083,
+            0.4925,
+            0.8975,
+            0.93
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "rigo_rigoleto_train0069",
+      "filename": "rigo_rigoleto_train0069.jpg",
+      "relative_path": "tests/artifacts/images/rigo_rigoleto_train0069.jpg",
+      "label_relative_path": "tests/artifacts/images/rigo_rigoleto_train0069.txt",
+      "category": "drone",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "5bf98d914b15caa978eb249472d40aca5085da020f985057814e46624be8a8e4",
+      "size_bytes": 34524,
+      "width": 570,
+      "height": 380,
+      "source_name": "Rigoleto/drone-detection",
+      "license": "CC-BY 4.0",
+      "description": "Multirotor aerial inspection",
+      "visual_attributes": [
+        "inspection",
+        "civilian_drone"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 0,
+          "class_name": "drone",
+          "display_name": "Drone",
+          "bbox_normalized": [
+            0.504386,
+            0.411842,
+            0.963158,
+            0.771053
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "rigo_rigoleto_train0082",
+      "filename": "rigo_rigoleto_train0082.jpg",
+      "relative_path": "tests/artifacts/images/rigo_rigoleto_train0082.jpg",
+      "label_relative_path": "tests/artifacts/images/rigo_rigoleto_train0082.txt",
+      "category": "drone",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "3718201708d36ff743e655ad856deed19ec476569c6c55ae7190ec4b9fa40049",
+      "size_bytes": 120724,
+      "width": 1920,
+      "height": 1282,
+      "source_name": "Rigoleto/drone-detection",
+      "license": "CC-BY 4.0",
+      "description": "Quadcopter hovering in sky",
+      "visual_attributes": [
+        "sky_backdrop",
+        "civilian_drone"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 0,
+          "class_name": "drone",
+          "display_name": "Drone",
+          "bbox_normalized": [
+            0.504167,
+            0.49922,
+            0.284375,
+            0.118565
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "vgt_quadcopter_drone_005",
+      "filename": "vgt_quadcopter_drone_005.jpg",
+      "relative_path": "tests/artifacts/images/vgt_quadcopter_drone_005.jpg",
+      "label_relative_path": "tests/artifacts/images/vgt_quadcopter_drone_005.txt",
+      "category": "drone",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "3c28d981d9d28ab276fedfc2510f6023340505cb568b0cc171f50ac36a957a87",
+      "size_bytes": 47484,
+      "width": 640,
+      "height": 480,
+      "source_name": "Authentic Drone Flight Capture",
+      "license": "CC-BY 4.0",
+      "description": "Quadcopter hover profile",
+      "visual_attributes": [
+        "hover",
+        "civilian_drone"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 0,
+          "class_name": "drone",
+          "display_name": "Drone",
+          "bbox_normalized": [
+            0.314063,
+            0.558333,
+            0.104568,
+            0.102826
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "vgt_quadcopter_drone_030",
+      "filename": "vgt_quadcopter_drone_030.jpg",
+      "relative_path": "tests/artifacts/images/vgt_quadcopter_drone_030.jpg",
+      "label_relative_path": "tests/artifacts/images/vgt_quadcopter_drone_030.txt",
+      "category": "drone",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "5d8bb80e059776c710118d03aeb46d4d206089558d21ec2c6d30705a9c3eb8f3",
+      "size_bytes": 47771,
+      "width": 640,
+      "height": 480,
+      "source_name": "Authentic Drone Flight Capture",
+      "license": "CC-BY 4.0",
+      "description": "Quadcopter lateral translation",
+      "visual_attributes": [
+        "translation",
+        "civilian_drone"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 0,
+          "class_name": "drone",
+          "display_name": "Drone",
+          "bbox_normalized": [
+            0.542188,
+            0.375,
+            0.124749,
+            0.12267
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "vgt_quadcopter_drone_040",
+      "filename": "vgt_quadcopter_drone_040.jpg",
+      "relative_path": "tests/artifacts/images/vgt_quadcopter_drone_040.jpg",
+      "label_relative_path": "tests/artifacts/images/vgt_quadcopter_drone_040.txt",
+      "category": "drone",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "e57a05c2f886067f1b00517b5061a29df0ef17be6c5a0052e303ea3302340da2",
+      "size_bytes": 47928,
+      "width": 640,
+      "height": 480,
+      "source_name": "Authentic Drone Flight Capture",
+      "license": "CC-BY 4.0",
+      "description": "Quadcopter ascending against clouds",
+      "visual_attributes": [
+        "clouds",
+        "civilian_drone"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 0,
+          "class_name": "drone",
+          "display_name": "Drone",
+          "bbox_normalized": [
+            0.46875,
+            0.345833,
+            0.130311,
+            0.128139
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "vgt_quadcopter_drone_080",
+      "filename": "vgt_quadcopter_drone_080.jpg",
+      "relative_path": "tests/artifacts/images/vgt_quadcopter_drone_080.jpg",
+      "label_relative_path": "tests/artifacts/images/vgt_quadcopter_drone_080.txt",
+      "category": "drone",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "e500083b4c3b2c9150547b7d5be0093a161288753b30374c91c52e19d75cc6f5",
+      "size_bytes": 48040,
+      "width": 640,
+      "height": 480,
+      "source_name": "Authentic Drone Flight Capture",
+      "license": "CC-BY 4.0",
+      "description": "Small drone profile",
+      "visual_attributes": [
+        "small_object",
+        "civilian_drone"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 0,
+          "class_name": "drone",
+          "display_name": "Drone",
+          "bbox_normalized": [
+            0.251563,
+            0.564583,
+            0.130311,
+            0.128139
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "vgt_quadcopter_drone_115",
+      "filename": "vgt_quadcopter_drone_115.jpg",
+      "relative_path": "tests/artifacts/images/vgt_quadcopter_drone_115.jpg",
+      "label_relative_path": "tests/artifacts/images/vgt_quadcopter_drone_115.txt",
+      "category": "drone",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "2106436d63b363a0abdb1fa50b1fd836a90fb496442927c921196a31b2a6029d",
+      "size_bytes": 47528,
+      "width": 640,
+      "height": 480,
+      "source_name": "Authentic Drone Flight Capture",
+      "license": "CC-BY 4.0",
+      "description": "Quadcopter high-angle view",
+      "visual_attributes": [
+        "high_angle",
+        "civilian_drone"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 0,
+          "class_name": "drone",
+          "display_name": "Drone",
+          "bbox_normalized": [
+            0.814063,
+            0.34375,
+            0.104568,
+            0.102826
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "air_airliner_022dae44ddec4c97e21bfeb082199914",
+      "filename": "air_airliner_022dae44ddec4c97e21bfeb082199914.jpg",
+      "relative_path": "tests/artifacts/images/air_airliner_022dae44ddec4c97e21bfeb082199914.jpg",
+      "label_relative_path": "tests/artifacts/images/air_airliner_022dae44ddec4c97e21bfeb082199914.txt",
+      "category": "airplane",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "9cf2bd9f4f875264fbefa33d1b4d15a667724a84d5875c6b0a3a87b86d8a24c9",
+      "size_bytes": 224126,
+      "width": 1800,
+      "height": 1196,
+      "source_name": "Open Images / a2015003713",
+      "license": "CC-BY 2.0",
+      "description": "Commercial airliner ascending",
+      "visual_attributes": [
+        "clear_daylight",
+        "commercial_aircraft"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 1,
+          "class_name": "airplane",
+          "display_name": "Aircraft",
+          "bbox_normalized": [
+            0.498333,
+            0.541806,
+            0.521111,
+            0.254181
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "air_airliner_04631f3ef35600b350580473753dc170",
+      "filename": "air_airliner_04631f3ef35600b350580473753dc170.jpg",
+      "relative_path": "tests/artifacts/images/air_airliner_04631f3ef35600b350580473753dc170.jpg",
+      "label_relative_path": "tests/artifacts/images/air_airliner_04631f3ef35600b350580473753dc170.txt",
+      "category": "airplane",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "b2979bcbb7b4381b3a4863f069b5bb58a2a84bec949132b0388f5706bd5f2a58",
+      "size_bytes": 69014,
+      "width": 539,
+      "height": 364,
+      "source_name": "Open Images / a2015003713",
+      "license": "CC-BY 2.0",
+      "description": "Commercial airliner banking turn",
+      "visual_attributes": [
+        "hazy_sky",
+        "commercial_aircraft"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 1,
+          "class_name": "airplane",
+          "display_name": "Aircraft",
+          "bbox_normalized": [
+            0.279221,
+            0.425824,
+            0.41744,
+            0.181319
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "air_airliner_062f90e6b178f49bd830e8a6dc7d4c93",
+      "filename": "air_airliner_062f90e6b178f49bd830e8a6dc7d4c93.jpg",
+      "relative_path": "tests/artifacts/images/air_airliner_062f90e6b178f49bd830e8a6dc7d4c93.jpg",
+      "label_relative_path": "tests/artifacts/images/air_airliner_062f90e6b178f49bd830e8a6dc7d4c93.txt",
+      "category": "airplane",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "1e39a65093450ef212559cb03843a5a5f650a096c1c1a0d94f5f6579694dfb2a",
+      "size_bytes": 404408,
+      "width": 1280,
+      "height": 1358,
+      "source_name": "Open Images / a2015003713",
+      "license": "CC-BY 2.0",
+      "description": "Twin-engine passenger jet",
+      "visual_attributes": [
+        "high_contrast",
+        "commercial_aircraft"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 1,
+          "class_name": "airplane",
+          "display_name": "Aircraft",
+          "bbox_normalized": [
+            0.536328,
+            0.137703,
+            0.171094,
+            0.126657
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "air_airliner_06633fc1bc242e49d9c67e2d5550fd91",
+      "filename": "air_airliner_06633fc1bc242e49d9c67e2d5550fd91.jpg",
+      "relative_path": "tests/artifacts/images/air_airliner_06633fc1bc242e49d9c67e2d5550fd91.jpg",
+      "label_relative_path": "tests/artifacts/images/air_airliner_06633fc1bc242e49d9c67e2d5550fd91.txt",
+      "category": "airplane",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "efe64339c7a65065a413b91197f3e94121d83e83b62956b5891344fdea50496a",
+      "size_bytes": 317217,
+      "width": 2048,
+      "height": 1365,
+      "source_name": "Open Images / a2015003713",
+      "license": "CC-BY 2.0",
+      "description": "Passenger airliner distant cruise",
+      "visual_attributes": [
+        "high_altitude",
+        "commercial_aircraft"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 1,
+          "class_name": "airplane",
+          "display_name": "Aircraft",
+          "bbox_normalized": [
+            0.507568,
+            0.531136,
+            0.977051,
+            0.295971
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "air_airliner_07f23f94467aa125f85ecf6f23715ec8",
+      "filename": "air_airliner_07f23f94467aa125f85ecf6f23715ec8.jpg",
+      "relative_path": "tests/artifacts/images/air_airliner_07f23f94467aa125f85ecf6f23715ec8.jpg",
+      "label_relative_path": "tests/artifacts/images/air_airliner_07f23f94467aa125f85ecf6f23715ec8.txt",
+      "category": "airplane",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "397d5be35c88af0f7d96159cfe0aae5183f30c1d86e7cf4234c06fd38a18cbf6",
+      "size_bytes": 618839,
+      "width": 2048,
+      "height": 1253,
+      "source_name": "Open Images / a2015003713",
+      "license": "CC-BY 2.0",
+      "description": "Commercial jet under overcast clouds",
+      "visual_attributes": [
+        "overcast",
+        "commercial_aircraft"
+      ],
+      "ground_truth_count": 2,
+      "ground_truth_annotations": [
+        {
+          "class_id": 1,
+          "class_name": "airplane",
+          "display_name": "Aircraft",
+          "bbox_normalized": [
+            0.675537,
+            0.260575,
+            0.312988,
+            0.185954
+          ]
+        },
+        {
+          "class_id": 1,
+          "class_name": "airplane",
+          "display_name": "Aircraft",
+          "bbox_normalized": [
+            0.217529,
+            0.775738,
+            0.385254,
+            0.218675
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "air_airliner_081aa93a4d74ff1b9455de0759929364",
+      "filename": "air_airliner_081aa93a4d74ff1b9455de0759929364.jpg",
+      "relative_path": "tests/artifacts/images/air_airliner_081aa93a4d74ff1b9455de0759929364.jpg",
+      "label_relative_path": "tests/artifacts/images/air_airliner_081aa93a4d74ff1b9455de0759929364.txt",
+      "category": "airplane",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "73befbdc101a3f4321d7cb897d5af2ff60cdeed2a80958e4f95e4879c4a7300e",
+      "size_bytes": 574199,
+      "width": 1143,
+      "height": 1600,
+      "source_name": "Open Images / a2015003713",
+      "license": "CC-BY 2.0",
+      "description": "Civilian transport aircraft side profile",
+      "visual_attributes": [
+        "side_profile",
+        "commercial_aircraft"
+      ],
+      "ground_truth_count": 8,
+      "ground_truth_annotations": [
+        {
+          "class_id": 1,
+          "class_name": "airplane",
+          "display_name": "Aircraft",
+          "bbox_normalized": [
+            0.223535,
+            0.343438,
+            0.254593,
+            0.178125
+          ]
+        },
+        {
+          "class_id": 1,
+          "class_name": "airplane",
+          "display_name": "Aircraft",
+          "bbox_normalized": [
+            0.223972,
+            0.540625,
+            0.297463,
+            0.1775
+          ]
+        },
+        {
+          "class_id": 1,
+          "class_name": "airplane",
+          "display_name": "Aircraft",
+          "bbox_normalized": [
+            0.222222,
+            0.738437,
+            0.255468,
+            0.176875
+          ]
+        },
+        {
+          "class_id": 1,
+          "class_name": "airplane",
+          "display_name": "Aircraft",
+          "bbox_normalized": [
+            0.796588,
+            0.381875,
+            0.298338,
+            0.1775
+          ]
+        },
+        {
+          "class_id": 1,
+          "class_name": "airplane",
+          "display_name": "Aircraft",
+          "bbox_normalized": [
+            0.802275,
+            0.147187,
+            0.304462,
+            0.216875
+          ]
+        },
+        {
+          "class_id": 1,
+          "class_name": "airplane",
+          "display_name": "Aircraft",
+          "bbox_normalized": [
+            0.800087,
+            0.620938,
+            0.305337,
+            0.218125
+          ]
+        },
+        {
+          "class_id": 1,
+          "class_name": "airplane",
+          "display_name": "Aircraft",
+          "bbox_normalized": [
+            0.809274,
+            0.854688,
+            0.306212,
+            0.215625
+          ]
+        },
+        {
+          "class_id": 1,
+          "class_name": "airplane",
+          "display_name": "Aircraft",
+          "bbox_normalized": [
+            0.243657,
+            0.138125,
+            0.28084,
+            0.1975
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "air_airliner_09442d4599b9ddcfb54534187412059c",
+      "filename": "air_airliner_09442d4599b9ddcfb54534187412059c.jpg",
+      "relative_path": "tests/artifacts/images/air_airliner_09442d4599b9ddcfb54534187412059c.jpg",
+      "label_relative_path": "tests/artifacts/images/air_airliner_09442d4599b9ddcfb54534187412059c.txt",
+      "category": "airplane",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "1e1c0c2b15e9a061922f5e7031d75bf993a07e15b5e010e3593bd1d8f07722a4",
+      "size_bytes": 182819,
+      "width": 1280,
+      "height": 841,
+      "source_name": "Open Images / a2015003713",
+      "license": "CC-BY 2.0",
+      "description": "Passenger plane on approach",
+      "visual_attributes": [
+        "approach",
+        "commercial_aircraft"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 1,
+          "class_name": "airplane",
+          "display_name": "Aircraft",
+          "bbox_normalized": [
+            0.472656,
+            0.149822,
+            0.340625,
+            0.123662
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "air_airliner_0cfc60dc4963e658356b4b385dcfe409",
+      "filename": "air_airliner_0cfc60dc4963e658356b4b385dcfe409.jpg",
+      "relative_path": "tests/artifacts/images/air_airliner_0cfc60dc4963e658356b4b385dcfe409.jpg",
+      "label_relative_path": "tests/artifacts/images/air_airliner_0cfc60dc4963e658356b4b385dcfe409.txt",
+      "category": "airplane",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "381eabcd254d95d06f0fb9e4289537fb32ceccd15d4566f3d595d71fa5befc24",
+      "size_bytes": 271494,
+      "width": 1200,
+      "height": 799,
+      "source_name": "Open Images / a2015003713",
+      "license": "CC-BY 2.0",
+      "description": "Civilian jet silhouette against clouds",
+      "visual_attributes": [
+        "cloudy_backlight",
+        "commercial_aircraft"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 1,
+          "class_name": "airplane",
+          "display_name": "Aircraft",
+          "bbox_normalized": [
+            0.4925,
+            0.451815,
+            0.92,
+            0.395494
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "matis_0162_jpg.rf.d164b8e0f2e90d953b68536543c815a1",
+      "filename": "matis_0162_jpg.rf.d164b8e0f2e90d953b68536543c815a1.jpg",
+      "relative_path": "tests/artifacts/images/matis_0162_jpg.rf.d164b8e0f2e90d953b68536543c815a1.jpg",
+      "label_relative_path": "tests/artifacts/images/matis_0162_jpg.rf.d164b8e0f2e90d953b68536543c815a1.txt",
+      "category": "bird",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "93f80f7e5cc317d490324ab7a7ecb15b86df84e8b62c677df08f05f1f9e870e7",
+      "size_bytes": 79828,
+      "width": 640,
+      "height": 640,
+      "source_name": "matisdsp/drone-bird-detection",
+      "license": "CC-BY 4.0",
+      "description": "Bird soaring in open sky",
+      "visual_attributes": [
+        "clear_sky",
+        "bird_in_flight"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 0,
+          "class_name": "drone",
+          "display_name": "Drone",
+          "bbox_normalized": [
+            0.416406,
+            0.310937,
+            0.035937,
+            0.034375
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "matis_2984_jpg.rf.1c57341375fc275d875dffd334b3e33b",
+      "filename": "matis_2984_jpg.rf.1c57341375fc275d875dffd334b3e33b.jpg",
+      "relative_path": "tests/artifacts/images/matis_2984_jpg.rf.1c57341375fc275d875dffd334b3e33b.jpg",
+      "label_relative_path": "tests/artifacts/images/matis_2984_jpg.rf.1c57341375fc275d875dffd334b3e33b.txt",
+      "category": "bird",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "da7e23de0fc89d666f53670bf9dd6d40825472c04f0044632bc11bf988220106",
+      "size_bytes": 63341,
+      "width": 640,
+      "height": 640,
+      "source_name": "matisdsp/drone-bird-detection",
+      "license": "CC-BY 4.0",
+      "description": "Small bird in flight distant",
+      "visual_attributes": [
+        "small_object",
+        "bird_in_flight"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 0,
+          "class_name": "drone",
+          "display_name": "Drone",
+          "bbox_normalized": [
+            0.690625,
+            0.503125,
+            0.171875,
+            0.08125
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "matis_3072_jpg.rf.5f741238a4e52c8d23cd4dd27607a6bf",
+      "filename": "matis_3072_jpg.rf.5f741238a4e52c8d23cd4dd27607a6bf.jpg",
+      "relative_path": "tests/artifacts/images/matis_3072_jpg.rf.5f741238a4e52c8d23cd4dd27607a6bf.jpg",
+      "label_relative_path": "tests/artifacts/images/matis_3072_jpg.rf.5f741238a4e52c8d23cd4dd27607a6bf.txt",
+      "category": "bird",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "4c08f350153173ea36cb43fa48d94dfbea351ae855e0015a823657f66001453c",
+      "size_bytes": 87965,
+      "width": 640,
+      "height": 640,
+      "source_name": "matisdsp/drone-bird-detection",
+      "license": "CC-BY 4.0",
+      "description": "Bird gliding across overcast backdrop",
+      "visual_attributes": [
+        "overcast",
+        "bird_in_flight"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 0,
+          "class_name": "drone",
+          "display_name": "Drone",
+          "bbox_normalized": [
+            0.457813,
+            0.507031,
+            0.115625,
+            0.054688
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "matis_Acadian_Flycatcher_0019_795592_jpg.rf.44407034e9b173d95a448ceef1241f59",
+      "filename": "matis_Acadian_Flycatcher_0019_795592_jpg.rf.44407034e9b173d95a448ceef1241f59.jpg",
+      "relative_path": "tests/artifacts/images/matis_Acadian_Flycatcher_0019_795592_jpg.rf.44407034e9b173d95a448ceef1241f59.jpg",
+      "label_relative_path": "tests/artifacts/images/matis_Acadian_Flycatcher_0019_795592_jpg.rf.44407034e9b173d95a448ceef1241f59.txt",
+      "category": "bird",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "134b29afc6a8833f096d386c86b4693c749a00a239754f90696c173355eeb579",
+      "size_bytes": 70995,
+      "width": 640,
+      "height": 640,
+      "source_name": "matisdsp/drone-bird-detection",
+      "license": "CC-BY 4.0",
+      "description": "Flycatcher in flight",
+      "visual_attributes": [
+        "wings_spread",
+        "bird_in_flight"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 2,
+          "class_name": "bird",
+          "display_name": "Bird",
+          "bbox_normalized": [
+            0.589844,
+            0.517188,
+            0.460938,
+            0.559375
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "matis_BirdsFlying_2291_jpg.rf.d64bfdda4d12f8ee0b8818cea3f02894",
+      "filename": "matis_BirdsFlying_2291_jpg.rf.d64bfdda4d12f8ee0b8818cea3f02894.jpg",
+      "relative_path": "tests/artifacts/images/matis_BirdsFlying_2291_jpg.rf.d64bfdda4d12f8ee0b8818cea3f02894.jpg",
+      "label_relative_path": "tests/artifacts/images/matis_BirdsFlying_2291_jpg.rf.d64bfdda4d12f8ee0b8818cea3f02894.txt",
+      "category": "bird",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "15451bb7a27bd9735765a9d0da1384b8508cf248a702deeebe9d18b1e5e3a1be",
+      "size_bytes": 31130,
+      "width": 965,
+      "height": 607,
+      "source_name": "matisdsp/drone-bird-detection",
+      "license": "CC-BY 4.0",
+      "description": "Bird flock pattern against sky",
+      "visual_attributes": [
+        "flock",
+        "bird_in_flight"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 2,
+          "class_name": "bird",
+          "display_name": "Bird",
+          "bbox_normalized": [
+            0.381865,
+            0.425041,
+            0.655959,
+            0.708402
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "matis_Blue_Jay_0048_62433_jpg.rf.cbd82f81e2fe4abf6cc5a8feda6fed53",
+      "filename": "matis_Blue_Jay_0048_62433_jpg.rf.cbd82f81e2fe4abf6cc5a8feda6fed53.jpg",
+      "relative_path": "tests/artifacts/images/matis_Blue_Jay_0048_62433_jpg.rf.cbd82f81e2fe4abf6cc5a8feda6fed53.jpg",
+      "label_relative_path": "tests/artifacts/images/matis_Blue_Jay_0048_62433_jpg.rf.cbd82f81e2fe4abf6cc5a8feda6fed53.txt",
+      "category": "bird",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "bd5474e81923db401e3b51ef9f3ff7f89597223365e6b34a05733bced8527251",
+      "size_bytes": 58672,
+      "width": 640,
+      "height": 640,
+      "source_name": "matisdsp/drone-bird-detection",
+      "license": "CC-BY 4.0",
+      "description": "Blue Jay avian profile",
+      "visual_attributes": [
+        "avian",
+        "bird_in_flight"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 2,
+          "class_name": "bird",
+          "display_name": "Bird",
+          "bbox_normalized": [
+            0.714063,
+            0.5125,
+            0.54375,
+            0.546875
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "matis_Fish_Crow_0037_26071_jpg.rf.2d6bd733287c69eeaf01cbb72121c2ca",
+      "filename": "matis_Fish_Crow_0037_26071_jpg.rf.2d6bd733287c69eeaf01cbb72121c2ca.jpg",
+      "relative_path": "tests/artifacts/images/matis_Fish_Crow_0037_26071_jpg.rf.2d6bd733287c69eeaf01cbb72121c2ca.jpg",
+      "label_relative_path": "tests/artifacts/images/matis_Fish_Crow_0037_26071_jpg.rf.2d6bd733287c69eeaf01cbb72121c2ca.txt",
+      "category": "bird",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "8c33d8b151862ef699b5b6be071ba6b6cf4e06406a13a7ac9cb615c1d2e9236e",
+      "size_bytes": 30781,
+      "width": 640,
+      "height": 640,
+      "source_name": "matisdsp/drone-bird-detection",
+      "license": "CC-BY 4.0",
+      "description": "Crow in low flight",
+      "visual_attributes": [
+        "silhouette",
+        "bird_in_flight"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 2,
+          "class_name": "bird",
+          "display_name": "Bird",
+          "bbox_normalized": [
+            0.511719,
+            0.579688,
+            0.239063,
+            0.340625
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "matis_pic_064_jpg.rf.320be1465e2e630687723ce577430aef",
+      "filename": "matis_pic_064_jpg.rf.320be1465e2e630687723ce577430aef.jpg",
+      "relative_path": "tests/artifacts/images/matis_pic_064_jpg.rf.320be1465e2e630687723ce577430aef.jpg",
+      "label_relative_path": "tests/artifacts/images/matis_pic_064_jpg.rf.320be1465e2e630687723ce577430aef.txt",
+      "category": "bird",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "941897917f5901e828e53787ddd50f8ebeed4f18e9c982decca802a0de48c700",
+      "size_bytes": 26576,
+      "width": 640,
+      "height": 640,
+      "source_name": "matisdsp/drone-bird-detection",
+      "license": "CC-BY 4.0",
+      "description": "Bird in low-altitude banking",
+      "visual_attributes": [
+        "low_altitude",
+        "bird_in_flight"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 0,
+          "class_name": "drone",
+          "display_name": "Drone",
+          "bbox_normalized": [
+            0.504687,
+            0.485938,
+            0.959375,
+            0.453125
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "balloon_aw_00030",
+      "filename": "balloon_aw_00030.jpg",
+      "relative_path": "tests/artifacts/images/balloon_aw_00030.jpg",
+      "label_relative_path": "tests/artifacts/images/balloon_aw_00030.txt",
+      "category": "balloon",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "cad30025595ccc99dc647988fb82b478c0cb00c36d6f5c4a88eeaf9733dacaa3",
+      "size_bytes": 13283,
+      "width": 640,
+      "height": 360,
+      "source_name": "Civilian Balloon Dataset",
+      "license": "CC0 / Public Domain",
+      "description": "Aerostat balloon in daylight",
+      "visual_attributes": [
+        "clear_daylight",
+        "balloon"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 3,
+          "class_name": "balloon",
+          "display_name": "Balloon",
+          "bbox_normalized": [
+            0.537531,
+            0.283795,
+            0.129388,
+            0.438092
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    },
+    {
+      "artifact_id": "balloon_aw_00072",
+      "filename": "balloon_aw_00072.jpg",
+      "relative_path": "tests/artifacts/images/balloon_aw_00072.jpg",
+      "label_relative_path": "tests/artifacts/images/balloon_aw_00072.txt",
+      "category": "balloon",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "2dcc6cc65dfd00328c14aea62278fcdeac38ebed9ea245e86068c1b2e9e5e187",
+      "size_bytes": 14292,
+      "width": 640,
+      "height": 360,
+      "source_name": "Civilian Balloon Dataset",
+      "license": "CC0 / Public Domain",
+      "description": "Civilian balloon distant horizon",
+      "visual_attributes": [
+        "distant",
+        "balloon"
+      ],
+      "ground_truth_count": 1,
+      "ground_truth_annotations": [
+        {
+          "class_id": 3,
+          "class_name": "balloon",
+          "display_name": "Balloon",
+          "bbox_normalized": [
+            0.466598,
+            0.436415,
+            0.134739,
+            0.411624
+          ]
+        }
+      ],
+      "permitted_intended_use": "Non-commercial civilian aerial CV research, evaluation & benchmarking"
+    }
+  ],
+  "negatives": [
+    {
+      "artifact_id": "neg_boat_deck_00",
+      "filename": "neg_boat_deck_00.jpg",
+      "relative_path": "tests/artifacts/negative_cases/neg_boat_deck_00.jpg",
+      "label_relative_path": "tests/artifacts/negative_cases/neg_boat_deck_00.txt",
+      "category": "negative_background",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "c6ae7d472ec3553550a606dc86a87a131cff1cde3fa318c84a067063c3fd7248",
+      "size_bytes": 33195,
+      "width": 640,
+      "height": 300,
+      "source_name": "Civilian Marine Background Collection",
+      "license": "CC0 / Public Domain",
+      "description": "Marine deck and horizon - zero aerial targets",
+      "visual_attributes": [
+        "marine_background",
+        "horizon"
+      ],
+      "ground_truth_count": 0,
+      "ground_truth_annotations": [],
+      "permitted_intended_use": "Civilian False Positive Rate evaluation"
+    },
+    {
+      "artifact_id": "neg_boat_deck_12",
+      "filename": "neg_boat_deck_12.jpg",
+      "relative_path": "tests/artifacts/negative_cases/neg_boat_deck_12.jpg",
+      "label_relative_path": "tests/artifacts/negative_cases/neg_boat_deck_12.txt",
+      "category": "negative_background",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "4cfd9ca63a1f32b746b3c5b51b52b4da055e98b660186c9703682bbf64baaa3f",
+      "size_bytes": 15199,
+      "width": 640,
+      "height": 300,
+      "source_name": "Civilian Marine Background Collection",
+      "license": "CC0 / Public Domain",
+      "description": "Ocean water and boat infrastructure",
+      "visual_attributes": [
+        "water_surface",
+        "infrastructure"
+      ],
+      "ground_truth_count": 0,
+      "ground_truth_annotations": [],
+      "permitted_intended_use": "Civilian False Positive Rate evaluation"
+    },
+    {
+      "artifact_id": "neg_boat_deck_24",
+      "filename": "neg_boat_deck_24.jpg",
+      "relative_path": "tests/artifacts/negative_cases/neg_boat_deck_24.jpg",
+      "label_relative_path": "tests/artifacts/negative_cases/neg_boat_deck_24.txt",
+      "category": "negative_background",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "4b43ef3e44b664dce3389fd6b18dca77aacfba6c697f7d5dc50e2675cdaccccb",
+      "size_bytes": 29445,
+      "width": 640,
+      "height": 300,
+      "source_name": "Civilian Marine Background Collection",
+      "license": "CC0 / Public Domain",
+      "description": "Open sea with calm water",
+      "visual_attributes": [
+        "open_water",
+        "glare"
+      ],
+      "ground_truth_count": 0,
+      "ground_truth_annotations": [],
+      "permitted_intended_use": "Civilian False Positive Rate evaluation"
+    },
+    {
+      "artifact_id": "neg_boat_deck_36",
+      "filename": "neg_boat_deck_36.jpg",
+      "relative_path": "tests/artifacts/negative_cases/neg_boat_deck_36.jpg",
+      "label_relative_path": "tests/artifacts/negative_cases/neg_boat_deck_36.txt",
+      "category": "negative_background",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "585ded89aec660747fbd3b5fded0f1a0e36d6499b3186cc96dbbde52a729f770",
+      "size_bytes": 31833,
+      "width": 640,
+      "height": 300,
+      "source_name": "Civilian Marine Background Collection",
+      "license": "CC0 / Public Domain",
+      "description": "Harbor railing and overcast sky",
+      "visual_attributes": [
+        "railings",
+        "overcast_sky"
+      ],
+      "ground_truth_count": 0,
+      "ground_truth_annotations": [],
+      "permitted_intended_use": "Civilian False Positive Rate evaluation"
+    },
+    {
+      "artifact_id": "neg_clear_sky_gradient",
+      "filename": "neg_clear_sky_gradient.jpg",
+      "relative_path": "tests/artifacts/negative_cases/neg_clear_sky_gradient.jpg",
+      "label_relative_path": "tests/artifacts/negative_cases/neg_clear_sky_gradient.txt",
+      "category": "negative_background",
+      "media_type": "image",
+      "format": "JPEG",
+      "sha256": "b0a5cf915bfeea5ba0f33bb95648a0f3a11646080d9d561edab1e9c27870af10",
+      "size_bytes": 16142,
+      "width": 640,
+      "height": 480,
+      "source_name": "Controlled Synthetic Calibration Fixture",
+      "license": "CC0 / Public Domain",
+      "description": "Smooth synthetic sky gradient fixture (zero targets)",
+      "visual_attributes": [
+        "pure_sky",
+        "synthetic_fixture"
+      ],
+      "ground_truth_count": 0,
+      "ground_truth_annotations": [],
+      "permitted_intended_use": "Baseline clean sky zero-false-positive calibration"
+    }
+  ],
+  "videos": [
+    {
+      "artifact_id": "civilian_drone_surveillance",
+      "filename": "civilian_drone_surveillance.mp4",
+      "relative_path": "tests/artifacts/videos/civilian_drone_surveillance.mp4",
+      "media_type": "video",
+      "format": "MP4 (H.264 / AVC)",
+      "sha256": "a1a22babbed59df43a00fd0c5391855e0942ce320921c3b5f61fcbb020e36d29",
+      "size_bytes": 484844,
+      "width": 640,
+      "height": 480,
+      "fps": 15.0,
+      "frame_count": 84,
+      "duration_seconds": 5.6,
+      "source_name": "AeroWatch Civilian Drone Flight Recordings",
+      "license": "CC-BY 4.0 / Project Authentic Media",
+      "description": "Real civilian drone surveillance patrol flight in open airspace",
+      "expected_classes": [
+        "drone"
+      ],
+      "permitted_intended_use": "End-to-end video processing and tracking pipeline validation"
+    },
+    {
+      "artifact_id": "drone_vs_bird_perimeter",
+      "filename": "drone_vs_bird_perimeter.mp4",
+      "relative_path": "tests/artifacts/videos/drone_vs_bird_perimeter.mp4",
+      "media_type": "video",
+      "format": "MP4 (H.264 / AVC)",
+      "sha256": "d75090d58026a0878aa8c4a2e1d00259dff9a2eb36f91b028af4a2c12329dc6b",
+      "size_bytes": 143181,
+      "width": 640,
+      "height": 480,
+      "fps": 25.0,
+      "frame_count": 110,
+      "duration_seconds": 4.4,
+      "source_name": "AeroWatch Airspace Discrimination Collection",
+      "license": "CC-BY 4.0 / Project Authentic Media",
+      "description": "Civilian drone vs bird airspace perimeter discrimination test clip",
+      "expected_classes": [
+        "drone",
+        "bird"
+      ],
+      "permitted_intended_use": "Inter-class confusion and multi-target tracking verification"
+    },
+    {
+      "artifact_id": "civilian_flight_mjpg",
+      "filename": "civilian_flight_mjpg.avi",
+      "relative_path": "tests/artifacts/videos/civilian_flight_mjpg.avi",
+      "media_type": "video",
+      "format": "AVI (Motion-JPEG)",
+      "sha256": "307651e73d945005a3be1567df74f2d39e52008728c9fc1988f9b65ed46b2457",
+      "size_bytes": 183766,
+      "width": 640,
+      "height": 360,
+      "fps": 30.0,
+      "frame_count": 60,
+      "duration_seconds": 2.0,
+      "source_name": "Controlled Synthetic Motion Fixture",
+      "license": "CC0 / Public Domain",
+      "description": "Deterministic AVI container test fixture for backend compatibility",
+      "expected_classes": [
+        "drone"
+      ],
+      "permitted_intended_use": "Container decoding & codec interoperability testing"
+    },
+    {
+      "artifact_id": "empty_sky_negative",
+      "filename": "empty_sky_negative.mp4",
+      "relative_path": "tests/artifacts/videos/empty_sky_negative.mp4",
+      "media_type": "video",
+      "format": "MP4 (H.264 / AVC)",
+      "sha256": "dc6e6b841154335c512aa3f2f6cd8764b19f718c324945510691f00ec8d60218",
+      "size_bytes": 8904,
+      "width": 640,
+      "height": 360,
+      "fps": 30.0,
+      "frame_count": 60,
+      "duration_seconds": 2.0,
+      "source_name": "Controlled Synthetic Motion Fixture",
+      "license": "CC0 / Public Domain",
+      "description": "Empty sky video with moving cloud formations (zero detections expected)",
+      "expected_classes": [],
+      "permitted_intended_use": "Temporal false-positive resistance and empty video handling"
+    }
+  ],
+  "corrupt_inputs": [
+    {
+      "artifact_id": "zero_byte_video",
+      "filename": "zero_byte_video.mp4",
+      "relative_path": "tests/artifacts/corrupt_inputs/zero_byte_video.mp4",
+      "category": "corrupt_fixture",
+      "media_type": "corrupt_file",
+      "format": "Zero-byte MP4",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "description": "Zero-byte video to verify non-crashing graceful rejection"
+    },
+    {
+      "artifact_id": "zero_byte_image",
+      "filename": "zero_byte_image.jpg",
+      "relative_path": "tests/artifacts/corrupt_inputs/zero_byte_image.jpg",
+      "category": "corrupt_fixture",
+      "media_type": "corrupt_file",
+      "format": "Zero-byte JPEG",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0,
+      "description": "Zero-byte image to verify non-crashing graceful rejection"
+    },
+    {
+      "artifact_id": "corrupt_header_video",
+      "filename": "corrupt_header.mp4",
+      "relative_path": "tests/artifacts/corrupt_inputs/corrupt_header.mp4",
+      "category": "corrupt_fixture",
+      "media_type": "corrupt_file",
+      "format": "Corrupt MP4 Container",
+      "sha256": "51fd3d7ba7055bc406073b8f869fb23267dc72102bfba6744d1e0e727e6fa6ee",
+      "size_bytes": 2048,
+      "description": "Random binary stream with .mp4 extension to verify decoder fault tolerance"
+    },
+    {
+      "artifact_id": "truncated_jpeg_image",
+      "filename": "truncated_image.jpg",
+      "relative_path": "tests/artifacts/corrupt_inputs/truncated_image.jpg",
+      "category": "corrupt_fixture",
+      "media_type": "corrupt_file",
+      "format": "Truncated JPEG",
+      "sha256": "aeee9356ffdd7745f591ca7b3a1ddd1724ed4b8e2d426b50d4cfd1bace3943f4",
+      "size_bytes": 14,
+      "description": "Abruptly truncated JPEG stream to verify OpenCV and PIL decoding exception handling"
+    },
+    {
+      "artifact_id": "unsupported_format_bin",
+      "filename": "unsupported_format.bin",
+      "relative_path": "tests/artifacts/corrupt_inputs/unsupported_format.bin",
+      "category": "corrupt_fixture",
+      "media_type": "corrupt_file",
+      "format": "Raw Binary (.bin)",
+      "sha256": "49f956b983af1a983f9ac7e4e0bd5344cdc047e768ad10969c5006577b4f24e4",
+      "size_bytes": 50,
+      "description": "Non-media binary file to test extension and mime validation"
+    }
+  ]
+}

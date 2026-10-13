@@ -1,0 +1,6 @@
+# PyTorch is already installed in the user's base Python with CUDA support.
+# The project's .venv uses --system-site-packages, so that install is visible.
+ultralytics
+streamlit
+opencv-python
+pillow

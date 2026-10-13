@@ -1,0 +1,59 @@
+# ==============================================================================
+# Python Bytecode, Caches & System Artifacts
+# ==============================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+*.so
+*.dll
+*.dylib
+
+# ==============================================================================
+# Virtual Environments & Packages
+# ==============================================================================
+.venv/
+venv/
+ENV/
+env/
+build/
+dist/
+*.egg-info/
+
+# ==============================================================================
+# Testing, Coverage & Profiling
+# ==============================================================================
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+
+# ==============================================================================
+# Blender Backup Files
+*.blend1
+*.blend@
+
+# Scratch Files & Temporary Developer Dumps
+# ==============================================================================
+scratch/
+dataset_check_output.txt
+
+# ==============================================================================
+# Large Datasets & Intermediate Training Runs
+# (Curated test benchmark media is preserved in tests/artifacts/ & videos/)
+# ==============================================================================
+data/
+!data/README.md
+runs/train/
+runs/detect/
+runs/predict/
+
+# ==============================================================================
+# IDE, OS & Streamlit Local Secrets
+# ==============================================================================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+.streamlit/secrets.toml

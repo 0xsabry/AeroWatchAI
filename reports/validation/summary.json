@@ -1,0 +1,603 @@
+{
+  "timestamp": "2026-10-12T15:15:30Z",
+  "application": "AeroWatch AI V2",
+  "system_environment": {
+    "os": "Windows (Microsoft Windows 11 / Windows NT)",
+    "python_version": "3.14.4",
+    "torch_version": "2.14.1+cu132",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 3050 Laptop GPU",
+    "vram_total_gb": 4.0
+  },
+  "model_under_test": {
+    "checkpoint_name": "aerowatch_v7_balanced.pt",
+    "checkpoint_path": "C:\\Users\\ENG MOHAMED SABRY\\AeroWatchAI\\weights\\aerowatch_v7_balanced.pt",
+    "model_type": "Custom Civilian Aerial (aerowatch_v7_balanced.pt)",
+    "classes": [
+      "Drone",
+      "Aircraft",
+      "Bird",
+      "Balloon"
+    ],
+    "precision_mode": "Native FP16 Tensor Core Accelerated"
+  },
+  "test_suite_status": {
+    "exit_code": 0,
+    "total_tests": 39,
+    "pass_count": 38,
+    "fail_count": 0,
+    "blocked_count": 0,
+    "not_run_count": 1,
+    "tests": [
+      {
+        "nodeid": "tests/test_camera_manager.py::TestCameraManagerLifecycle::test_initial_state",
+        "file": "tests\\test_camera_manager.py",
+        "test_name": "TestCameraManagerLifecycle.test_initial_state",
+        "status": "PASS",
+        "duration_sec": 0.0002,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_camera_manager.py::TestCameraManagerLifecycle::test_successful_camera_start_and_frame_retrieval",
+        "file": "tests\\test_camera_manager.py",
+        "test_name": "TestCameraManagerLifecycle.test_successful_camera_start_and_frame_retrieval",
+        "status": "PASS",
+        "duration_sec": 0.0134,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_camera_manager.py::TestCameraManagerLifecycle::test_repeated_start_requests_idempotency",
+        "file": "tests\\test_camera_manager.py",
+        "test_name": "TestCameraManagerLifecycle.test_repeated_start_requests_idempotency",
+        "status": "PASS",
+        "duration_sec": 0.0143,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_camera_manager.py::TestCameraManagerLifecycle::test_camera_cannot_open_error_transition",
+        "file": "tests\\test_camera_manager.py",
+        "test_name": "TestCameraManagerLifecycle.test_camera_cannot_open_error_transition",
+        "status": "PASS",
+        "duration_sec": 0.0013,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_camera_manager.py::TestCameraManagerLifecycle::test_camera_empty_frame_handling",
+        "file": "tests\\test_camera_manager.py",
+        "test_name": "TestCameraManagerLifecycle.test_camera_empty_frame_handling",
+        "status": "PASS",
+        "duration_sec": 0.0018,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_camera_manager.py::TestCameraManagerLifecycle::test_offline_file_backed_simulated_camera_stream",
+        "file": "tests\\test_camera_manager.py",
+        "test_name": "TestCameraManagerLifecycle.test_offline_file_backed_simulated_camera_stream",
+        "status": "PASS",
+        "duration_sec": 0.3541,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_camera_manager.py::TestCameraManagerLifecycle::test_physical_webcam_hardware_status",
+        "file": "tests\\test_camera_manager.py",
+        "test_name": "TestCameraManagerLifecycle.test_physical_webcam_hardware_status",
+        "status": "NOT RUN",
+        "duration_sec": 0.0002,
+        "explanation": "('C:\\\\Users\\\\ENG MOHAMED SABRY\\\\AeroWatchAI\\\\tests\\\\test_camera_manager.py', 141, 'Skipped: Physical webcam hardware automation is NOT RUN: Headless automated CI runner. Hardware capture is verified offline via simulated video file stream.')"
+      },
+      {
+        "nodeid": "tests/test_integration_video.py::TestVideoPipelineIntegration::test_cancellation_handler",
+        "file": "tests\\test_integration_video.py",
+        "test_name": "TestVideoPipelineIntegration.test_cancellation_handler",
+        "status": "PASS",
+        "duration_sec": 0.1298,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_integration_video.py::TestVideoPipelineIntegration::test_full_pipeline_execution_and_output_reopening",
+        "file": "tests\\test_integration_video.py",
+        "test_name": "TestVideoPipelineIntegration.test_full_pipeline_execution_and_output_reopening",
+        "status": "PASS",
+        "duration_sec": 0.4604,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_integration_video.py::TestVideoPipelineIntegration::test_invalid_video_path_handling",
+        "file": "tests\\test_integration_video.py",
+        "test_name": "TestVideoPipelineIntegration.test_invalid_video_path_handling",
+        "status": "PASS",
+        "duration_sec": 0.0006,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_model_evaluation.py::TestModelArtifactEvaluation::test_artifacts_manifest_exists_and_valid",
+        "file": "tests\\test_model_evaluation.py",
+        "test_name": "TestModelArtifactEvaluation.test_artifacts_manifest_exists_and_valid",
+        "status": "PASS",
+        "duration_sec": 0.0009,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_model_evaluation.py::TestModelArtifactEvaluation::test_image_detection_on_real_artifacts",
+        "file": "tests\\test_model_evaluation.py",
+        "test_name": "TestModelArtifactEvaluation.test_image_detection_on_real_artifacts",
+        "status": "PASS",
+        "duration_sec": 1.3577,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_model_evaluation.py::TestModelArtifactEvaluation::test_negative_cases_false_positive_resistance",
+        "file": "tests\\test_model_evaluation.py",
+        "test_name": "TestModelArtifactEvaluation.test_negative_cases_false_positive_resistance",
+        "status": "PASS",
+        "duration_sec": 0.1955,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_model_evaluation.py::TestModelArtifactEvaluation::test_no_military_subtype_invention",
+        "file": "tests\\test_model_evaluation.py",
+        "test_name": "TestModelArtifactEvaluation.test_no_military_subtype_invention",
+        "status": "PASS",
+        "duration_sec": 0.0003,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_model_manager.py::TestModelManager::test_canonical_class_mappings",
+        "file": "tests\\test_model_manager.py",
+        "test_name": "TestModelManager.test_canonical_class_mappings",
+        "status": "PASS",
+        "duration_sec": 0.001,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_model_manager.py::TestModelManager::test_checkpoint_introspection_coco",
+        "file": "tests\\test_model_manager.py",
+        "test_name": "TestModelManager.test_checkpoint_introspection_coco",
+        "status": "PASS",
+        "duration_sec": 0.1333,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_model_manager.py::TestModelManager::test_checkpoint_introspection_custom",
+        "file": "tests\\test_model_manager.py",
+        "test_name": "TestModelManager.test_checkpoint_introspection_custom",
+        "status": "PASS",
+        "duration_sec": 0.1616,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_model_manager.py::TestModelManager::test_coco_airplane_mapping",
+        "file": "tests\\test_model_manager.py",
+        "test_name": "TestModelManager.test_coco_airplane_mapping",
+        "status": "PASS",
+        "duration_sec": 0.6281,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_model_manager.py::TestModelManager::test_custom_warplane_normalized_to_aircraft",
+        "file": "tests\\test_model_manager.py",
+        "test_name": "TestModelManager.test_custom_warplane_normalized_to_aircraft",
+        "status": "PASS",
+        "duration_sec": 0.7097,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_model_manager.py::TestModelManager::test_low_confidence_uncertainty_threshold",
+        "file": "tests\\test_model_manager.py",
+        "test_name": "TestModelManager.test_low_confidence_uncertainty_threshold",
+        "status": "PASS",
+        "duration_sec": 0.3403,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_model_manager.py::TestModelManager::test_missing_model_exception",
+        "file": "tests\\test_model_manager.py",
+        "test_name": "TestModelManager.test_missing_model_exception",
+        "status": "PASS",
+        "duration_sec": 0.0005,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_robustness.py::TestRobustnessAndFailureHandling::test_nonexistent_video_path_raises_filenotfound",
+        "file": "tests\\test_robustness.py",
+        "test_name": "TestRobustnessAndFailureHandling.test_nonexistent_video_path_raises_filenotfound",
+        "status": "PASS",
+        "duration_sec": 0.0025,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_robustness.py::TestRobustnessAndFailureHandling::test_zero_byte_video_rejection",
+        "file": "tests\\test_robustness.py",
+        "test_name": "TestRobustnessAndFailureHandling.test_zero_byte_video_rejection",
+        "status": "PASS",
+        "duration_sec": 0.5689,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_robustness.py::TestRobustnessAndFailureHandling::test_corrupt_header_video_rejection",
+        "file": "tests\\test_robustness.py",
+        "test_name": "TestRobustnessAndFailureHandling.test_corrupt_header_video_rejection",
+        "status": "PASS",
+        "duration_sec": 0.3756,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_robustness.py::TestRobustnessAndFailureHandling::test_unsupported_format_file_rejection",
+        "file": "tests\\test_robustness.py",
+        "test_name": "TestRobustnessAndFailureHandling.test_unsupported_format_file_rejection",
+        "status": "PASS",
+        "duration_sec": 0.3253,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_robustness.py::TestRobustnessAndFailureHandling::test_truncated_image_handling",
+        "file": "tests\\test_robustness.py",
+        "test_name": "TestRobustnessAndFailureHandling.test_truncated_image_handling",
+        "status": "PASS",
+        "duration_sec": 0.0066,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_robustness.py::TestRobustnessAndFailureHandling::test_zero_byte_image_handling",
+        "file": "tests\\test_robustness.py",
+        "test_name": "TestRobustnessAndFailureHandling.test_zero_byte_image_handling",
+        "status": "PASS",
+        "duration_sec": 0.0005,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_robustness.py::TestRobustnessAndFailureHandling::test_invalid_stride_setting_raises_valueerror",
+        "file": "tests\\test_robustness.py",
+        "test_name": "TestRobustnessAndFailureHandling.test_invalid_stride_setting_raises_valueerror",
+        "status": "PASS",
+        "duration_sec": 0.0003,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_robustness.py::TestRobustnessAndFailureHandling::test_invalid_detection_threshold_raises_valueerror",
+        "file": "tests\\test_robustness.py",
+        "test_name": "TestRobustnessAndFailureHandling.test_invalid_detection_threshold_raises_valueerror",
+        "status": "PASS",
+        "duration_sec": 0.0002,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_robustness.py::TestRobustnessAndFailureHandling::test_invalid_uncertainty_threshold_raises_valueerror",
+        "file": "tests\\test_robustness.py",
+        "test_name": "TestRobustnessAndFailureHandling.test_invalid_uncertainty_threshold_raises_valueerror",
+        "status": "PASS",
+        "duration_sec": 0.0004,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_robustness.py::TestRobustnessAndFailureHandling::test_model_load_corrupt_file_raises_explicit_error",
+        "file": "tests\\test_robustness.py",
+        "test_name": "TestRobustnessAndFailureHandling.test_model_load_corrupt_file_raises_explicit_error",
+        "status": "PASS",
+        "duration_sec": 0.098,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_robustness.py::TestRobustnessAndFailureHandling::test_model_load_nonexistent_weights_raises_filenotfound",
+        "file": "tests\\test_robustness.py",
+        "test_name": "TestRobustnessAndFailureHandling.test_model_load_nonexistent_weights_raises_filenotfound",
+        "status": "PASS",
+        "duration_sec": 0.0005,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_robustness.py::TestRobustnessAndFailureHandling::test_consecutive_reopening_same_video",
+        "file": "tests\\test_robustness.py",
+        "test_name": "TestRobustnessAndFailureHandling.test_consecutive_reopening_same_video",
+        "status": "PASS",
+        "duration_sec": 3.003,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_robustness.py::TestRobustnessAndFailureHandling::test_output_path_collision_safety",
+        "file": "tests\\test_robustness.py",
+        "test_name": "TestRobustnessAndFailureHandling.test_output_path_collision_safety",
+        "status": "PASS",
+        "duration_sec": 1.909,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_video_integration_artifacts.py::TestRealVideoArtifactIntegration::test_process_civilian_drone_surveillance_video",
+        "file": "tests\\test_video_integration_artifacts.py",
+        "test_name": "TestRealVideoArtifactIntegration.test_process_civilian_drone_surveillance_video",
+        "status": "PASS",
+        "duration_sec": 1.5318,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_video_integration_artifacts.py::TestRealVideoArtifactIntegration::test_process_avi_container_compatibility",
+        "file": "tests\\test_video_integration_artifacts.py",
+        "test_name": "TestRealVideoArtifactIntegration.test_process_avi_container_compatibility",
+        "status": "PASS",
+        "duration_sec": 0.8984,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_video_integration_artifacts.py::TestRealVideoArtifactIntegration::test_process_empty_sky_negative_video",
+        "file": "tests\\test_video_integration_artifacts.py",
+        "test_name": "TestRealVideoArtifactIntegration.test_process_empty_sky_negative_video",
+        "status": "PASS",
+        "duration_sec": 0.6443,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_video_integration_artifacts.py::TestRealVideoArtifactIntegration::test_frame_skipping_stride_behavior",
+        "file": "tests\\test_video_integration_artifacts.py",
+        "test_name": "TestRealVideoArtifactIntegration.test_frame_skipping_stride_behavior",
+        "status": "PASS",
+        "duration_sec": 0.5214,
+        "explanation": "Executed cleanly with all assertions verified."
+      },
+      {
+        "nodeid": "tests/test_video_integration_artifacts.py::TestRealVideoArtifactIntegration::test_cancellation_and_resource_cleanup",
+        "file": "tests\\test_video_integration_artifacts.py",
+        "test_name": "TestRealVideoArtifactIntegration.test_cancellation_and_resource_cleanup",
+        "status": "PASS",
+        "duration_sec": 0.0967,
+        "explanation": "Executed cleanly with all assertions verified."
+      }
+    ]
+  },
+  "quantitative_evaluation": {
+    "total_test_images": 30,
+    "total_ground_truth_targets": 38,
+    "true_positives_iou50": 33,
+    "false_positives_iou50": 8,
+    "false_negatives_iou50": 5,
+    "precision_iou50": 0.8049,
+    "recall_iou50": 0.8684,
+    "f1_score_iou50": 0.8354,
+    "map50_estimated": 0.699,
+    "map50_95_estimated": 0.4442,
+    "negative_scenes_evaluated": 5,
+    "negative_scenes_false_positives": 0,
+    "per_class_metrics": {
+      "Drone": {
+        "ground_truth": 16,
+        "true_positives": 14,
+        "false_positives": 1,
+        "false_negatives": 2,
+        "precision": 0.9333,
+        "recall": 0.875
+      },
+      "Aircraft": {
+        "ground_truth": 16,
+        "true_positives": 14,
+        "false_positives": 5,
+        "false_negatives": 2,
+        "precision": 0.7368,
+        "recall": 0.875
+      },
+      "Bird": {
+        "ground_truth": 4,
+        "true_positives": 3,
+        "false_positives": 0,
+        "false_negatives": 1,
+        "precision": 1.0,
+        "recall": 0.75
+      },
+      "Balloon": {
+        "ground_truth": 2,
+        "true_positives": 2,
+        "false_positives": 2,
+        "false_negatives": 0,
+        "precision": 0.5,
+        "recall": 1.0
+      }
+    }
+  },
+  "performance_benchmark": [
+    {
+      "profile": "Offline Complete Processing",
+      "run_index": 1,
+      "resolution": "640x480",
+      "total_frames_in_file": 84,
+      "frames_decoded": 84,
+      "frames_processed": 84,
+      "frames_skipped": 0,
+      "total_elapsed_sec": 1.3,
+      "e2e_throughput_fps": 64.6,
+      "inference_fps": 79.26,
+      "mean_inference_ms": 12.62,
+      "median_frame_e2e_ms": 14.34,
+      "p95_frame_e2e_ms": 17.81,
+      "avg_read_ms": 0.59,
+      "avg_prep_ms": 0.0,
+      "avg_post_ms": 0.4,
+      "avg_render_ms": 0.15,
+      "avg_write_ms": 1.54,
+      "peak_vram_mb": 72.86,
+      "gpu_device": "NVIDIA GeForce RTX 3050 Laptop GPU",
+      "precision": "FP16 (Half-Precision)"
+    },
+    {
+      "profile": "Offline Complete Processing",
+      "run_index": 2,
+      "resolution": "640x480",
+      "total_frames_in_file": 84,
+      "frames_decoded": 84,
+      "frames_processed": 84,
+      "frames_skipped": 0,
+      "total_elapsed_sec": 1.209,
+      "e2e_throughput_fps": 69.48,
+      "inference_fps": 84.78,
+      "mean_inference_ms": 11.8,
+      "median_frame_e2e_ms": 13.77,
+      "p95_frame_e2e_ms": 17.05,
+      "avg_read_ms": 0.55,
+      "avg_prep_ms": 0.0,
+      "avg_post_ms": 0.3,
+      "avg_render_ms": 0.14,
+      "avg_write_ms": 1.45,
+      "peak_vram_mb": 72.84,
+      "gpu_device": "NVIDIA GeForce RTX 3050 Laptop GPU",
+      "precision": "FP16 (Half-Precision)"
+    },
+    {
+      "profile": "Offline Complete Processing",
+      "run_index": 3,
+      "resolution": "640x480",
+      "total_frames_in_file": 84,
+      "frames_decoded": 84,
+      "frames_processed": 84,
+      "frames_skipped": 0,
+      "total_elapsed_sec": 1.241,
+      "e2e_throughput_fps": 67.71,
+      "inference_fps": 82.68,
+      "mean_inference_ms": 12.1,
+      "median_frame_e2e_ms": 13.91,
+      "p95_frame_e2e_ms": 18.48,
+      "avg_read_ms": 0.58,
+      "avg_prep_ms": 0.0,
+      "avg_post_ms": 0.29,
+      "avg_render_ms": 0.14,
+      "avg_write_ms": 1.49,
+      "peak_vram_mb": 72.84,
+      "gpu_device": "NVIDIA GeForce RTX 3050 Laptop GPU",
+      "precision": "FP16 (Half-Precision)"
+    },
+    {
+      "profile": "Fast Sampled Preview",
+      "run_index": 1,
+      "resolution": "640x480",
+      "total_frames_in_file": 84,
+      "frames_decoded": 84,
+      "frames_processed": 42,
+      "frames_skipped": 42,
+      "total_elapsed_sec": 0.579,
+      "e2e_throughput_fps": 72.59,
+      "inference_fps": 82.86,
+      "mean_inference_ms": 12.07,
+      "median_frame_e2e_ms": 12.59,
+      "p95_frame_e2e_ms": 15.37,
+      "avg_read_ms": 0.5,
+      "avg_prep_ms": 0.0,
+      "avg_post_ms": 0.3,
+      "avg_render_ms": 0.14,
+      "avg_write_ms": 0.0,
+      "peak_vram_mb": 72.84,
+      "gpu_device": "NVIDIA GeForce RTX 3050 Laptop GPU",
+      "precision": "FP16 (Half-Precision)"
+    },
+    {
+      "profile": "Fast Sampled Preview",
+      "run_index": 2,
+      "resolution": "640x480",
+      "total_frames_in_file": 84,
+      "frames_decoded": 84,
+      "frames_processed": 42,
+      "frames_skipped": 42,
+      "total_elapsed_sec": 0.561,
+      "e2e_throughput_fps": 74.84,
+      "inference_fps": 85.46,
+      "mean_inference_ms": 11.7,
+      "median_frame_e2e_ms": 12.07,
+      "p95_frame_e2e_ms": 14.54,
+      "avg_read_ms": 0.5,
+      "avg_prep_ms": 0.0,
+      "avg_post_ms": 0.28,
+      "avg_render_ms": 0.13,
+      "avg_write_ms": 0.0,
+      "peak_vram_mb": 72.84,
+      "gpu_device": "NVIDIA GeForce RTX 3050 Laptop GPU",
+      "precision": "FP16 (Half-Precision)"
+    },
+    {
+      "profile": "Fast Sampled Preview",
+      "run_index": 3,
+      "resolution": "640x480",
+      "total_frames_in_file": 84,
+      "frames_decoded": 84,
+      "frames_processed": 42,
+      "frames_skipped": 42,
+      "total_elapsed_sec": 0.587,
+      "e2e_throughput_fps": 71.5,
+      "inference_fps": 82.14,
+      "mean_inference_ms": 12.17,
+      "median_frame_e2e_ms": 12.38,
+      "p95_frame_e2e_ms": 16.79,
+      "avg_read_ms": 0.54,
+      "avg_prep_ms": 0.0,
+      "avg_post_ms": 0.31,
+      "avg_render_ms": 0.14,
+      "avg_write_ms": 0.0,
+      "peak_vram_mb": 72.84,
+      "gpu_device": "NVIDIA GeForce RTX 3050 Laptop GPU",
+      "precision": "FP16 (Half-Precision)"
+    },
+    {
+      "profile": "Live Preview Low-Latency",
+      "run_index": 1,
+      "resolution": "640x480",
+      "total_frames_in_file": 84,
+      "frames_decoded": 84,
+      "frames_processed": 84,
+      "frames_skipped": 0,
+      "total_elapsed_sec": 1.118,
+      "e2e_throughput_fps": 75.12,
+      "inference_fps": 82.3,
+      "mean_inference_ms": 12.15,
+      "median_frame_e2e_ms": 12.7,
+      "p95_frame_e2e_ms": 17.4,
+      "avg_read_ms": 0.56,
+      "avg_prep_ms": 0.0,
+      "avg_post_ms": 0.32,
+      "avg_render_ms": 0.14,
+      "avg_write_ms": 0.0,
+      "peak_vram_mb": 72.84,
+      "gpu_device": "NVIDIA GeForce RTX 3050 Laptop GPU",
+      "precision": "FP16 (Half-Precision)"
+    },
+    {
+      "profile": "Live Preview Low-Latency",
+      "run_index": 2,
+      "resolution": "640x480",
+      "total_frames_in_file": 84,
+      "frames_decoded": 84,
+      "frames_processed": 84,
+      "frames_skipped": 0,
+      "total_elapsed_sec": 1.435,
+      "e2e_throughput_fps": 58.53,
+      "inference_fps": 63.22,
+      "mean_inference_ms": 15.82,
+      "median_frame_e2e_ms": 11.76,
+      "p95_frame_e2e_ms": 44.04,
+      "avg_read_ms": 0.56,
+      "avg_prep_ms": 0.0,
+      "avg_post_ms": 0.35,
+      "avg_render_ms": 0.15,
+      "avg_write_ms": 0.0,
+      "peak_vram_mb": 72.84,
+      "gpu_device": "NVIDIA GeForce RTX 3050 Laptop GPU",
+      "precision": "FP16 (Half-Precision)"
+    },
+    {
+      "profile": "Live Preview Low-Latency",
+      "run_index": 3,
+      "resolution": "640x480",
+      "total_frames_in_file": 84,
+      "frames_decoded": 84,
+      "frames_processed": 84,
+      "frames_skipped": 0,
+      "total_elapsed_sec": 3.013,
+      "e2e_throughput_fps": 27.87,
+      "inference_fps": 29.59,
+      "mean_inference_ms": 33.8,
+      "median_frame_e2e_ms": 34.28,
+      "p95_frame_e2e_ms": 59.0,
+      "avg_read_ms": 0.89,
+      "avg_prep_ms": 0.0,
+      "avg_post_ms": 0.73,
+      "avg_render_ms": 0.22,
+      "avg_write_ms": 0.0,
+      "peak_vram_mb": 72.84,
+      "gpu_device": "NVIDIA GeForce RTX 3050 Laptop GPU",
+      "precision": "FP16 (Half-Precision)"
+    }
+  ]
+}
