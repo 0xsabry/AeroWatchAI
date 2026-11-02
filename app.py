@@ -1188,7 +1188,10 @@ with st.sidebar:
     with col_s1:
         conf_thresh = st.slider("Detection Floor", 0.10, 0.90, 0.25, 0.05)
     with col_s2:
-        uncertain_thresh = st.slider("Uncertain Floor", 0.15, 0.95, 0.40, 0.05)
+        # Default 0.50 (was 0.40): calibration measured on the test
+        # artifacts shows sub-0.50 predictions are empirically unreliable
+        # (docs/CV_QUALITY.md), so they should present as Uncertain.
+        uncertain_thresh = st.slider("Uncertain Floor", 0.15, 0.95, 0.50, 0.05)
 
     st.markdown("<div style='height: 8px;'></div>", unsafe_allow_html=True)
     st.caption("CIVILIAN AIRSPACE VOCABULARY")
@@ -1308,7 +1311,13 @@ if nav_choice == "Optical Image Analysis":
                 results = model.predict(
                     source=img_bgr,
                     conf=conf_thresh,
-                    imgsz=1280,
+                    # 640 is the checkpoint's trained resolution. The previous
+                    # 1280 was measured on the test artifacts to *hurt* this
+                    # model badly (F1 0.63 vs 0.90, 25 FPs vs 2) at ~3.4x
+                    # the latency — see docs/CV_QUALITY.md. NMS IoU 0.45 is
+                    # the measured best operating point there.
+                    imgsz=640,
+                    iou=0.45,
                     device=mm.device,
                     verbose=False,
                 )
@@ -1906,6 +1915,7 @@ elif nav_choice == "Real-Time Sensor Stream":
                         device=mm.device,
                         conf=conf_thresh,
                         imgsz=640,
+                        iou=0.45,
                         verbose=False,
                     )
                     lat = (time.perf_counter() - t0) * 1000.0

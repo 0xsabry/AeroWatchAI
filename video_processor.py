@@ -286,6 +286,9 @@ class VideoProcessor:
                     device=self.model_manager.device,
                     conf=detection_threshold,
                     imgsz=imgsz,
+                    # Measured best NMS operating point for the production
+                    # checkpoint on the test artifacts (docs/CV_QUALITY.md).
+                    iou=0.45,
                     verbose=False,
                 )
                 t_infer = time.perf_counter() - t2

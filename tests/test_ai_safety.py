@@ -26,6 +26,7 @@ from ai_safety import (
     ThreatPosture,
     assess_posture,
     checkpoint_sha256,
+    dedupe_canonical,
     js_literal,
     safe_temp_upload,
     sanitize_detections,
@@ -383,3 +384,42 @@ class TestModelManagerContract:
         # No metadata loaded: valid boxes map to Unknown (Unverified); both
         # malformed boxes here must be dropped, not raise.
         assert mm.filter_airspace_detections(frame, boxes, 0.25, 0.40) == []
+
+
+# ---------------------------------------------------------------------------
+# Canonical duplicate suppression (Phase 2, measured in docs/CV_QUALITY.md)
+# ---------------------------------------------------------------------------
+
+def _det(name, conf, box):
+    return {"internal_name": name, "conf": conf, "box": box}
+
+
+def test_dedupe_suppresses_cross_class_duplicate_keeps_highest_conf():
+    # The v7 checkpoint declares aircraft + military_jet, both normalised
+    # to "airplane": one physical aircraft, two near-identical boxes.
+    dets = [
+        _det("airplane", 0.33, [52, 835, 832, 1191]),
+        _det("airplane", 0.43, [59, 837, 833, 1191]),
+    ]
+    kept, suppressed = dedupe_canonical(dets)
+    assert suppressed == 1
+    assert len(kept) == 1 and kept[0]["conf"] == 0.43
+
+
+def test_dedupe_keeps_distinct_objects_and_other_classes():
+    dets = [
+        _det("airplane", 0.9, [0, 0, 100, 100]),
+        _det("airplane", 0.8, [300, 300, 400, 400]),   # distinct aircraft
+        _det("drone", 0.85, [5, 5, 95, 95]),           # overlap, other class
+    ]
+    kept, suppressed = dedupe_canonical(dets)
+    assert suppressed == 0 and len(kept) == 3
+
+
+def test_dedupe_partial_overlap_below_threshold_is_kept():
+    dets = [
+        _det("airplane", 0.9, [0, 0, 100, 100]),
+        _det("airplane", 0.8, [60, 0, 160, 100]),  # IoU 0.25 < 0.7
+    ]
+    kept, suppressed = dedupe_canonical(dets)
+    assert suppressed == 0 and len(kept) == 2

@@ -48,7 +48,7 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from enum import Enum
 from pathlib import Path
-from typing import Any, Dict, Iterable, Iterator, List, Optional, Tuple
+from typing import Any, Dict, Iterable, Iterator, List, Optional, Sequence, Tuple
 
 # ---------------------------------------------------------------------------
 # Limits (resource-exhaustion guards)
@@ -430,6 +430,58 @@ def validate_checkpoint_file(path: Path) -> str:
     if size > MAX_CHECKPOINT_BYTES:
         raise DetectionValidationError(f"checkpoint exceeds the {MAX_CHECKPOINT_BYTES}-byte limit: {p.name}")
     return checkpoint_sha256(p)
+
+
+# ---------------------------------------------------------------------------
+# Canonical duplicate suppression
+# ---------------------------------------------------------------------------
+
+def _box_iou(a: Sequence[float], b: Sequence[float]) -> float:
+    x1, y1 = max(a[0], b[0]), max(a[1], b[1])
+    x2, y2 = min(a[2], b[2]), min(a[3], b[3])
+    inter = max(0.0, x2 - x1) * max(0.0, y2 - y1)
+    if inter <= 0:
+        return 0.0
+    area_a = (a[2] - a[0]) * (a[3] - a[1])
+    area_b = (b[2] - b[0]) * (b[3] - b[1])
+    denom = area_a + area_b - inter
+    return inter / denom if denom > 0 else 0.0
+
+
+def dedupe_canonical(
+    detections: list[dict[str, Any]], iou_threshold: float = 0.7
+) -> tuple[list[dict[str, Any]], int]:
+    """Suppress duplicates that only exist *after* class normalisation.
+
+    YOLO NMS runs per raw class. This project's checkpoints declare both
+    ``aircraft`` and ``military_jet``, which the app normalises to the
+    same canonical class ("Aircraft") — so one physical aircraft can
+    survive NMS twice, once per raw class, and appear as two detections.
+    Measured on the test artifacts (evaluation/model_benchmark.py), the
+    v7 checkpoint does exactly this on airliner images.
+
+    Rule: within one canonical class, keep the highest-confidence box;
+    suppress any later box whose IoU with a kept box is >= the threshold
+    (default 0.7 — only near-identical boxes merge, so genuinely distinct
+    nearby objects are untouched). Input dicts need ``internal_name``,
+    ``conf`` and ``box`` keys. Returns (kept, suppressed_count).
+    """
+    ordered = sorted(detections, key=lambda d: -float(d["conf"]))
+    kept: list[dict[str, Any]] = []
+    suppressed = 0
+    for det in ordered:
+        duplicate = False
+        for other in kept:
+            if other["internal_name"] != det["internal_name"]:
+                continue
+            if _box_iou(det["box"], other["box"]) >= iou_threshold:
+                duplicate = True
+                break
+        if duplicate:
+            suppressed += 1
+        else:
+            kept.append(det)
+    return kept, suppressed
 
 
 # ---------------------------------------------------------------------------

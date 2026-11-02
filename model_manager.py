@@ -24,6 +24,7 @@ from ultralytics import YOLO
 
 from ai_safety import (
     DetectionValidationError,
+    dedupe_canonical,
     sanitize_detections,
     validate_checkpoint_file,
     validate_confidence,
@@ -499,6 +500,19 @@ class ModelManager:
 
         if not candidates:
             return []
+
+        # Canonical duplicate suppression: YOLO NMS is per raw class, but
+        # this checkpoint family declares both "aircraft" and
+        # "military_jet", which normalise to the same canonical class —
+        # one physical aircraft could otherwise be reported twice (once
+        # per raw class). Measured on the test artifacts; see
+        # evaluation/model_benchmark.py and docs/CV_QUALITY.md.
+        candidates, suppressed = dedupe_canonical(candidates)
+        if suppressed:
+            logger.info(
+                f"Suppressed {suppressed} canonical duplicate detection(s) "
+                "(same object reported under two raw classes)"
+            )
 
         # Ground Filter 3: COCO Person Overlap Verification
         # If candidate aerial detections exist, verify whether a human is present in the frame

@@ -121,7 +121,18 @@ Baseline test suite (this machine, CPU, Python 3.12, torch 2.5.1+cpu):
 suite including the new `tests/test_ai_safety.py` (41 tests) is reported in
 the pull request / engineering report for this branch.
 
-## 6. Remaining limitations
+## 6. Model quality (Phase 2)
+
+Measured properly (COCO-style AP, `evaluation/model_benchmark.py`), the
+production checkpoint scores **mAP50 0.968 / mAP50-95 0.689** on the
+test artifacts — the old "estimated mAP50 0.699" was a single-IoU proxy
+that in fact approximates mAP50-95. Phase 2 found and fixed a canonical
+duplicate-detection defect, adopted NMS IoU 0.45 + dedup (operating
+point F1 0.835 → 0.904 at unchanged recall), and fixed the image tab's
+imgsz 1280 (the worst measured setting) back to 640. Full evidence:
+`docs/CV_QUALITY.md`.
+
+## 7. Remaining limitations
 
 - `.pt` pickle deserialization risk can only be mitigated, not removed,
   without migrating checkpoints to a safe format (e.g. ONNX/SafeTensors)

@@ -15,7 +15,12 @@ from pathlib import Path
 import cv2
 import torch
 
-from ai_safety import DetectionValidationError, validate_confidence, validate_imgsz
+from ai_safety import (
+    DetectionValidationError,
+    assess_posture,
+    validate_confidence,
+    validate_imgsz,
+)
 from model_manager import ModelManager
 
 
@@ -33,6 +38,16 @@ def _imgsz_arg(value: str) -> int:
         raise argparse.ArgumentTypeError(str(e))
 
 
+def _iou_arg(value: str) -> float:
+    try:
+        v = float(value)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"--nms-iou must be a number, got {value!r}")
+    if not (0.05 <= v <= 0.95):
+        raise argparse.ArgumentTypeError(f"--nms-iou must be within [0.05, 0.95], got {v}")
+    return v
+
+
 def _name_arg(value: str) -> str:
     # The experiment name becomes a directory name; reject anything that
     # could escape the output project directory (e.g. --name ../../tmp/x).
@@ -48,8 +63,9 @@ def parse_arguments():
     parser.add_argument("--source", required=True, help="Path to input image file")
     parser.add_argument("--weights", default="weights/aerowatch_v7_balanced.pt", help="Path to model weights (.pt)")
     parser.add_argument("--conf", type=_conf_arg, default=0.25, help="Confidence detection threshold (0.0 to 1.0)")
-    parser.add_argument("--uncertain", type=_conf_arg, default=0.40, help="Confidence threshold below which detections are flagged Uncertain")
+    parser.add_argument("--uncertain", type=_conf_arg, default=0.50, help="Confidence threshold below which detections are flagged Uncertain (default 0.50: calibration on the test artifacts showed predictions below 0.50 are empirically unreliable — see docs/CV_QUALITY.md)")
     parser.add_argument("--imgsz", type=_imgsz_arg, default=640, help="Inference image resolution")
+    parser.add_argument("--nms-iou", type=_iou_arg, default=0.45, help="NMS IoU threshold (default 0.45: measured best operating point on the test artifacts — see docs/CV_QUALITY.md)")
     parser.add_argument("--device", default="auto", help="Compute device ('auto', '0', 'cpu')")
     parser.add_argument("--project", default="runs/predict", help="Output directory root")
     parser.add_argument("--name", type=_name_arg, default="exp", help="Inference experiment subfolder")
@@ -99,6 +115,7 @@ def predict_image(args):
         source=img_bgr,
         imgsz=args.imgsz,
         conf=args.conf,
+        iou=args.nms_iou,
         device=mm.device,
         verbose=False,
     )
@@ -140,7 +157,18 @@ def predict_image(args):
         cv2.rectangle(annotated, (x1, max(0, y1 - th - 6)), (x1 + tw + 6, max(0, y1)), bgr_col, -1)
         cv2.putText(annotated, lbl_text, (x1 + 3, max(12, y1 - 4)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (15, 15, 15), 1)
 
-        print(f"  [{detected_count}] {display_label:18s} | Confidence: {conf:.1%} | BBox: [{x1}, {y1}, {x2}, {y2}]")
+        # Explainability: show the safety posture and certainty band for
+        # every detection. These are model *predictions* with measured
+        # reliability (docs/CV_QUALITY.md), never verified facts, and a
+        # classification alone never establishes hostile intent.
+        posture = assess_posture(
+            det["internal_name"], conf, uncertainty_threshold=args.uncertain
+        )
+        band = "uncertain" if conf < args.uncertain else "confident"
+        print(
+            f"  [{detected_count}] {display_label:18s} | Confidence: {conf:.1%} ({band}) "
+            f"| Status: {posture.posture.value} | BBox: [{x1}, {y1}, {x2}, {y2}]"
+        )
 
         if args.save_txt:
             xc = ((x1 + x2) / 2.0) / w
@@ -151,6 +179,11 @@ def predict_image(args):
 
     if detected_count == 0:
         print("  (No aerial objects detected above confidence threshold)")
+    print(
+        "  Note: detections are unverified model predictions. A classification\n"
+        "  is not proof of identity or intent; 'requires_verification' means a\n"
+        "  human must confirm before any conclusion is drawn."
+    )
 
     out_file = out_folder / img_path.name
     cv2.imwrite(str(out_file), annotated)
