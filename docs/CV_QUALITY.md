@@ -33,11 +33,27 @@ authentic flight captures; CC-BY where licensed).
   repository* (no `data/` directory exists; `train_v7_balanced.py`
   expects `data/real_aerial_v4_balanced/dataset.yaml`, 30 epochs,
   batch 8, imgsz 640, mosaic 0.7 — the config survives, the data does
-  not). Some artifact filenames come from source
-  datasets' own *train* splits (e.g. `rigo_rigoleto_train0022.jpg`), so
-  whether the checkpoint trained on these very images is unknowable
-  from here. Treat all scores as an upper bound until a verified
-  held-out set exists.
+  not). Worse, the dataset builders (`build_real_dataset.py`,
+  `build_dataset_v3.py`, `build_balanced_dataset.py`) draw from the
+  *same three Hugging Face sources* the test artifacts come from
+  (Rigoleto/drone-detection, matisdsp/drone-bird-detection,
+  a2015003713), and some artifact filenames come from those datasets'
+  own *train* splits (e.g. `rigo_rigoleto_train0022.jpg`). No
+  decontamination check is documented anywhere. Treat all scores as
+  an upper bound until a verified held-out set exists.
+- **Training claims in the repo contradict each other and are
+  unverifiable.** README attributes all models to `real_aerial_v3`
+  (736 images, 1,529 instances, 72/18/10 split), while
+  `train_v7_balanced.py`'s own docstring describes v4_balanced with
+  per-class counts summing to 606 instances and *no balloon count at
+  all*. No `runs/train/` artifacts (results.csv, args.yaml, curves)
+  exist for any checkpoint, and **v5_pro and real_v1 have no training
+  script whatsoever** — their provenance is undocumented in code.
+- **Licensing gap.** The repo is labelled MIT (`LICENSE`,
+  `CITATION.cff`, README) yet depends end-to-end on Ultralytics YOLO
+  (AGPL-3.0); the word "AGPL" appears nowhere in the repo, and no
+  model card exists for any checkpoint. This needs an explicit
+  licensing decision before any distribution beyond personal use.
 - One airliner image (`air_airliner_07f2...jpg`) appears to contain a
   second, unannotated aircraft; two of the model's "false positives"
   there may be annotation gaps rather than model errors.
