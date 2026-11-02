@@ -30,8 +30,10 @@ authentic flight captures; CC-BY where licensed).
   1 "cluttered_background" — adverse-condition performance is
   essentially unmeasured by this set.
 - **Leakage cannot be excluded.** The training data is *not in this
-  repository* (no dataset directory, no data YAML; training scripts
-  reference external paths). Some artifact filenames come from source
+  repository* (no `data/` directory exists; `train_v7_balanced.py`
+  expects `data/real_aerial_v4_balanced/dataset.yaml`, 30 epochs,
+  batch 8, imgsz 640, mosaic 0.7 — the config survives, the data does
+  not). Some artifact filenames come from source
   datasets' own *train* splits (e.g. `rigo_rigoleto_train0022.jpg`), so
   whether the checkpoint trained on these very images is unknowable
   from here. Treat all scores as an upper bound until a verified
