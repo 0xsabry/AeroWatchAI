@@ -974,7 +974,7 @@ function update(dt) {{
     if (target.trail.length > 40) target.trail.shift();
   }}
 
-  // 2. UPDATE MISSILES: ZERO-ESCAPE TVC + APN DUAL SALVO ENGINE (100% Pk)
+  // 2. UPDATE MISSILES: TVC + APN DUAL SALVO ENGINE (game physics)
   //    Kinetic Overmatch & Continuous 2-Body Dynamic Collision
   const activeMissiles = [];
   if (missile.active && !target.destroyed) activeMissiles.push({{ m: missile, isFlanker: false, name: 'ALPHA' }});

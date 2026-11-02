@@ -1,3 +1,12 @@
+> **⚠️ Historical document (2026-10-12) — superseded.** This report
+> predates the Phase 2–7 audits. Its accuracy figures come from the
+> exploratory project test set (potentially contaminated; an upper
+> bound, not a certification). Current measured results are in
+> README.md and docs/VERIFIED_DATASET_PHASE5.md. Tracking note: the
+> track IDs mentioned below come from Ultralytics' built-in tracker
+> inside the offline `evaluate_videos.py` utility only — **the
+> application itself performs no persistent object tracking**.
+
 # AeroWatch AI — Video Testing Suite & High-Accuracy Model Benchmark Report
 
 ## 1. Executive Summary
@@ -21,7 +30,7 @@ In response to the requirements for **realistic video testing** and **maximum ae
 
 3. **Surveillance Video Suite & Tactical Defense Tracker**:
    - Generated **5 realistic aerial surveillance videos** (`videos/*.mp4`) testing all airspace scenarios.
-   - Developed an automated tactical evaluation engine (`evaluate_videos.py`) with **ByteTrack persistent tracking**, HUD corner brackets, target velocity vectors, and a **real-time PPI radar scope overlay**.
+   - Developed an automated evaluation engine (`evaluate_videos.py`) using Ultralytics' built-in tracking (`model.track()`) in that offline utility only, with HUD corner brackets, target velocity vectors, and a **real-time PPI radar scope overlay**. (The application itself performs no persistent tracking.)
    - Pre-rendered **5 tactical defense streams** (`videos/annotated_*.mp4`) achieving up to **98.6% continuous detection rates**.
 
 ---
@@ -96,7 +105,7 @@ The video annotation pipeline incorporates:
   - 🟢 **Green**: `COMMERCIAL / AIRLINER` (Friendly)
   - ⚪ **Gray**: `WILDLIFE / BIRD` (Negligible)
   - 🟡 **Cyan**: `AEROSTAT / BALLOON` (Monitor)
-- **Persistent Track IDs (`#1`, `#2`)**: Powered by ByteTrack / BoT-SORT temporal association.
+- **Track IDs (`#1`, `#2`) in evaluator output only**: produced by Ultralytics' built-in tracker via `model.track()` in `evaluate_videos.py`; the application maintains no track identities.
 - **Kinematic Vectors**: Visual trail of previous 15 positions showing flight trajectory and speed heading.
 - **PPI Radar Scope Mini-Map**: Dynamic circular radar display in the upper right corner featuring a 360° sweeping beam and real-time normalized blip positions.
 - **Airspace Status Banner**: Real-time alert bar across the top displaying defensive readiness state.

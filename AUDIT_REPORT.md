@@ -1,3 +1,11 @@
+> **⚠️ Historical document (2026-10-12) — superseded.** This report
+> predates the Phase 1–7 engineering audits under `docs/`. Where its
+> figures or capability descriptions differ from README.md and the
+> `docs/` audits, the newer documents govern: the detector's measured
+> accuracy on the independent, license-verified test set is mAP50
+> 0.497, the interceptor is a simulation game, and the application
+> performs no persistent object tracking.
+
 # AeroWatch AI — Comprehensive Engineering Audit Report
 
 **Date:** 2026-10-12  

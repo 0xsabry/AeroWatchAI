@@ -11,7 +11,7 @@ Provides:
 - High-throughput execution with CUDA FP16 Tensor Core acceleration
 - Complete metrics: Input FPS, Processed FPS, Inference Latency, E2E Latency, Dropped/Skipped counts
 - Robust input handling (EOF, corrupt frames, codec probing, cancellation)
-- Guaranteed browser-standard H.264 export with post-write reopening validation
+- Browser-standard H.264 export, validated by post-write reopening
 - Optional short-window display stabilization filter to eliminate frame-to-frame flicker
 """
 from __future__ import annotations

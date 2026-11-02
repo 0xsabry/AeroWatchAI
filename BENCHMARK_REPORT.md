@@ -1,3 +1,9 @@
+> **⚠️ Historical document (2026-10-12) — superseded.** Figures here
+> are project-reported results from the original development machine
+> and were not independently audited. Independently measured results
+> are in README.md, docs/CV_QUALITY.md and
+> docs/VERIFIED_DATASET_PHASE5.md.
+
 # AeroWatch AI — Video Pipeline Performance & Reliability Benchmark Report
 
 **Benchmark Date:** 2026-10-12  

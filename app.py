@@ -1457,9 +1457,9 @@ elif nav_choice == "Autonomous AI Interceptor Missile":
     st.markdown(
         """
         <div class="c2-section-header">
-            <div class="c2-breadcrumb">KINETIC AIR DEFENSE // AUTONOMOUS AI FIRE CONTROL</div>
-            <h1 class="c2-page-title">Autonomous AI Interceptor Missile & Terminal Homing</h1>
-            <p class="c2-page-desc">Kinetic neutralization system for hostile drones and aircraft with Augmented Proportional Navigation (APN), autonomous evasion counter-tracking, and relentless terminal pursuit.</p>
+            <div class="c2-breadcrumb">SIMULATION // BROWSER GAME — NOT A REAL FIRE-CONTROL SYSTEM</div>
+            <h1 class="c2-page-title">Interceptor Simulation & Terminal Homing (Game)</h1>
+            <p class="c2-page-desc">A fictional browser simulation game using Augmented Proportional Navigation (APN)-style steering math in pixels. It is not connected to any real weapon, sensor, or engagement system, and its outcomes are game scores only.</p>
         </div>
         """,
         unsafe_allow_html=True,
@@ -1545,9 +1545,9 @@ elif nav_choice == "Autonomous AI Interceptor Missile":
                 </div>
                 <div style='display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12.5px; color: #C7C7CC; line-height: 1.6;'>
                     <div>
-                        <strong style="color: #FFFFFF;">1. Instant Thrust Vector Control (TVC) Snap:</strong><br>
-                        When a target warplane or drone breaks lock, dives, or abruptly reverses course, pure aerodynamic fins experience control lag. 
-                        AeroWatch interceptors fire lateral Reaction Control Thrusters (TVC), pivoting the missile nose at up to <strong style="color: #38BDF8;">1,300°/s</strong> to re-acquire the target vector in 0.05 seconds.
+                        <strong style="color: #FFFFFF;">1. Instant Thrust Vector Control (TVC) Snap (game mechanic):</strong><br>
+                        When a game target breaks lock, dives, or abruptly reverses course, pure aerodynamic fins would experience control lag.
+                        In the simulation, interceptors fire lateral Reaction Control Thrusters (TVC), pivoting the missile nose at up to <strong style="color: #38BDF8;">1,300°/s</strong> to re-acquire the target vector in 0.05 seconds. <em>(Fictional simulation doctrine: this describes the game model only.)</em>
                     </div>
                     <div>
                         <strong style="color: #FFFFFF;">2. Augmented Proportional Navigation & Proximity Fuse:</strong><br>
@@ -1567,7 +1567,7 @@ elif nav_choice == "Autonomous AI Interceptor Missile":
             <div style='margin-bottom: 16px;'>
                 <div style='font-size: 12px; font-weight: 700; color: #94A3B8; letter-spacing: 0.1em; text-transform: uppercase;'>REAL AIR DEFENSE COMBAT TESTBENCH</div>
                 <div style='font-size: 18px; font-weight: 800; color: #FFFFFF;'>Test Rockets on Real Aircraft, Warplanes & Drone Footage</div>
-                <div style='font-size: 12.5px; color: #C7C7CC; margin-top: 4px;'>Neural object detection coupled with live ballistic trajectory modeling and kinetic impact rendering on real military aircraft and drone videos.</div>
+                <div style='font-size: 12.5px; color: #C7C7CC; margin-top: 4px;'>Runs the object detector over scenario videos and overlays a simulated (fictional) interception animation. Detection results are unverified model predictions; interception results are game outcomes, not real-world events.</div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -1581,26 +1581,26 @@ elif nav_choice == "Autonomous AI Interceptor Missile":
             "Airspace Threat Scenario 03 — Multi-Threat Combat Horizon (HD)": "videos/multi_threat_airspace_scenario.mp4",
         }
 
-        v_source_mode = st.radio("Testbench Video Source", ["Real Combat Video Archive Presets", "Upload Custom Real Combat Footage"], horizontal=True, key="tb_v_mode")
+        v_source_mode = st.radio("Testbench Video Source", ["Video Archive Presets", "Upload Custom Footage"], horizontal=True, key="tb_v_mode")
 
         selected_real_video_path = None
-        if v_source_mode == "Real Combat Video Archive Presets":
-            chosen_scenario_name = st.selectbox("Select Real Combat Airspace Mission", list(real_video_presets.keys()))
+        if v_source_mode == "Video Archive Presets":
+            chosen_scenario_name = st.selectbox("Select Scenario Video", list(real_video_presets.keys()))
             cand_path = PROJECT_ROOT / real_video_presets[chosen_scenario_name]
             if cand_path.exists():
                 selected_real_video_path = cand_path
         else:
-            up_v = st.file_uploader("Upload Real Combat Aircraft / Drone Video (MP4, AVI, MOV)", type=["mp4", "avi", "mov"], key="tb_upload_v")
+            up_v = st.file_uploader("Upload Aircraft / Drone Video (MP4, AVI, MOV)", type=["mp4", "avi", "mov"], key="tb_upload_v")
             if up_v:
                 selected_real_video_path = _store_uploaded_video(up_v, "tb_upload_temp_path")
 
         if selected_real_video_path and selected_real_video_path.exists():
             st.markdown("<div style='height: 8px;'></div>", unsafe_allow_html=True)
             v_salvo_choice = st.radio(
-                "Interceptor Weapon Doctrine & Salvo Mode",
+                "Simulated Interceptor Mode",
                 [
-                    "🚀 Dual-Missile Salvo Battery (Alpha + Bravo Pincer Kill Box)",
-                    "⚡ Single Hypersonic Sprint Interceptor (Mach 4.2 Direct Sprint)",
+                    "🚀 Dual-Missile Salvo (Alpha + Bravo Pincer — Simulation)",
+                    "⚡ Single Sprint Interceptor (Simulation)",
                 ],
                 horizontal=True,
                 key="tb_salvo_choice",
@@ -1609,14 +1609,14 @@ elif nav_choice == "Autonomous AI Interceptor Missile":
 
             col_vcfg1, col_vcfg2, col_vcfg3 = st.columns(3)
             with col_vcfg1:
-                v_missile_speed = st.slider("Interceptor Speed (px/s)", 450.0, 1100.0, 750.0, 25.0, help="Simulates Mach 2.5 to Mach 5.2 hypersonic sprint speed")
+                v_missile_speed = st.slider("Interceptor Speed (px/s)", 450.0, 1100.0, 750.0, 25.0, help="Game speed setting (labelled Mach 2.5 to Mach 5.2 in-fiction; pixels per second in the simulation)")
             with col_vcfg2:
                 v_launch_delay = st.slider("Launch Battery Reaction Delay (s)", 0.1, 1.2, 0.25, 0.05, help="Time before primary battery launches")
             with col_vcfg3:
                 v_conf = st.slider("Neural Detection Threshold", 0.10, 0.70, 0.20, 0.05, help="Confidence floor for target seeker acquisition")
 
-            if st.button("🚀 EXECUTE KINETIC INTERCEPTION ON REAL FOOTAGE", key="btn_run_real_interception", use_container_width=True):
-                with st.spinner("Tracking target with neural seeker & firing hypersonic interceptor battery..."):
+            if st.button("🚀 RUN SIMULATED INTERCEPTION ON THIS VIDEO", key="btn_run_real_interception", use_container_width=True):
+                with st.spinner("Running the detector and the simulated interception overlay..."):
                     out_runs_dir = PROJECT_ROOT / "runs" / "interceptor_runs"
                     engagement_res = run_video_missile_interception(
                         input_video_path=selected_real_video_path,
@@ -1748,9 +1748,9 @@ elif nav_choice == "Autonomous AI Interceptor Missile":
                 st.markdown(
                     f"""
                     <div class="bento-card">
-                        <div class="bento-card-title">KILL PROBABILITY (Pk)</div>
+                        <div class="bento-card-title">SIMULATION SUCCESS RATE</div>
                         <div class="bento-card-val" style="font-size: 22px; color: #34D399;">{pass_rate:.1f}%</div>
-                        <div class="bento-card-desc">Direct Kinetic Splash</div>
+                        <div class="bento-card-desc">In-game outcomes only — not a real-world probability</div>
                     </div>
                     """,
                     unsafe_allow_html=True,
@@ -1759,9 +1759,9 @@ elif nav_choice == "Autonomous AI Interceptor Missile":
                 st.markdown(
                     """
                     <div class="bento-card">
-                        <div class="bento-card-title">AVERAGE SPRINT SPEED</div>
+                        <div class="bento-card-title">AVERAGE SPRINT SPEED (IN-GAME)</div>
                         <div class="bento-card-val" style="font-size: 22px; color: #38BDF8;">Mach 4.2</div>
-                        <div class="bento-card-desc">Hypersonic Solid Motor</div>
+                        <div class="bento-card-desc">Simulated motor — game physics parameter</div>
                     </div>
                     """,
                     unsafe_allow_html=True,
@@ -1770,9 +1770,9 @@ elif nav_choice == "Autonomous AI Interceptor Missile":
                 st.markdown(
                     """
                     <div class="bento-card">
-                        <div class="bento-card-title">TERMINAL MISS DISTANCE</div>
+                        <div class="bento-card-title">TERMINAL MISS DISTANCE (IN-GAME)</div>
                         <div class="bento-card-val" style="font-size: 22px; color: #FFFFFF;">0.0 m</div>
-                        <div class="bento-card-desc">100% Proximity Overpressure</div>
+                        <div class="bento-card-desc">Simulated proximity result — game outcome</div>
                     </div>
                     """,
                     unsafe_allow_html=True,
@@ -1782,7 +1782,7 @@ elif nav_choice == "Autonomous AI Interceptor Missile":
             table_rows = []
             for r in results_list:
                 table_rows.append({
-                    "Scenario Combat Mission": r.scenario_name.replace(".mp4", "").replace("_", " ").title(),
+                    "Scenario (Simulation)": r.scenario_name.replace(".mp4", "").replace("_", " ").title(),
                     "Target Classification": r.target_class,
                     "Total Frames": r.total_frames,
                     "Neutralized Frame": f"#{r.intercept_frame}",
@@ -1968,7 +1968,7 @@ elif nav_choice == "Video Flight Intelligence":
         <div class="c2-section-header">
             <div class="c2-breadcrumb">FLIGHT INTELLIGENCE // VIDEO PIPELINE</div>
             <h1 class="c2-page-title">High-Speed Video File Analysis & Profiling</h1>
-            <p class="c2-page-desc">High-throughput tactical video intelligence with FP16 Tensor Core acceleration, temporal stabilization, and verified H.264 export.</p>
+            <p class="c2-page-desc">Video analysis with per-frame object detection, bounding-box smoothing (not persistent object tracking — no track identities are maintained), and verified H.264 export.</p>
         </div>
         """,
         unsafe_allow_html=True,
@@ -1979,8 +1979,8 @@ elif nav_choice == "Video Flight Intelligence":
 
     if v_mode_choice == "Tactical Airspace Scenarios":
         preloaded_options = {
-            "Airspace Mission 01 — Commercial Quadcopter & Mixed Horizon (HD 720p)": "data/gemini_generated_video_b71ae6aa.mp4",
-            "Airspace Mission 02 — Extended Airspace Sector Patrol (HD 720p)": "data/gemini_generated_video_d7c139f5.mp4",
+            "AI-Generated Demo 01 — Commercial Quadcopter & Mixed Horizon (HD 720p) [synthetic footage — not a real recording]": "data/gemini_generated_video_b71ae6aa.mp4",
+            "AI-Generated Demo 02 — Extended Airspace Sector Patrol (HD 720p) [synthetic footage — not a real recording]": "data/gemini_generated_video_d7c139f5.mp4",
             "Civilian Airspace 01 — Real Drone Surveillance Patrol (HD)": "videos/real_drone_surveillance_patrol.mp4",
             "Civilian Airspace 02 — Multi-Target Mixed Horizon (HD)": "videos/multi_threat_airspace_scenario.mp4",
             "Border Sector 01 — Drone vs Bird Perimeter Patrol (HD)": "videos/drone_vs_bird_perimeter_patrol.mp4",
@@ -1989,6 +1989,15 @@ elif nav_choice == "Video Flight Intelligence":
         }
         chosen_video_label = st.selectbox("Select Tactical Airspace Scenario", list(preloaded_options.keys()))
         cand_p = PROJECT_ROOT / preloaded_options[chosen_video_label]
+        if "gemini_generated" in cand_p.name:
+            st.info(
+                "🎬 **AI-generated demonstration footage.** This video was "
+                "synthesised by a generative AI model (Gemini). It is a "
+                "demonstration asset only — it is **not** a real camera "
+                "recording and must not be treated as real-world evidence. "
+                "Detector output on it is an unverified model prediction, "
+                "like on any other input."
+            )
         if cand_p.exists():
             target_video_path = cand_p
     else:
@@ -2208,7 +2217,7 @@ elif nav_choice == "Hardware & Latency Benchmarks":
         <div class="c2-section-header">
             <div class="c2-breadcrumb">ACCELERATION BENCHMARK // HARDWARE TELEMETRY</div>
             <h1 class="c2-page-title">Hardware Acceleration & Speed Benchmarks</h1>
-            <p class="c2-page-desc">Automated performance comparison between the baseline unoptimized pipeline and the optimized FP16 architecture.</p>
+            <p class="c2-page-desc">Automated performance comparison between the baseline unoptimized pipeline and the optimized FP16 architecture. Figures on this page are project-reported results from the original development machine and have not been independently audited; independently measured figures are in docs/CV_QUALITY.md and docs/VERIFIED_DATASET_PHASE5.md.</p>
         </div>
         """,
         unsafe_allow_html=True,
@@ -2254,7 +2263,7 @@ elif nav_choice == "Hardware & Latency Benchmarks":
         {"Metric": "Processed Video Throughput", "Baseline Pipeline": "22.8 FPS", "Optimized Pipeline": "42.4 FPS", "Delta": "+86.1% Speedup"},
         {"Metric": "Pure Inference Latency", "Baseline Pipeline": "41.53 ms", "Optimized Pipeline": "20.12 ms", "Delta": "51.5% Faster"},
         {"Metric": "VRAM Allocation", "Baseline Pipeline": "FP32 Standard", "Optimized Pipeline": "FP16 Halved", "Delta": "50% Less Memory"},
-        {"Metric": "Web Browser Playback", "Baseline Pipeline": "MPEG-4 Part 2 (Stalled)", "Optimized Pipeline": "Verified H.264 (+faststart)", "Delta": "100% Compatible"},
+        {"Metric": "Web Browser Playback", "Baseline Pipeline": "MPEG-4 Part 2 (Stalled)", "Optimized Pipeline": "Verified H.264 (+faststart)", "Delta": "Verified Compatible"},
     ])
     st.table(bench_data)
 

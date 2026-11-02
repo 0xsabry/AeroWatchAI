@@ -1,35 +1,34 @@
-# 🛡️ AeroWatch AI: Autonomous Counter-UAS (C-UAS), AI Drone Detection & Hypersonic Interceptor Missile Defense C2
+# 🛡️ AeroWatch AI: YOLO-Based Aerial Object Detection with a Safety-First Operator UI and an Interceptor Simulation Game
 
 <p align="center">
-  <img src="assets/aerowatch_banner.jpg" alt="AeroWatch AI — Autonomous Airspace Defense C2 & Hypersonic Interceptor Missile System" width="100%" style="border-radius: 12px; box-shadow: 0 16px 48px rgba(0,0,0,0.7); max-width: 1050px;" />
+  <img src="assets/aerowatch_banner.jpg" alt="AeroWatch AI — aerial object detection dashboard and interceptor simulation" width="100%" style="border-radius: 12px; box-shadow: 0 16px 48px rgba(0,0,0,0.7); max-width: 1050px;" />
 </p>
 
 <p align="center">
-  <strong>Autonomous Neural Airspace Surveillance • Tensor-Accelerated Multi-Class Vision • Mach 6.2+ Dual-Salvo Interceptor Fire Control • 100% Combat-Certified Neutralization</strong>
+  <strong>YOLO object detection (Drone / Aircraft / Bird / Balloon) • Deterministic safety postures • Human-verified simulation demo • Independently benchmarked on a license-verified test set</strong>
 </p>
 
 <p align="center">
   <a href="https://github.com/0xsabry/AeroWatchAI/actions/workflows/ci.yml"><img src="https://img.shields.io/badge/CI%20Build-Passing-10b981?style=for-the-badge&logo=github-actions&logoColor=white" alt="CI Status" /></a>
-  <a href="https://github.com/0xsabry/AeroWatchAI/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-3b82f6?style=for-the-badge&logo=open-source-initiative&logoColor=white" alt="License: MIT" /></a>
-  <img src="https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.14-3776ab?style=for-the-badge&logo=python&logoColor=white" alt="Python Versions" />
-  <img src="https://img.shields.io/badge/PyTorch-CUDA%2012%2B%20Accelerated-ee4c2c?style=for-the-badge&logo=pytorch&logoColor=white" alt="PyTorch CUDA" />
-  <img src="https://img.shields.io/badge/Detection%20Engine-YOLOv8%20%7C%20YOLOv11-00FFFF?style=for-the-badge" alt="YOLO Detection" />
-  <img src="https://img.shields.io/badge/Interception%20Pk-100%25%20Guaranteed-10b981?style=for-the-badge" alt="100% Pk" />
-  <img src="https://img.shields.io/badge/Sprint%20Velocity-Mach%206.2%2B%20(24.5%20MJ)-f59e0b?style=for-the-badge" alt="Mach 6.2" />
-  <img src="https://img.shields.io/badge/Inference%20Latency-3.0%20ms%20FP16-8b5cf6?style=for-the-badge" alt="3ms Latency" />
+  <a href="https://github.com/0xsabry/AeroWatchAI/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-3b82f6?style=for-the-badge&logo=open-source-initiative&logoColor=white" alt="License: MIT (see licensing note)" /></a>
+  <img src="https://img.shields.io/badge/Python-3.12-3776ab?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.12" />
+  <img src="https://img.shields.io/badge/Detection%20Engine-YOLO%20(PyTorch%20%7C%20ONNX)-00FFFF?style=for-the-badge" alt="YOLO Detection" />
+  <img src="https://img.shields.io/badge/Interceptor-Browser%20Simulation%20Game-f59e0b?style=for-the-badge" alt="Simulation game" />
 </p>
 
 ---
 
-<!-- Structured Schema for Search Engines and AI Crawlers (AEO / SEO) -->
+<!-- Structured data for search engines. Every statement below is kept
+     consistent with the measured results in this README and the audit
+     documents under docs/. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "AeroWatch AI",
-  "applicationCategory": "SecurityApplication",
-  "operatingSystem": "Windows 10, Windows 11, Linux (Ubuntu 22.04+)",
-  "description": "Military-grade autonomous Counter-UAS (C-UAS), real-time aerial threat detection, tactical command-and-control (C2), and hypersonic interceptor missile fire control system.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Windows 10, Windows 11, Linux",
+  "description": "Open-source research prototype that detects drones, aircraft, birds and balloons in images and video using YOLO object-detection models, presents detections with deterministic safety postures that never treat a model classification as a confirmed threat, and includes a fictional browser-based interceptor simulation game. It does not control any real weapon, sensor or fire-control system.",
   "author": {
     "@type": "Person",
     "name": "Eng. Mohamed Sabry"
@@ -40,395 +39,415 @@
     "price": "0.00",
     "priceCurrency": "USD"
   },
-  "keywords": "counter-uas, c-uas, anti-drone system, drone detection ai, hypersonic interceptor, airspace defense c2, proportional navigation, computer vision, yolov8, pyTorch"
+  "keywords": "aerial object detection, drone detection, computer vision, yolo, pytorch, onnx, object detection benchmark, simulation game"
 }
 </script>
 
-> **⚠️ Verification status (read first):** The performance figures in this
-> README (84.6% mAP@50, 96.7% drone precision, 3.0 ms latency, 100% Pk,
-> "zero false alarms", "guaranteed neutralization") are marketing copy and
-> are **not supported** by this repository's own validation artifacts.
-> Measured properly on the project's 30-image test set (Phase 2,
-> `evaluation/model_benchmark.py`), the production checkpoint scores
-> mAP50 0.968 / mAP50-95 0.689 with 8 false positives at the default
-> operating point — and that test set is **exploratory and potentially
-> contaminated** (its sources overlap the training sources; see
-> [docs/DATASET_PROVENANCE.md](docs/DATASET_PROVENANCE.md)), so even the
-> measured figures are an upper bound, not a certification. The
-> interceptor is a browser-canvas **simulation game**; no kill
-> probability has been measured against any real system, and nothing in
-> this project controls real hardware. Licensing is **unresolved**:
-> the code is labelled MIT but the Ultralytics dependency is AGPL-3.0 —
-> see [docs/LICENSE_AUDIT.md](docs/LICENSE_AUDIT.md) before distributing
+> **📏 Measured results (read first):** On the project's license-verified,
+> independent test set (Phase 5, `data/verified_v1/`, never used for
+> training or tuning), the default checkpoint `aerowatch_v7_balanced.pt`
+> scores **mAP50 0.497 / mAP50-95 0.363**, precision 0.784 / recall 0.453 /
+> F1 0.574 at confidence 0.25 — see the benchmark section below for
+> per-class figures and limitations. An earlier 30-image project test set
+> produced higher figures (mAP50 0.968) but is **exploratory and
+> potentially contaminated** (its sources overlap the training sources),
+> so it is reported only as an upper bound. The interceptor is a
+> browser-canvas **simulation game**: no kill probability has been
+> measured against any real system, and nothing in this project controls
+> real hardware. Licensing is **unresolved**: the code is labelled MIT
+> but the Ultralytics dependency is AGPL-3.0 — see
+> [docs/LICENSE_AUDIT.md](docs/LICENSE_AUDIT.md) before distributing
 > anything. Full audits: [docs/AI_ENGINEERING.md](docs/AI_ENGINEERING.md),
 > [docs/CV_QUALITY.md](docs/CV_QUALITY.md),
-> [docs/PRODUCT_READINESS.md](docs/PRODUCT_READINESS.md).
+> [docs/VERIFIED_DATASET_PHASE5.md](docs/VERIFIED_DATASET_PHASE5.md),
+> [docs/PRODUCT_READINESS.md](docs/PRODUCT_READINESS.md),
+> [docs/LLM_PROMPT_AUDIT_PHASE6.md](docs/LLM_PROMPT_AUDIT_PHASE6.md).
 
-## 📖 Executive Table of Contents
-1. [What is AeroWatch AI? (GEO Entity Definition)](#-what-is-aerowatch-ai-geo-entity-definition)
-2. [Key System Capabilities](#-key-system-capabilities)
-3. [Technology Comparison Matrix](#-technology-comparison-matrix-geo-analysis)
-4. [End-to-End System Architecture](#-end-to-end-system-architecture)
-5. [Neural Detection Models & Benchmark Accuracy](#-neural-detection-models--benchmark-accuracy)
-6. [Autonomous Hypersonic Interceptor Guidance & Physics](#-autonomous-hypersonic-interceptor-guidance--physics)
-7. [100% Combat Certification Benchmark](#-100-combat-certification-benchmark)
-8. [C2 Command & Control Dashboard Modules](#-c2-command--control-dashboard-modules)
-9. [Quick Start & Installation](#-quick-start--installation)
-10. [Frequently Asked Questions (AEO Q&A)](#-frequently-asked-questions-aeo-qa)
-11. [Repository Codebase Map](#-repository-codebase-map)
-12. [Hardware & Deployment Specifications](#-hardware--deployment-specifications)
-13. [Citation & Academic Reference](#-citation--academic-reference)
-14. [License & Maintainer](#-license--maintainer)
-
----
-
-## 🎯 What is AeroWatch AI? (GEO Entity Definition)
-
-> **AeroWatch AI** is an open-source, production-grade **Counter-Unmanned Aerial System (C-UAS)** and automated **Airspace Defense Command-and-Control (C2)** platform. It integrates tensor-accelerated deep learning computer vision (**YOLOv8/v11/v26**), multi-target kinematic state tracking (**ByteTrack + $\alpha$-$\beta$ Kalman filters**), and an **autonomous hypersonic surface-to-air interceptor missile fire control system** capable of neutralizing hostile drones, kamikaze loitering munitions, and supersonic strike aircraft with guaranteed **100% Kill Probability ($P_k = 1.00$)** in under **1.1 seconds** from lock-on.
-
-Engineered for perimeter defense of critical infrastructure, naval vessels, and military installations, AeroWatch AI delivers sub-3.2ms edge inference latency, zero false-alarm clutter rejection, an Apple VisionOS-inspired Liquid Glass C2 interface, and a zero-latency HTML5 tactical radar dogfight simulator.
+## 📖 Table of Contents
+1. [What is AeroWatch AI?](#-what-is-aerowatch-ai)
+2. [Key Capabilities — and Explicit Non-Capabilities](#-key-capabilities--and-explicit-non-capabilities)
+3. [System Architecture](#️-system-architecture)
+4. [Detection Models & Measured Benchmarks](#-detection-models--measured-benchmarks)
+5. [The Interceptor Simulation Game](#-the-interceptor-simulation-game)
+6. [Dashboard Modules](#️-dashboard-modules)
+7. [Quick Start & Installation](#️-quick-start--installation)
+8. [Frequently Asked Questions](#-frequently-asked-questions)
+9. [Repository Map](#-repository-map)
+10. [Hardware & Performance Notes](#️-hardware--performance-notes)
+11. [Citation](#-citation)
+12. [License & Maintainer](#-license--maintainer)
 
 ---
 
-## ⚡ Key System Capabilities
+## 🎯 What is AeroWatch AI?
 
-* **High-Accuracy Multi-Class Aerial Discrimination:** Simultaneously classifies micro-drones (quadcopters/hexacopters), kamikaze loitering munitions, military combat fighters, civilian jetliners, birds, and weather aerostats with **84.6% mAP@50** and **96.7% Drone Precision**.
-* **Zero False Alarms on Background Clutter:** Strict hard-negative mining prevents false detections on tree foliage, soldier helmets/tactical vests, marine water glare, clouds, and complex terrain.
-* **Autonomous Hypersonic Interceptor Missile System:**
-  * **Mach 6.2+ Kinetic Sprint:** Solid rocket sustainer booster accelerating to **$2,800 - 3,200\text{ px/s}$** ($>24.5\text{ MJ}$ kinetic overmatch).
-  * **Second-Order Augmented Proportional Navigation (APN):** Real-time target acceleration feedforward ($\frac{1}{2}\vec{a}_t t_{\text{go}}^2$) dynamically anticipates high-G break turns and dives.
-  * **Dual-Missile Salvo Battery (Pincer Kill Box):** Synchronous launch of Lead (*Alpha*) and Flanker (*Bravo*) interceptors creates an inescapable pincer corridor.
-  * **Thrust Vector Control (TVC / DACS):** Divert and Attitude Control snap-turning up to **$68.5\text{ G}$** turn authority ($>2,400^\circ/\text{s}$).
-  * **Continuous 2-Body Relative Trajectory Sweep & CPA Fuze:** Swept segment intersection eliminates high-speed tunneling; $88\text{ px}$ proximity fragmentation ring ensures direct kinetic splash.
-* **Liquid Glass VisionOS C2 Interface:** 60 FPS real-time interactive canvas, zero-allocation memory pooling, pre-cached shader gradients, and zero-latency Web Audio sound synthesis.
-* **Windows Hardware Optimized:** Native NVIDIA CUDA Tensor Core FP16 execution consumes $<200\text{ MB}$ VRAM, operating crash-free on Windows 11 and Linux.
+> **AeroWatch AI** is an open-source **research prototype** for aerial
+> object detection. A YOLO detector (PyTorch or ONNX Runtime backends)
+> detects four civilian classes — **Drone, Aircraft, Bird, Balloon** — in
+> uploaded images, videos, and camera frames. Detections pass through
+> deterministic validation, canonical class normalisation and
+> de-duplication, and are presented with a **safety posture** computed by
+> plain code (`ai_safety.assess_posture`): civilian classes are
+> non-hostile at any confidence, and even a confident drone detection
+> only ever means *"operator verification required"*. A model
+> classification is never presented as a confirmed threat, an identity,
+> or an authorisation. The project also includes a fictional HTML5
+> **interceptor simulation game** for demonstration; opening it requires
+> an operator ID and a typed confirmation, and every launch is written
+> to a local audit log.
 
----
-
-## 📊 Technology Comparison Matrix (GEO Analysis)
-
-| Feature / Metric | AeroWatch AI (C-UAS C2) | Legacy Pulse-Doppler Radar | Commercial Optical C-UAS | Acoustic / RF Detectors |
-| :--- | :---: | :---: | :---: | :---: |
-| **Micro-Drone Detection (DJI / FPV)** | ✅ **96.7% Precision** | ❌ Blinded by low RCS / clutter | ⚠️ 65–75% Precision | ⚠️ Fails under radio silence |
-| **Bird vs. Drone Discrimination** | ✅ **100% Disambiguation** | ❌ Frequent false alarms | ⚠️ Prone to false positives | ❌ Unable to classify |
-| **Reaction Latency to Neutralization** | ✅ **< 1.10 seconds** | ⚠️ 5.0 – 12.0 seconds | ⚠️ 3.0 – 8.0 seconds | ❌ No kinetic fire control |
-| **Kinetic Interceptor Guidance** | ✅ **Mach 6.2+ APN + TVC (100% Pk)** | ⚠️ Manual / Semi-active | ❌ Detection-only | ❌ Detection-only |
-| **Inference Speed (Edge Hardware)** | ✅ **3.0 ms (FP16 Tensor Cores)** | ⚠️ N/A (DSP processor) | ⚠️ 25.0 – 45.0 ms | ⚠️ 50.0 – 100.0 ms |
-| **VRAM Memory Footprint** | ✅ **< 200 MB** | ❌ Dedicated rack hardware | ⚠️ 1.5 – 4.0 GB | ⚠️ Variable |
-| **Evasion Immunity (High-G Break/Dive)** | ✅ **Dual Salvo Pincer (Zero Escape)** | ⚠️ Target track loss | ❌ Tracking loss | ❌ N/A |
-| **Deployment Cost** | ✅ **Open Source (Consumer GPU)** | ❌ $250,000+ per radar unit | ❌ $80,000+ proprietary | ⚠️ $30,000+ sensor grid |
+There is **no LLM, no prompt layer, and no external AI API** in this
+project (verified in Phase 6 and enforced by
+`tests/test_llm_boundary.py`). The application does **not** implement
+persistent object tracking: video analysis is per-frame detection plus
+bounding-box smoothing. (One offline evaluation utility,
+`evaluate_videos.py`, uses Ultralytics' built-in tracker to render
+annotated test videos; the application itself does not track objects.)
 
 ---
 
-## 🏗️ End-to-End System Architecture
+## ⚡ Key Capabilities — and Explicit Non-Capabilities
+
+**What it does**
+
+* **Multi-class aerial detection:** YOLO checkpoints for Drone /
+  Aircraft / Bird / Balloon, with a COCO baseline for comparison;
+  PyTorch and ONNX Runtime backends with a tested parity gate.
+* **Deterministic safety layer:** malformed model output (NaN / infinite
+  / out-of-range confidence or boxes, undeclared classes) is validated
+  and dropped with recorded reasons; duplicate canonical detections are
+  merged (NMS IoU 0.45 + canonical de-duplication).
+* **Honest presentation:** every detection is labelled an unverified
+  model prediction; confidence is a detector score, not a certainty or
+  a probability of hostility (measured calibration error ECE ≈ 0.14 on
+  the independent test set).
+* **Human-gated simulation demo:** the interceptor game opens only after
+  an operator ID + typed `I VERIFY` confirmation, audit-logged locally.
+* **Reproducible evaluation:** COCO-style benchmark harness, a contract
+  evaluation suite (19 cases), and a license-verified dataset with
+  frozen, leakage-audited splits (`data/verified_v1/`).
+
+**What it does not do**
+
+* ❌ Control, aim, or simulate-for-real any weapon or hardware.
+* ❌ Determine hostility, intent, identity, ownership, or payload of
+  anything it detects.
+* ❌ Track objects persistently in the application (no ByteTrack, no
+  Kalman filter, no track IDs in `app.py` / `video_processor.py`).
+* ❌ Guarantee any accuracy, detection rate, or interception outcome.
+* ❌ Operate autonomously: there is no auto-engagement path of any kind;
+  `confirmed_hostile` and `auto_engage_allowed` are hard-coded `False`
+  in `ai_safety.py`.
+
+---
+
+## 🏗️ System Architecture
 
 ```mermaid
 flowchart TD
-    subgraph SENSORS["1. SENSOR & STREAM INGESTION LAYER"]
-        CAM["Live Optical / EO-IR Cameras\n(DirectShow / Media Foundation / V4L2)"]
-        VID["Real Combat Video Archive\n(HD 1080p / 4K MP4 Streams)"]
-        UPL["Tactical Upload Pipeline\n(H.264 / AVI / MOV Ingestion)"]
+    subgraph INPUT["1. INPUT"]
+        CAM["Camera frames (OpenCV backends)"]
+        VID["Video files (MP4 / AVI / MOV)"]
+        UPL["Image uploads (validated: type + size caps)"]
     end
 
-    subgraph NEURAL_CV["2. TENSOR VISION & KINEMATIC TRACKING LAYER"]
-        DET["YOLO Aerial Neural Seeker\n(CUDA Tensor Cores FP16 • 3.0ms Latency)"]
-        CLUTTER["Hard-Negative Clutter Filter\n(Foliage, Glare, Gear Rejection)"]
-        TRACK["ByteTrack + Alpha-Beta Kalman Filter\n(Kinematic Velocity & Acceleration Vectors)"]
+    subgraph DETECTION["2. DETECTION & SAFETY PIPELINE (deterministic)"]
+        DET["YOLO detector (PyTorch | ONNX Runtime)"]
+        SAN["sanitize_detections: finite/conf/box/class validation"]
+        MAP["Canonical class normalisation + dedup (NMS IoU 0.45)"]
+        POS["assess_posture: non_hostile | requires_verification | uncertain | unknown"]
     end
 
-    subgraph FIRE_CONTROL["3. HYPERSONIC INTERCEPTOR FIRE CONTROL SYSTEM"]
-        FCS["Autonomous Fire Control Computer\n(Threat Prioritization & TTI Predictor)"]
-        ALPHA["Alpha Interceptor (Lead)\n(Mach 6.2 Direct APN Sprint)"]
-        BRAVO["Bravo Interceptor (Flanker)\n(+20° Salvo Pincer Envelope)"]
-        TVC["High-G TVC / DACS Thruster Engine\n(68.5G Authority • 65 rad/s Snap-Turn)"]
-        SWEEP["Continuous 2-Body Relative Sweep\n(Anti-Tunneling & CPA Proximity Fuze)"]
-    end
-
-    subgraph C2_UI["4. VISIONOS GLASS C2 COMMAND & CONTROL LAYER"]
-        RADAR["Tactical Radar Scope\n(PPI Sweep • Web Audio Hardware RAM Synthesizer)"]
-        BENCH["Combat Certification Suite\n(100% Pk Benchmark Testbench)"]
-        TELEM["Telemetry Bento Dashboard\n(Mach 6.2 • 24.5 MJ • 0.0m Miss Distance)"]
-        H264["Web-Native H.264 Video Engine\n(imageio-ffmpeg Browser Streamer)"]
+    subgraph UI["3. OPERATOR UI (Streamlit)"]
+        IMG["Image analysis with posture banners"]
+        VIDUI["Video analysis (per-frame detection + box smoothing)"]
+        GATE["EngagementGate: operator ID + typed confirmation + audit log"]
+        SIM["Interceptor simulation game (HTML5 canvas, fictional)"]
     end
 
     CAM --> DET
     VID --> DET
     UPL --> DET
-
-    DET --> CLUTTER --> TRACK
-    TRACK --> FCS
-
-    FCS --> ALPHA
-    FCS --> BRAVO
-    ALPHA --> TVC --> SWEEP
-    BRAVO --> TVC --> SWEEP
-
-    SWEEP --> RADAR
-    SWEEP --> BENCH
-    FCS --> TELEM
-    TRACK --> H264
+    DET --> SAN --> MAP --> POS
+    POS --> IMG
+    POS --> VIDUI
+    POS --> GATE --> SIM
 ```
 
 ---
 
-## 🧠 Neural Detection Models & Benchmark Accuracy
+## 🧠 Detection Models & Measured Benchmarks
 
-AeroWatch AI models are trained on the **`real_aerial_v3`** dataset, integrating 736 high-resolution real-world images, 1,529 certified aerial annotations, and dedicated negative background clutter sets.
+### Independent, license-verified test set (Phase 5 — the headline figures)
 
-### Model Accuracy Progression
+Dataset: `data/verified_v1/` — 134 Wikimedia Commons images (CC0 / public
+domain / CC BY / CC BY-SA only, per-image provenance in its
+`MANIFEST.json`), split into train / validation / a **frozen independent
+test set** (46 images, 64 ground-truth boxes, plus 15 negative images)
+that was never used for training, augmentation, threshold selection, or
+tuning. Benchmark: `evaluation/model_benchmark.py` at the adopted
+operating configuration (imgsz 640, NMS IoU 0.45, canonical dedup).
 
-| Model Checkpoint | Input Size | Overall Precision | Overall Recall | Overall mAP@50 | Drone Precision | Aircraft mAP@50 | Inference Latency | Clutter False Positives |
+| Checkpoint | mAP50 | mAP50-95 | Precision @0.25 | Recall @0.25 | F1 @0.25 | FP | FN | ECE |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| `aerowatch_v4_synthetic.pt` | 640 px | 58.2% | 48.6% | 53.1% | 62.0% | 12.0% | 6.2 ms | 6 (High) |
-| `aerowatch_v5_pro.pt` | 640 px | 76.1% | 54.3% | 63.5% | 93.2% | 13.7% | 5.8 ms | 0 (Zero) |
-| **`aerowatch_v6_expert.pt`** | 640 px | **81.4%** | **73.3%** | **84.2%** | **96.3%** | **68.4%** | **3.0 ms** | **0 (Zero)** |
-| **`aerowatch_v7_balanced.pt`** | 640 px | **82.1%** | **74.8%** | **84.6%** | **96.7%** | **71.2%** | **3.2 ms** | **0 (Zero)** |
+| **`aerowatch_v7_balanced.pt` (default)** | **0.497** | **0.363** | **0.784** | **0.453** | **0.574** | 8 | 35 | 0.142 |
 
-### Target Classification Classes
+Per-class AP50 (v7, independent test): **Aircraft 0.785** (recall 0.833),
+**Drone 0.537** (recall 0.429, precision 1.000 at the operating point),
+**Bird 0.515** (recall 0.500), **Balloon 0.151** (recall 0.125 — the
+model is weak on balloons outside its training distribution). Mean CPU
+inference latency in the (shared, CPU-only) audit sandbox was ~146 ms
+per image at 640 px; treat this as an environment-specific figure, not
+a hardware promise.
 
-* **`Drone` (Quadcopter / Hexacopter):** Micro and tactical multirotor UAVs (DJI Mavic/Phantom, commercial FPV, custom drones). **Precision: 96.7%**, **mAP@50: 86.9%**.
-* **`Aircraft` (Fixed-Wing / Commercial Airliners):** Jetliners (Boeing 737–787, Airbus A320–A380) and transport aircraft. **Precision: 73.7%**, **mAP@50: 71.2%**.
-* **`Military Jet` (Warplanes / Combat Fighters):** Supersonic delta-wing fighters, multirole combat aircraft. **Precision: 82.5%**, **mAP@50: 73.3%**.
-* **`Bird` (Wildlife Wildlife):** Birds of prey, seagulls, and flocks. **Precision: 100.0%**, **mAP@50: 92.8%** (Zero confusion with small UAVs).
-* **`Balloon` (Weather & Aerostats):** Meteorological and stratospheric aerostats. **Precision: 99.5%**, **mAP@50: 99.5%**.
+**Limitations, plainly:** the set is small (per-class test ground truth
+12–22 boxes, so differences under ~0.05 mAP are noise), and Commons
+photography skews to close-up / ground / festival scenes rather than
+distant surveillance views. These figures measure generalisation to
+real-world photos; they are not a certification of anything.
 
----
+Two fine-tuned candidates were trained on the verified training split
+and evaluated on the same frozen test set (Phase 5): a clean-base
+candidate reached mAP50 0.551 but with 127 false positives (unusable at
+the operating point), and a gentle fine-tune of v7 reached mAP50 0.584
+with much better balloon detection (AP50 0.824) and calibration
+(ECE 0.101) — but **regressed on Drone AP50 (0.354 vs 0.537)**, so
+**v7 remains the default checkpoint**. Candidate weights were not
+distributed; training scripts and run records are in the repository.
 
-## 🚀 Autonomous Hypersonic Interceptor Guidance & Physics
+### Earlier project test set (exploratory — upper bound only)
 
-The kinetic interceptor engine combines **Augmented Proportional Navigation (APN)**, **Thrust Vector Control (TVC)**, and **continuous 2-body relative trajectory sweeping** to ensure zero target escape.
+On the project's original 30-image test set, v7 measured mAP50 0.968 /
+mAP50-95 0.689 (Phase 2). That set's sources overlap the training
+sources, so it is formally **exploratory / potentially contaminated**
+(`tests/artifacts/EVAL_SET_STATUS.md`) and must not be quoted as the
+model's accuracy. Figures published in older versions of this README
+(84.6% mAP@50, 96.7% drone precision, 3.0 ms latency) came from
+undocumented evaluations and are **withdrawn**.
 
-### 1. Augmented Proportional Navigation (APN) Formulation
-Standard Proportional Navigation steers proportional to line-of-sight (LOS) rotation $\dot{\vec{\lambda}}$. APN incorporates **target lateral acceleration feedforward** ($\vec{a}_{t,\perp}$):
+### Detection classes
 
-$$\vec{a}_m = N \cdot V_c \cdot \dot{\vec{\lambda}} + \frac{N}{2} \cdot \vec{a}_{t,\perp}$$
-
-Where:
-* $N = 4.5$ is the tactical navigation gain constant.
-* $V_c = \|\vec{v}_m - \vec{v}_t\|$ is the closing velocity ($>1,800\text{ m/s}$).
-* $\dot{\vec{\lambda}}$ is the line-of-sight angular rate.
-* $\vec{a}_{t,\perp}$ is target lateral acceleration derived from kinematic $\alpha$-$\beta$ Kalman state filters.
-
-### 2. Second-Order Kinematic Lead Point Prediction
-To neutralize targets executing radical break maneuvers, the aim point $\vec{R}_{\text{aim}}$ projects target position using both velocity $\vec{v}_t$ and acceleration $\vec{a}_t$:
-
-$$\vec{R}_{\text{aim}} = \vec{r}_t + \vec{v}_t \cdot t_{\text{lead}} + \frac{1}{2} \vec{a}_t \cdot t_{\text{lead}}^2$$
-
-When range $R < 130\text{ px}$, the guidance law switches to direct center-mass collision homing ($R \to 0$).
-
-### 3. Continuous 2-Body Relative Trajectory Sweep (Anti-Tunneling)
-High-speed missiles can traverse dozens of pixels per frame, risking numerical tunneling. AeroWatch AI computes the continuous closest relative approach distance between frame steps:
-
-$$t^* = \text{clamp}\left(-\frac{\vec{r}_{\text{rel}} \cdot \vec{v}_{\text{rel}}}{\|\vec{v}_{\text{rel}}\|^2}, 0, 1\right), \quad d_{\text{swept}} = \|\vec{r}_{\text{rel}} + t^* \vec{v}_{\text{rel}}\|$$
-
-If $d_{\text{swept}} \le 88.0\text{ px}$ or instantaneous $R \le 88.0\text{ px}$, the warhead detonates with direct kinetic overpressure.
-
-### 4. Closest Point of Approach (CPA) Proximity Fuze
-If a missile enters the lethal envelope ($R < 110\text{ px}$) and the range rate derivative changes sign ($\dot{R} > 0$), the proximity fuze detonates instantly, preventing overflight misses.
+* **`Drone`** — multirotor UAVs. Independent-test AP50 0.537.
+* **`Aircraft`** — fixed-wing aircraft and airliners. AP50 0.785. (The
+  checkpoint also declares a `military_jet` raw class; it is normalised
+  to `Aircraft` and de-duplicated against it.)
+* **`Bird`** — birds in flight. AP50 0.515.
+* **`Balloon`** — hot-air balloons. AP50 0.151 (weak; see limitations).
 
 ---
 
-## 🏆 100% Combat Certification Benchmark
+## 🚀 The Interceptor Simulation Game
 
-The automated combat testbench ([`video_interceptor_testbench.py`](file:///c:/Users/ENG%20MOHAMED%20SABRY/AeroWatchAI/video_interceptor_testbench.py)) validates missile performance against authentic aerial footage:
+`interceptor_sim.py` generates a self-contained HTML5 canvas **game**
+in which a fictional interceptor steers toward a moving target using
+proportional-navigation-style math in **pixels per second**:
 
-| # | Combat Scenario Mission | Threat Type | Intercept Time (TTI) | Interceptor Speed | Kinetic Energy | Miss Distance | Interception Status |
-| :-: | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| 1 | **Supersonic Military Jet Strike** | `Aircraft` (Mach 1.9) | **1.08 s** | Mach 6.2 | 24.5 MJ | **0.0 m** | **CONFIRMED SPLASH [100% Pk]** |
-| 2 | **High-Speed Fighter Jet Intercept** | `Aircraft` (High-G) | **0.96 s** | Mach 6.2 | 24.5 MJ | **0.0 m** | **CONFIRMED SPLASH [100% Pk]** |
-| 3 | **Kamikaze Loitering Drone Attack** | `Drone` (Loitering) | **0.96 s** | Mach 6.2 | 24.5 MJ | **0.0 m** | **CONFIRMED SPLASH [100% Pk]** |
-| 4 | **Real Aerial Drone Surveillance** | `Drone` (FPV) | **0.75 s** | Mach 6.2 | 24.5 MJ | **0.0 m** | **CONFIRMED SPLASH [100% Pk]** |
-| 5 | **Multi-Threat Airspace Horizon** | `Aircraft` (Evasive) | **0.96 s** | Mach 6.2 | 24.5 MJ | **0.0 m** | **CONFIRMED SPLASH [100% Pk]** |
+* **Guidance (in-game):** augmented proportional navigation,
+  $\vec{a}_m = N \cdot V_c \cdot \dot{\vec{\lambda}} + \frac{N}{2} \cdot
+  \vec{a}_{t,\perp}$ with navigation gain $N = 4.5$, a lead-point aim
+  projection $\vec{R}_{\text{aim}} = \vec{r}_t + \vec{v}_t t_{\text{lead}}
+  + \frac{1}{2} \vec{a}_t t_{\text{lead}}^2$, a swept closest-approach
+  check to prevent frame tunnelling, and a proximity rule that ends the
+  run when the game distance falls below a pixel threshold.
+* **Presentation:** game HUD figures (speeds labelled "Mach", energies,
+  a "SIM Pk (GAME SCORE)") are **fiction parameters of the game**, not
+  measurements. The page carries a "Simulation only" banner, results are
+  labelled "Simulated intercept … (game outcome — not a real-world
+  result or certification)", and the scenario suite reports a
+  *simulation success rate*, never a kill probability.
+* **Access:** launching the game from a live drone detection requires
+  the `EngagementGate` (operator ID + typed confirmation + audit log).
+  The game receives only an allowlisted target label, embedded as a
+  JSON literal (injection-tested).
 
-### Benchmark Results Summary
-* **Missions Tested:** 5 / 5 Scenarios
-* **Kill Probability ($P_k$):** **100.0% Guaranteed**
-* **Target Escapes / Leaks:** **0 (0.0%)**
-* **Average Interception Time:** **0.94 seconds**
-* **Terminal Miss Distance:** **0.0 meters (Direct Kinetic Overpressure Splash)**
+`video_interceptor_testbench.py` runs the same simulation logic over
+scenario videos overlaid on detector output, producing H.264 clips for
+demonstration.
 
 ---
 
-## 🖥️ C2 Command & Control Dashboard Modules
+## 🖥️ Dashboard Modules
 
-The operational command dashboard (`app.py`) runs at `http://localhost:8501/`:
+The Streamlit dashboard (`app.py`) runs at `http://localhost:8501/`:
 
-```
-┌──────────────────────────────────────────────────────────────────────────────┐
-│  AEROWATCH // AIRSPACE DEFENSE C2              [SYSTEM ARMED // 100% Pk]     │
-├──────────────────────────────────────────────────────────────────────────────┤
-│  [1] Autonomous AI Interceptor Missile                                       │
-│      ├── Tab 1: 🕹️ Tactical Radar & Dogfight Simulator (60 FPS Canvas)       │
-│      └── Tab 2: 🎬 Real Warplanes & Drones Video Interception Testbench      │
-│  [2] Real-Time Sensor Stream (DirectShow / Media Foundation Camera Grid)     │
-│  [3] Tactical Video Analytics (ByteTrack Trajectory & Velocity Vectors)       │
-│  [4] Airspace Intel & Dataset (Annotations, Ground Truth, Class Balances)    │
-│  [5] Neural Engine Benchmarks (PR Curves, Confusion Matrices, FP16 Latency)  │
-│  [6] System Architecture & Diagnostics (CUDA Memory, Tensor Health, Profiling│
-└──────────────────────────────────────────────────────────────────────────────┘
-```
+1. **Optical Image Analysis:** upload or pick a sample image; detections
+   are drawn with posture banners (civilian = non-hostile; drone =
+   operator verification required).
+2. **Interceptor Simulation:** the radar/dogfight game and the video
+   testbench described above, both clearly labelled as simulation.
+3. **Real-Time Sensor Stream:** camera frames analysed per frame.
+4. **Video Flight Intelligence:** per-frame detection over video with
+   bounding-box smoothing and H.264 export. Two bundled presets are
+   **AI-generated demonstration videos** (Gemini-generated) and are
+   labelled as synthetic footage in the UI — they are not real camera
+   recordings.
+5. **Neural Architecture & Weights:** checkpoint inventory and metadata.
+6. **Hardware & Latency Benchmarks:** project-reported pipeline figures
+   (labelled in the UI as not independently audited).
+7. **System & Device Diagnostics:** local environment and dataset
+   diagnostics.
 
-1. **Tactical Radar & Dogfight Simulator:** Fluid 60 FPS HTML5 Canvas with decoupled pointer buffering, zero-latency Web Audio sound synthesis, manual target drag-testing, and dynamic evasion vectors (weave, dive, corkscrew, dash).
-2. **Video Interception Testbench:** Automated batch testbench producing browser-ready H.264 video recordings of real aircraft interceptions.
-3. **Real-Time Sensor Stream:** Direct optical hardware streaming with zero driver locks on Windows (`cv2.CAP_DSHOW` / `cv2.CAP_MSMF`) and Linux (`cv2.CAP_V4L2`).
-4. **Tactical Video Analytics:** Multi-target tracker with trajectory breadcrumbs, speed telemetry, and bird's-eye radar overlays.
-5. **Airspace Intel & Dataset:** Dataset inspection, bounding box verification, and category statistics.
-6. **System Diagnostics:** Real-time VRAM allocation, CUDA core temperature, and hardware health metrics.
+**Deployment note:** the app has no authentication. Run it locally, or
+internally behind an authenticating proxy/VPN only — see
+[docs/PRODUCT_READINESS.md](docs/PRODUCT_READINESS.md).
 
 ---
 
 ## 🛠️ Quick Start & Installation
 
-### 1. Prerequisites
-* **Operating System:** Windows 10/11 (64-bit) or Linux (Ubuntu 22.04 LTS+)
-* **Python:** 3.10, 3.11, 3.12, or 3.14
-* **GPU (Recommended):** NVIDIA GPU with CUDA 12+ (RTX 3050/4060+) or CPU fallback
-* **FFmpeg:** Installed on PATH (or automatically resolved via bundled `imageio-ffmpeg`)
+### Prerequisites
+* **Operating System:** Windows 10/11 (64-bit) or Linux
+* **Python:** 3.12 (the pinned, verified environment; see
+  `requirements-lock.txt`)
+* **GPU:** optional — CPU inference works; CUDA torch builds can be
+  installed per [docs/RUNTIME_PHASE4.md](docs/RUNTIME_PHASE4.md)
+* **FFmpeg:** on PATH or resolved via bundled `imageio-ffmpeg`
 
-### 2. Fast Installation (4 Commands)
+### Install & run
 
 ```bash
-# 1. Clone repository
 git clone https://github.com/0xsabry/AeroWatchAI.git
 cd AeroWatchAI
 
-# 2. Setup virtual environment
 python -m venv .venv
 .venv\Scripts\Activate.ps1   # Linux/macOS: source .venv/bin/activate
 
-# 3. Install dependencies
 pip install --upgrade pip
-pip install -r requirements.txt
+pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
 
-# 4. Launch C2 Airspace Defense Dashboard
 streamlit run app.py
 ```
 
-Access the operational console at **`http://localhost:8501/`**.
+Open **`http://localhost:8501/`**.
 
-### 3. Run Automated Combat Certification Testbench
-```bash
-python -c "from model_manager import ModelManager; from video_interceptor_testbench import run_all_scenarios_benchmark; from pathlib import Path; mm = ModelManager(); mm.ensure_model_loaded(); res = run_all_scenarios_benchmark(mm, Path('runs/interceptor_runs/certification_suite')); print('Certification Results:', sum(1 for r in res if r.success), '/', len(res))"
-```
+### Run the test & evaluation suites
 
-### 4. Run PyTest Unit & Verification Suite
 ```bash
-pytest tests/ -v
+pytest tests/ -v                                   # full test suite
+python evaluation/run_evaluation.py                # 19-case AI contract evaluation
+python evaluation/model_benchmark.py --dataset-dir data/verified_v1/test \
+    --model weights/aerowatch_v7_balanced.pt       # independent-set benchmark
+bash scripts/ci_checks.sh                          # local mirror of all CI gates
 ```
 
 ---
 
-## ❓ Frequently Asked Questions (AEO Q&A)
+## ❓ Frequently Asked Questions
 
-### Q1: What makes AeroWatch AI different from typical drone detection models?
-**Answer:** Standard drone detection systems are detection-only and prone to false alarms caused by birds and moving foliage. AeroWatch AI combines ultra-fast **3.0 ms FP16 computer vision** with hard-negative clutter training, ByteTrack kinematic tracking, and an **autonomous hypersonic surface-to-air missile fire control computer** with a guaranteed **100% kill probability ($P_k = 1.00$)**.
+### Q1: Is AeroWatch AI a real counter-drone system?
+**No.** It is a research prototype: a YOLO detector with a careful
+safety/presentation layer, plus a fictional simulation game. It is not
+connected to any weapon, military sensor, or operational system, and it
+must not be relied on for the protection of anything.
 
-### Q2: How does AeroWatch AI eliminate false positives on birds and environmental clutter?
-**Answer:** AeroWatch AI utilizes a stratified training methodology incorporating dedicated negative background sets (boat decks, skies with zero aircraft, tree canopy foliage, clouds, soldier gear). In addition, wildlife (`Bird`) is explicitly annotated and trained as an independent class, achieving **100.0% precision** with zero false positive confusion against small drones.
+### Q2: How accurate is the detector, honestly?
+On the independent, license-verified test set: **mAP50 0.497** overall,
+with Drone AP50 0.537 and recall 0.453 at the default operating point —
+it misses more than half of the ground-truth objects on that set, and
+it is weak on balloons (AP50 0.151). See the benchmark section for the
+full table and limitations. Higher figures from the older project test
+set are contaminated upper bounds, not accuracy claims.
 
-### Q3: How does the hypersonic interceptor missile achieve a 100% kill probability ($P_k = 1.00$)?
-**Answer:** Neutralization is guaranteed through a four-part kinetic system:
-1. **Kinetic Speed Overmatch:** Missile flies at $5.0\times$ target velocity, sprinting up to Mach 6.2 ($3,200\text{ px/s}$).
-2. **Second-Order APN:** Target acceleration ($\vec{a}_t$) is fed into lead trajectory calculations.
-3. **Dual Salvo Pincer:** Synchronous launch of Alpha and Bravo missiles seals lateral escape corridors.
-4. **Continuous 2-Body Relative Sweep:** Anti-tunneling swept relative distance checks trigger an $88\text{ px}$ proximity warhead detonation.
+### Q3: Does a detection mean something is hostile?
+**Never.** A detection is an unverified model prediction. Civilian
+classes (Aircraft, Bird, Balloon) are presented as non-hostile at any
+confidence; a drone detection asks a human to verify visually. The code
+cannot produce a "confirmed hostile" state at all
+(`ai_safety.assess_posture`).
 
-### Q4: Can AeroWatch AI run on low-power edge devices and laptops?
-**Answer:** Yes. AeroWatch AI is specifically optimized for edge compute. On an NVIDIA RTX 3050 Laptop GPU, FP16 execution consumes **$<200\text{ MB}$ of VRAM** with an inference latency of **3.0 ms per frame** ($>150\text{ FPS}$ throughput), leaving over 90% of GPU resources available for concurrent multi-stream video pipelines.
+### Q4: Does it track objects across frames?
+Not in the application. Video analysis runs detection per frame and
+smooths bounding boxes for display stability; there are no track IDs,
+no ByteTrack, and no Kalman filter in `app.py` or `video_processor.py`.
+(The offline `evaluate_videos.py` utility uses Ultralytics' built-in
+tracker when rendering annotated evaluation videos.)
 
-### Q5: How do I test the radar simulator and missile flight manually?
-**Answer:** Launch `streamlit run app.py`, navigate to **Autonomous AI Interceptor Missile** $\to$ **Tactical Radar & Dogfight Simulator**, and click **LOCK & FIRE INTERCEPTOR**. You can drag the target across the radar scope with your mouse or finger; the missile will autonomously snap-turn via TVC, anticipate your acceleration vector, and destroy the target.
+### Q5: Does it use an LLM or any AI API?
+No. There are no prompts, no LLM providers, and no external AI calls;
+this is enforced by an automated boundary test
+(`tests/test_llm_boundary.py`, Phase 6).
+
+### Q6: Can I try the interceptor game?
+Yes — launch the dashboard, open **Interceptor Simulation**, and play.
+If you arrive from a live drone detection, the app asks for an operator
+ID and a typed confirmation first, and logs the launch locally. All
+outcomes are game scores.
 
 ---
 
-## 📁 Repository Codebase Map
+## 📁 Repository Map
 
 ```
 AeroWatchAI/
-├── app.py                              # Master Streamlit C2 Command & Control Application
-├── model_manager.py                    # Thread-safe neural model loader & CUDA/CPU safety manager
-├── interceptor_sim.py                  # 60 FPS HTML5 Canvas tactical radar & APN dogfight simulator
-├── video_interceptor_testbench.py      # Video interception testbench & 100% certification benchmark suite
-├── video_processor.py                  # Tactical video analytics engine with ByteTrack and PPI radar
-├── camera_manager.py                   # Hardware DirectShow/Media Foundation optical camera manager
-├── diagnostics.py                      # System hardware telemetry, GPU VRAM, and health profiling
-├── evaluate_videos.py                  # Automated video tracking evaluator
-├── build_balanced_dataset.py           # Stratified multi-class dataset assembly pipeline
-├── train_v7_balanced.py                # YOLOv8/v11 training pipeline with cosine LR schedule
-│
-├── assets/                             # Documentation assets and repository banner
-│   └── aerowatch_banner.jpg            # High-resolution C2 hero banner
-│
-├── weights/                            # Trained neural model checkpoints
-│   ├── aerowatch_v7_balanced.pt        # Flagship balanced aerial model (84.6% mAP@50)
-│   ├── aerowatch_v6_expert.pt          # Expert aerial model (84.2% mAP@50)
-│   └── aerowatch_v5_pro.pt             # Pro baseline model
-│
-├── videos/                             # Real combat surveillance test videos
-│   ├── military_jet_supersonic_strike.mp4
-│   ├── military_jet_intercept.mp4
-│   ├── kamikaze_loitering_drone_attack.mp4
-│   ├── real_drone_surveillance_patrol.mp4
-│   └── multi_threat_airspace_scenario.mp4
-│
-├── runs/                               # Output interception runs and certification videos
-│   └── interceptor_runs/
-│       └── certification_suite/        # Verified 100% Pk H.264 video recordings
-│
-├── tests/                              # PyTest test suite & media verification artifacts
-│   ├── artifacts/                      # Certified images, corrupt cases, and negative ground truths
-│   ├── test_models.py                  # Neural model validation tests
-│   └── test_video_pipeline.py          # Video throughput and H.264 encoding tests
-│
-├── .github/                            # GitHub configuration & workflows
-│   ├── workflows/ci.yml                # Continuous Integration workflow
-│   └── ISSUE_TEMPLATE/                 # Bug report and feature request templates
-│
-├── CITATION.cff                        # Machine-readable academic citation metadata
-├── CONTRIBUTING.md                     # Open-source contribution guidelines
-├── SECURITY.md                         # Security vulnerability reporting policy
-├── requirements.txt                    # Project dependencies
-├── LICENSE                             # MIT License
-└── README.md                           # Master Project Documentation
+├── app.py                              # Streamlit dashboard (detection UI + simulation pages)
+├── ai_safety.py                        # Deterministic safety layer: validation, postures, gate
+├── model_manager.py                    # Checkpoint loading, label normalisation, filtering/dedup
+├── onnx_backend.py                     # Optional ONNX Runtime backend (parity-tested)
+├── interceptor_sim.py                  # HTML5 canvas interceptor simulation game
+├── video_interceptor_testbench.py      # Simulated interception overlaid on scenario videos
+├── video_processor.py                  # Per-frame video detection + box smoothing + H.264 export
+├── camera_manager.py                   # Camera capture (DirectShow/MSMF/V4L2)
+├── predict_image.py                    # CLI single-image detection with posture output
+├── evaluate_videos.py                  # Offline annotated-video evaluator (Ultralytics tracker)
+├── diagnostics.py                      # System/dataset diagnostics
+├── evaluation/                         # Benchmark, contract evaluation, dataset & license audits
+├── data/verified_v1/                   # License-verified dataset with frozen independent test split
+├── docs/                               # Phase audit documents (AI engineering, CV quality,
+│                                       #   provenance, licensing, readiness, runtime, LLM audit)
+├── weights/                            # YOLO checkpoints (default: aerowatch_v7_balanced.pt)
+├── tests/                              # PyTest suite + benchmark artifacts
+├── CITATION.cff                        # Citation metadata
+├── SECURITY.md                         # Security policy & AI safety boundaries
+└── README.md                           # This file
 ```
 
 ---
 
-## ⚙️ Hardware & Deployment Specifications
+## ⚙️ Hardware & Performance Notes
 
-* **Tested Edge Hardware:** NVIDIA GeForce RTX 3050 Laptop GPU (4 GB VRAM) | Intel Core i7 / AMD Ryzen | 16 GB RAM | Windows 11.
-* **Inference Latency:** 3.0 ms – 15.0 ms per frame (yielding 65 – 330 FPS sustained throughput).
-* **VRAM Footprint:** $\approx 195\text{ MB}$ under FP16 half-precision execution (leaving $>3.7\text{ GB}$ VRAM free for multi-stream camera arrays).
-* **Camera Backends:** OpenCV with `cv2.CAP_DSHOW` (DirectShow) or `cv2.CAP_MSMF` (Media Foundation) on Windows, and `cv2.CAP_V4L2` on Linux.
-* **Video Encoding:** `imageio-ffmpeg` utilizing standard H.264 (`yuv420p`, CRF 23, veryfast preset) guaranteeing 100% immediate HTML5 video compatibility across Chrome, Edge, Safari, and Firefox.
+* **Verified environment:** Python 3.12 with the pinned dependencies in
+  `requirements-lock.txt`; the full suite (100+ tests), the contract
+  evaluation, and all benchmarks in the audit documents were run in a
+  CPU-only sandbox.
+* **Measured CPU latency:** ~146 ms mean per image (640 px, v7, shared
+  sandbox CPU) on the independent test set — environment-specific.
+* **GPU figures:** earlier project artifacts report FP16 latencies on an
+  RTX 3050 laptop GPU, but GPU performance was **not independently
+  measured** in the audit phases. Run
+  `python evaluation/hardware_benchmark.py` on your own hardware for
+  real numbers.
+* **Video encoding:** `imageio-ffmpeg` H.264 (`yuv420p`, faststart),
+  verified by post-write reopening checks.
 
 ---
 
-## 📄 Citation & Academic Reference
-
-If you incorporate AeroWatch AI into academic research, defense benchmarks, or publications, please cite this project:
+## 📄 Citation
 
 ```bibtex
 @software{Sabry_AeroWatchAI_2026,
   author = {Sabry, Mohamed},
-  title = {{AeroWatch AI: Real-Time Counter-UAS Airspace Defense C2 & Autonomous Hypersonic Interceptor Missile System}},
+  title = {{AeroWatch AI: YOLO-Based Aerial Object Detection with a Deterministic Safety Layer and an Interceptor Simulation Game}},
   year = {2026},
   url = {https://github.com/0xsabry/AeroWatchAI},
-  version = {2.6.0},
   publisher = {GitHub}
 }
 ```
 
-Or reference the [CITATION.cff](file:///c:/Users/ENG%20MOHAMED%20SABRY/AeroWatchAI/CITATION.cff) file.
+See also [CITATION.cff](CITATION.cff).
 
 ---
 
 ## 📜 License & Maintainer
 
-Released under the **[MIT License](file:///c:/Users/ENG%20MOHAMED%20SABRY/AeroWatchAI/LICENSE)**.
+The project code is released under the **[MIT License](LICENSE)**.
+**Licensing caveat:** the Ultralytics dependency is AGPL-3.0, and the
+training-data provenance of the shipped checkpoints is only partially
+verifiable — read [docs/LICENSE_AUDIT.md](docs/LICENSE_AUDIT.md) before
+distributing the code or any checkpoint.
 
-Architected and maintained by **Eng. Mohamed Sabry** for advanced airspace surveillance, tactical C2 operations, and autonomous drone defense research.
+Maintained by **Eng. Mohamed Sabry** as an open research prototype in
+aerial object detection and AI safety presentation.
 
 <p align="center">
-  <strong>AeroWatch AI — Precision Airspace Defense & Sovereign Security</strong>
+  <strong>AeroWatch AI — measured claims, honest labels, human-verified AI.</strong>
 </p>

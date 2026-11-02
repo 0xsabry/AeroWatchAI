@@ -447,7 +447,9 @@ def run_all_scenarios_benchmark(
 ) -> List[MissileEngagementResult]:
     """Runs automated multi-scenario combat interception testing across ALL real
     warplane, combat fighter, kamikaze drone, and surveillance drone scenarios.
-    Guarantees 100% mission interception verification.
+    Runs the simulated interception over the built-in scenario set and
+    reports in-game outcomes only; nothing here verifies or guarantees
+    any real-world interception.
     """
     output_dir.mkdir(parents=True, exist_ok=True)
     benchmark_videos = [
