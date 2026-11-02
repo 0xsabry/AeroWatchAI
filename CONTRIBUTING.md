@@ -1,42 +1,73 @@
-# Contributing to AeroWatch AI
+# Contributing to AeroWatchAI
 
-Thank you for your interest in contributing to **AeroWatch AI** — the premier open-source Counter-UAS and autonomous airspace defense suite.
+Thanks for your interest. This is a research-grade computer-vision
+project with an unusually strict honesty bar: claims must be
+measured, and safety behaviour is contractual. Please read this
+before opening a pull request.
 
-## Code of Conduct
-We are committed to providing a welcoming, collaborative, and professional environment. Please treat all contributors with respect.
+## Environment setup
 
-## How Can You Contribute?
-- **Dataset Expansion:** High-resolution drone, bird, and aircraft imagery with strict hard-negative clutter annotations.
-- **Guidance & Interception Algorithms:** Improvements to APN, 3D trajectory sweeping, and radar simulation physics.
-- **Hardware Integrations:** DirectShow/V4L2 camera enhancements, RTSP/ONVIF thermal cameras, and Edge TPU/TensorRT exporters.
-- **Documentation & Localization:** Translations, API documentation, and case studies.
+```powershell
+# Windows
+powershell -ExecutionPolicy Bypass -File setup_windows.ps1
+```
 
-## Development Setup
-1. Fork and clone the repository:
-   ```bash
-   git clone https://github.com/your-username/AeroWatchAI.git
-   cd AeroWatchAI
-   ```
-2. Create a clean virtual environment:
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # Or on Windows: .venv\Scripts\Activate.ps1
-   pip install -r requirements.txt
-   pip install pytest flake8
-   ```
-3. Run tests before submitting:
-   ```bash
-   pytest tests/ -v
-   ```
+```bash
+# Linux/macOS
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements-lock.txt --extra-index-url https://download.pytorch.org/whl/cpu
+python preflight.py
+```
 
-## Commit Guidelines
-We adhere to Conventional Commits:
-- `feat(radar): add 3D elevation beam indicator`
-- `fix(interceptor): eliminate audio stall on launch`
-- `docs(readme): add GEO comparison matrix`
-- `perf(vision): optimize FP16 tensor core throughput`
+Python 3.12 with the pinned lockfile is the verified environment.
 
-## Pull Request Process
-1. Create a descriptive branch: `git checkout -b feature/your-feature-name`
-2. Commit and test your changes thoroughly.
-3. Open a Pull Request against `main` detailing the changes, benchmarks, and test results.
+## Before you submit
+
+Run the full battery — all of it must pass:
+
+```bash
+python -m pytest tests/ -q                 # full suite (169+ tests)
+python evaluation/run_evaluation.py        # safety contract: 19/19
+bash scripts/ci_checks.sh                  # local CI mirror: ALL CHECKS PASSED
+python -m flake8 . --count --select=E9,F63,F7,F82 --statistics
+```
+
+For UI changes, also verify the affected pages render (Streamlit
+AppTest or a real browser) and say how you verified in the PR.
+
+## Non-negotiable rules
+
+1. **AI safety is a contract.** Never weaken `ai_safety.py`
+   semantics: civilian classes stay non-hostile, `confirmed_hostile`
+   and `auto_engage_allowed` stay hard-coded `False`, the engagement
+   gate keeps requiring operator ID + typed phrase + audit logging.
+   Safety changes need new tests proving the contract still holds.
+2. **No invented capabilities or numbers.** Performance figures come
+   from committed benchmark artifacts on the frozen verified test
+   set (`data/verified_v1`), or they don't ship. Never reintroduce
+   withdrawn claims (see Phase 7 guards in
+   `tests/test_product_integrity_phase7.py`).
+3. **No LLM integration** without an explicit maintainer decision —
+   a regression test enforces the current boundary.
+4. **Dataset licensing.** Training/evaluation data must have a
+   verifiable licence recorded per file (the `verified_v1` manifest
+   is the model). Unverifiable-licence data is not accepted.
+5. **History privacy.** No media bytes, full paths, or operator
+   identifiers in the history database. Ever.
+6. **Licensing honesty.** Do not change `LICENSE`, add license
+   badges, or describe the project as commercially cleared — the
+   licensing position is documented in
+   `docs/LICENSING_DECISION.md` and is the maintainer's decision.
+
+## Pull requests
+
+- One topic per PR; describe the change, the evidence, and the
+  tests you ran (paste the summary lines).
+- Bug reports and fixes should include a reproduction: input,
+  expected, actual, environment (`preflight.py` output helps).
+- Model changes require benchmark results on the frozen test set
+  with the exact command used.
+
+## Code of conduct
+
+Participation is governed by [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
