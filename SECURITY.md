@@ -40,3 +40,20 @@ Thank you for helping keep the airspace defense software ecosystem safe.
   200 MiB) and written to temporary files that are cleaned up after use.
 - **No authentication** is built into the Streamlit app. Do not expose it to
   untrusted networks without an authenticating reverse proxy.
+
+## Deployment policy (Phase 3)
+
+- **Localhost only** is the supported configuration today. The app has
+  no built-in authentication or per-user session isolation (the model
+  manager is shared across sessions).
+- **Trusted internal network:** acceptable only behind an authenticating
+  reverse proxy (e.g. nginx/Caddy with OIDC or basic auth) or a VPN,
+  with the Streamlit port firewalled to the proxy.
+- **Public / remote access:** NOT approved in the current state.
+  Required before any public exposure: authentication in front of the
+  app, TLS termination, rate limiting, a pinned and vulnerability-
+  scanned dependency set, and the ONNX (non-pickle) checkpoint format.
+  See `docs/PRODUCT_READINESS.md` for the full readiness assessment.
+- `.streamlit/config.toml` now uses Streamlit's secure defaults
+  (`enableCORS = true`, `enableXsrfProtection = true`); this is
+  defence-in-depth, not a substitute for authentication.

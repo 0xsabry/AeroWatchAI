@@ -8,5 +8,14 @@ font = "sans serif"
 
 [server]
 headless = true
-enableCORS = false
-enableXsrfProtection = false
+# Security hardening (Phase 3): these were previously both "false",
+# which disables Streamlit's cross-origin and XSRF protections for the
+# websocket/session endpoints. They are now at Streamlit's secure
+# defaults. Compatibility evidence: the app boots and serves (/ and
+# /healthz return 200) with these enabled, and the embedded simulation
+# uses a same-origin srcDoc iframe, which does not depend on server
+# CORS. NOTE: this does NOT make the app safe for public exposure —
+# it has no authentication. See docs/PRODUCT_READINESS.md before
+# exposing it beyond localhost or a trusted network.
+enableCORS = true
+enableXsrfProtection = true

@@ -45,14 +45,24 @@
 </script>
 
 > **⚠️ Verification status (read first):** The performance figures in this
-> README (84.6% mAP@50, 96.7% drone precision, 3.0 ms latency, 100% Pk) are
-> **not supported** by this repository's own validation artifacts
-> (`reports/validation/summary.json` records, on 30 test images: precision
-> 0.805, recall 0.868, estimated mAP50 0.699, mean inference 11.8–15.8 ms).
-> The interceptor is a browser-canvas **simulation**; no kill probability has
-> been measured against any real system. See
-> [docs/AI_ENGINEERING.md](docs/AI_ENGINEERING.md) for the full claim audit,
-> the AI safety boundaries, and the repeatable evaluation suite.
+> README (84.6% mAP@50, 96.7% drone precision, 3.0 ms latency, 100% Pk,
+> "zero false alarms", "guaranteed neutralization") are marketing copy and
+> are **not supported** by this repository's own validation artifacts.
+> Measured properly on the project's 30-image test set (Phase 2,
+> `evaluation/model_benchmark.py`), the production checkpoint scores
+> mAP50 0.968 / mAP50-95 0.689 with 8 false positives at the default
+> operating point — and that test set is **exploratory and potentially
+> contaminated** (its sources overlap the training sources; see
+> [docs/DATASET_PROVENANCE.md](docs/DATASET_PROVENANCE.md)), so even the
+> measured figures are an upper bound, not a certification. The
+> interceptor is a browser-canvas **simulation game**; no kill
+> probability has been measured against any real system, and nothing in
+> this project controls real hardware. Licensing is **unresolved**:
+> the code is labelled MIT but the Ultralytics dependency is AGPL-3.0 —
+> see [docs/LICENSE_AUDIT.md](docs/LICENSE_AUDIT.md) before distributing
+> anything. Full audits: [docs/AI_ENGINEERING.md](docs/AI_ENGINEERING.md),
+> [docs/CV_QUALITY.md](docs/CV_QUALITY.md),
+> [docs/PRODUCT_READINESS.md](docs/PRODUCT_READINESS.md).
 
 ## 📖 Executive Table of Contents
 1. [What is AeroWatch AI? (GEO Entity Definition)](#-what-is-aerowatch-ai-geo-entity-definition)

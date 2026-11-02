@@ -365,7 +365,7 @@ def run_video_missile_interception(
             cv2.rectangle(annotated, (int(width * 0.12), banner_y), (int(width * 0.88), banner_y + 55), (0, 255, 120), 2)
             cv2.putText(
                 annotated,
-                f"KINETIC SPLASH CONFIRMED // {detected_target_name.upper()} NEUTRALIZED [100% Pk]",
+                f"SIMULATED INTERCEPT // {detected_target_name.upper()} [SIMULATION — NOT A REAL ENGAGEMENT]",
                 (int(width * 0.15), banner_y + 35),
                 cv2.FONT_HERSHEY_SIMPLEX,
                 0.70,

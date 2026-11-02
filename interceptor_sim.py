@@ -316,7 +316,7 @@ def get_interceptor_sim_html(
       <div class="pulse-emitter" id="threatPulse"></div>
       <div>
         <div class="hud-title">AIRSPACE KINETIC FIRE CONTROL // C2 INTERCEPTOR</div>
-        <div class="hud-sub">Autonomous TVC & APN Guided Missile with Guaranteed Evasion Intercept</div>
+        <div class="hud-sub">Fictional simulation — TVC & APN guided missile game. Not a real system; no outcome is guaranteed.</div>
       </div>
     </div>
     <div class="telemetry-strip">
@@ -324,7 +324,7 @@ def get_interceptor_sim_html(
       <div class="telem-chip active">GUIDANCE: <span class="val">TVC + APN HYBRID</span></div>
       <div class="telem-chip">SPEED: <span class="val" id="valMach">Mach 6.2</span></div>
       <div class="telem-chip">KINETIC ENERGY: <span class="val" id="valKe">24.5 MJ</span></div>
-      <div class="telem-chip">KILL PROBABILITY: <span class="val" id="valPk" style="color: #34D399;">100.0% Pk</span></div>
+      <div class="telem-chip">SIM Pk (GAME SCORE): <span class="val" id="valPk" style="color: #34D399;">100.0% (sim)</span></div>
       <div class="telem-chip">CLOSING VELOCITY: <span class="val" id="valVc">-- m/s</span></div>
       <div class="telem-chip">TVC PULL: <span class="val" id="valG">0.0 G</span></div>
     </div>
@@ -372,9 +372,9 @@ def get_interceptor_sim_html(
       <div class="select-group">
         <span style="font-size: 11px; color: #94A3B8; font-weight: 600;">ROCKET WEAPON POWER:</span>
         <select class="custom-select" id="selectMissileMode">
-          <option value="salvo">🚀 Hyper-Salvo Battery (Alpha + Bravo Pincer • Mach 6.2 • 100% Pk)</option>
+          <option value="salvo">🚀 Hyper-Salvo Battery (Alpha + Bravo Pincer • Mach 6.2)</option>
           <option value="hypersonic">⚡ Hypersonic Kinetic Sprint (Mach 6.5 • 68G TVC • 24.5 MJ)</option>
-          <option value="standard">🎯 AI-Guided Interceptor (Mach 5.0 • APN Lead • 100% Pk)</option>
+          <option value="standard">🎯 AI-Guided Interceptor (Mach 5.0 • APN Lead)</option>
         </select>
       </div>
 
@@ -684,7 +684,7 @@ function initScenario() {{
   document.getElementById('chipStatus').className = 'telem-chip';
   document.getElementById('valMach').innerText = 'Mach 6.2';
   document.getElementById('valKe').innerText = '24.5 MJ';
-  document.getElementById('valPk').innerText = '100.0% Pk';
+  document.getElementById('valPk').innerText = '100.0% (sim)';
   document.getElementById('valVc').innerText = '-- m/s';
   document.getElementById('valG').innerText = '0.0 G';
   document.getElementById('hudTTI').innerText = '--.- s';
@@ -1030,7 +1030,7 @@ function update(dt) {{
     if (isDraggingTarget) {{
       curM.stage = 'MANUAL EVASION OVERMATCH // TVC LOCK';
     }} else if (R < 180) {{
-      curM.stage = 'TERMINAL KINETIC HOMING (100% Pk)';
+      curM.stage = 'TERMINAL KINETIC HOMING (SIM)';
     }} else {{
       curM.stage = item.isFlanker ? 'SALVO BRAVO PINCER LOCK' : 'APN HYPERSONIC LOCK';
     }}
@@ -1138,7 +1138,7 @@ function update(dt) {{
         }});
       }}
 
-      document.getElementById('valStatus').innerText = 'SPLASH // TARGET DESTROYED (100% Pk)';
+      document.getElementById('valStatus').innerText = 'SIM SPLASH // TARGET DESTROYED (SIM)';
       document.getElementById('valStatus').style.color = '#34D399';
       document.getElementById('hudTTI').innerText = '0.0 s';
       document.getElementById('hudTTI').style.color = '#34D399';

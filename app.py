@@ -1514,10 +1514,17 @@ elif nav_choice == "Autonomous AI Interceptor Missile":
 
     tab_radar, tab_real_combat = st.tabs([
         "🕹️ Tactical Radar & Dogfight Simulator",
-        "🎬 Real Warplanes & Drones Video Interception Testbench",
+        "🎬 Video Detection + Simulated Interception Testbench",
     ])
 
     with tab_radar:
+        st.warning(
+            "🕹️ **Simulation only.** The interceptor below is a fictional "
+            "browser game with scripted physics. It is not connected to any "
+            "real weapon, sensor, or fire-control system, and its outcomes "
+            "(including any 'Pk' figures) are game scores — not measured or "
+            "certified real-world performance."
+        )
         init_tgt = st.session_state.get("pending_sim_target", "Warplane")
         sim_html = get_interceptor_sim_html(
             target_type=init_tgt,
@@ -1546,7 +1553,7 @@ elif nav_choice == "Autonomous AI Interceptor Missile":
                         <strong style="color: #FFFFFF;">2. Augmented Proportional Navigation & Proximity Fuse:</strong><br>
                         Once aligned in seeker boresight, the guidance transitions to APN with target lateral acceleration feedforward:
                         <br><code style="color: #38BDF8; font-family: monospace;">a_m = N · V_c · λ̇ + (N / 2) · a_target,⊥</code><br>
-                        Combined with a 15-meter laser proximity fuse and expanding steel fragmentation ring, kinetic neutralization is guaranteed regardless of evasive maneuvering.
+                        Combined with a 15-meter laser proximity fuse and expanding steel fragmentation ring. <em>(Fictional simulation doctrine: this describes the game model only. No real system exists here and no real-world outcome is guaranteed.)</em>
                     </div>
                 </div>
             </div>
@@ -1592,7 +1599,7 @@ elif nav_choice == "Autonomous AI Interceptor Missile":
             v_salvo_choice = st.radio(
                 "Interceptor Weapon Doctrine & Salvo Mode",
                 [
-                    "🚀 Dual-Missile Salvo Battery (Alpha + Bravo Pincer Kill Box • 100% Pk)",
+                    "🚀 Dual-Missile Salvo Battery (Alpha + Bravo Pincer Kill Box)",
                     "⚡ Single Hypersonic Sprint Interceptor (Mach 4.2 Direct Sprint)",
                 ],
                 horizontal=True,
@@ -1651,7 +1658,7 @@ elif nav_choice == "Autonomous AI Interceptor Missile":
                             </div>
                             <div class="bento-card">
                                 <div class="bento-card-title">TERMINAL MISS DISTANCE & Pk</div>
-                                <div class="bento-card-val" style="font-size: 20px; color: #34D399;">{engagement_res.miss_distance_meters:.1f} m • 100% Pk</div>
+                                <div class="bento-card-val" style="font-size: 20px; color: #34D399;">{engagement_res.miss_distance_meters:.1f} m (simulated)</div>
                                 <div class="bento-card-desc">Confirmed Direct Kinetic Splash</div>
                             </div>
                             """,
@@ -1668,12 +1675,12 @@ elif nav_choice == "Autonomous AI Interceptor Missile":
                 <div style='display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;'>
                     <div>
                         <div style='font-size: 11px; font-weight: 700; color: #38BDF8; letter-spacing: 0.12em;'>AIR DEFENSE CERTIFICATION SUITE</div>
-                        <div style='font-size: 16px; font-weight: 800; color: #FFFFFF;'>Multi-Scenario 100% Interception Certification Benchmark</div>
+                        <div style='font-size: 16px; font-weight: 800; color: #FFFFFF;'>Multi-Scenario Interception Simulation Benchmark</div>
                     </div>
-                    <span class="badge-status badge-ok" style="font-size: 11px;">CERTIFIED 100% Pk</span>
+                    <span class="badge-status badge-ok" style="font-size: 11px;">SIMULATION ONLY</span>
                 </div>
                 <div style='font-size: 12.5px; color: #94A3B8; margin-bottom: 14px;'>
-                    Batch-executes automated missile salvo interception against all real combat scenarios: Supersonic Strike Jets, High-G Combat Fighters, Kamikaze Loitering Attack Drones, and Surveillance Drones.
+                    Batch-executes the fictional missile salvo simulation against scripted game scenarios (strike jets, fighters, loitering drones, surveillance drones). Results are in-simulation outcomes only — not a certification of any real-world capability.
                 </div>
             </div>
             """,
@@ -1722,7 +1729,7 @@ elif nav_choice == "Autonomous AI Interceptor Missile":
             total_count = len(results_list)
             pass_rate = (success_count / max(1, total_count)) * 100.0
 
-            st.success(f"Combat Certification Certified: {success_count}/{total_count} Threats Neutralized ({pass_rate:.1f}% Pk Success Rate). 0 Failures / 0 Escapes.")
+            st.success(f"Simulation exercise complete: {success_count}/{total_count} simulated threats neutralized ({pass_rate:.1f}% in-simulation success rate). These are game outcomes, not a certification of any real-world capability.")
 
             # Bento metric summaries
             bm1, bm2, bm3, bm4 = st.columns(4)
@@ -1782,7 +1789,7 @@ elif nav_choice == "Autonomous AI Interceptor Missile":
                     "Time To Intercept": f"{r.time_to_intercept_sec:.2f} s",
                     "Max Speed": f"Mach {r.max_missile_speed_mach:.1f}",
                     "Miss Distance": f"{r.miss_distance_meters:.1f} m",
-                    "Interception Status": "CONFIRMED SPLASH [100% Pk]" if r.success else "MISSED",
+                    "Interception Status": "SIMULATED INTERCEPT" if r.success else "MISSED (SIM)",
                 })
             df_report = pd.DataFrame(table_rows)
             st.dataframe(df_report, use_container_width=True)
