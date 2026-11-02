@@ -59,8 +59,10 @@ def test_shipped_eval_set_audit_state():
     # Contamination evidence must stay visible, not silently disappear:
     # 7 eval images come from a source dataset's train split.
     assert len(report["filename_train_split_hints"]) == 7
-    # Training data is absent; the audit must say so, not imply clean.
-    assert report["training_side"]["data_dir_present"] is False
+    # The ORIGINAL training data is absent; the audit must say so, not
+    # imply clean. (Since Phase 5, data/ exists but holds only the
+    # license-verified verified_v1 set — a different thing entirely.)
+    assert report["training_side"]["original_training_data_present"] is False
 
 
 def test_eval_set_status_label_present():

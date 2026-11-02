@@ -1,0 +1,3192 @@
+{
+ "images": [
+  {
+   "file": "test/images/aircraft_aircraft_000.jpg",
+   "split": "test",
+   "pool_source": "aircraft/aircraft_000.jpg",
+   "sha256": "404f978dc0838edf85b0a3d0c34a1468c8a7009c8f6ea9205b2fb57ef1caf780",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 8.96,
+     "y1": 99.735,
+     "x2": 1237.76,
+     "y2": 605.73
+    }
+   ],
+   "source_title": "File:AB Aerotransport DC-3 H\u00f6ken SE-BAB, in the air, in flight.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:AB_Aerotransport_DC-3_H%C3%B6ken_SE-BAB,_in_the_air,_in_flight.jpg",
+   "artist": "SAS Scandinavian Airlines",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "test/images/aircraft_aircraft_001.jpg",
+   "split": "test",
+   "pool_source": "aircraft/aircraft_001.jpg",
+   "sha256": "20bf94ee5c14b6a4c2fbd364913f9f64c1313c161c810a39c18421736f00e453",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 437.76000000000005,
+     "y1": 348.45,
+     "x2": 628.48,
+     "y2": 407.232
+    }
+   ],
+   "source_title": "File:Aerial photograph of airliners in flight.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Aerial_photograph_of_airliners_in_flight.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Yair-haklai\" title=\"User:Yair-haklai\">Yair-haklai</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/images/aircraft_aircraft_002.jpg",
+   "split": "test",
+   "pool_source": "aircraft/aircraft_002.jpg",
+   "sha256": "d9943daabc14e093c30c363048152e2f238e120d4b61996e6aa2b041f859c3eb",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 113.22,
+     "y1": 251.71999999999997,
+     "x2": 915.75,
+     "y2": 516.4599999999999
+    }
+   ],
+   "source_title": "File:Aero Spacelines Pregnant Guppy in flight (MSFC-9801783).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Aero_Spacelines_Pregnant_Guppy_in_flight_(MSFC-9801783).jpg",
+   "artist": "NASA",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "test/images/aircraft_aircraft_003.jpg",
+   "split": "test",
+   "pool_source": "aircraft/aircraft_003.jpg",
+   "sha256": "b627d9b2db2f11635d5fc29635756f8a3ecb2be92fddd980317dadbc6bafb929",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 64.0,
+     "y1": 304.212,
+     "x2": 1274.88,
+     "y2": 613.444
+    }
+   ],
+   "source_title": "File:Convair 990 in flight EC89-0042-11.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Convair_990_in_flight_EC89-0042-11.jpg",
+   "artist": "NASA",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "test/images/aircraft_aircraft_004.jpg",
+   "split": "test",
+   "pool_source": "aircraft/aircraft_004.jpg",
+   "sha256": "f5d52ee116e39b2142f3d7237da923ed6d00566ff8c1a1d81146daecc836bb3b",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 119.03999999999999,
+     "y1": 339.636,
+     "x2": 1090.56,
+     "y2": 629.145
+    }
+   ],
+   "source_title": "File:DC-8 Airborne Laboratory in flight over snow-capped Sierra Nevada mountain range.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:DC-8_Airborne_Laboratory_in_flight_over_snow-capped_Sierra_Nevada_mountain_range.jpg",
+   "artist": "NASA Photo by: Jim Ross",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "test/images/aircraft_aircraft_005.jpg",
+   "split": "test",
+   "pool_source": "aircraft/aircraft_005.jpg",
+   "sha256": "8ab56c4bb7a91073f8d1f9330794f9200243096f10acedde1d75db24eb436251",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 181.76,
+     "y1": 312.96000000000004,
+     "x2": 1102.08,
+     "y2": 592.3199999999999
+    }
+   ],
+   "source_title": "File:Embraer EMB 110 in flight (105091729).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Embraer_EMB_110_in_flight_(105091729).jpg",
+   "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/44389375@N00\">Flickr user Shawn</a> from Airdrie, Canada",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+   "file": "test/images/aircraft_aircraft_006.jpg",
+   "split": "test",
+   "pool_source": "aircraft/aircraft_006.jpg",
+   "sha256": "3a3d7880f110b48ba29cb997eff8e8b60cb0e0928f65c87c73dfe56f905c552d",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 48.64,
+     "y1": 203.2,
+     "x2": 1144.32,
+     "y2": 616.0
+    }
+   ],
+   "source_title": "File:Iberia A340-600 in flight, banking right.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Iberia_A340-600_in_flight,_banking_right.jpg",
+   "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/50189779@N03\">Iberia Airlines</a> (Flickr account)",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0"
+  },
+  {
+   "file": "test/images/aircraft_aircraft_007.jpg",
+   "split": "test",
+   "pool_source": "aircraft/aircraft_007.jpg",
+   "sha256": "a551259b006a318dbcbb04717990ee2c7dca3a96cda1fc772fedf7e61fbb1ba2",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 186.88,
+     "y1": 366.024,
+     "x2": 1232.6399999999999,
+     "y2": 975.6600000000001
+    }
+   ],
+   "source_title": "File:Jetstar Airbus A320 in flight (6768081241).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Jetstar_Airbus_A320_in_flight_(6768081241).jpg",
+   "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/60687350@N07\">Jetstar Airways</a> from Melbourne, Australia",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+   "file": "test/images/aircraft_aircraft_008.jpg",
+   "split": "test",
+   "pool_source": "aircraft/aircraft_008.jpg",
+   "sha256": "5914a9d30cc4d73cebf3067b3082df9d1764cf21ee26f8659ec8cce84ee98ca6",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 74.24000000000001,
+     "y1": 65.52,
+     "x2": 1228.8,
+     "y2": 731.367
+    }
+   ],
+   "source_title": "File:Jetstar Airbus A320 in flight (6768081241) crop.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Jetstar_Airbus_A320_in_flight_(6768081241)_crop.jpg",
+   "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/60687350@N07\">Jetstar Airways</a> from Melbourne, Australia; derivative work <a href=\"//commons.wikimedia.org/wiki/User:L%C3",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+   "file": "test/images/aircraft_aircraft_009.jpg",
+   "split": "test",
+   "pool_source": "aircraft/aircraft_009.jpg",
+   "sha256": "0f0908b642ada0d894e4e70d3413dfcf7885acc99aeb0e5217afdac103523874",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 74.24000000000001,
+     "y1": 243.105,
+     "x2": 1226.24,
+     "y2": 595.394
+    }
+   ],
+   "source_title": "File:SKL in flight cropped (105091729).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:SKL_in_flight_cropped_(105091729).jpg",
+   "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/44389375@N00\">Flickr user Shawn</a> from Airdrie, Canada",
+   "license": "CC BY-SA 2.5",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.5"
+  },
+  {
+   "file": "test/images/aircraft_aircraft_010.jpg",
+   "split": "test",
+   "pool_source": "aircraft/aircraft_010.jpg",
+   "sha256": "05ddd61f89b275407b076609c29888e0183c68bd586d4640df4037ef981785ca",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 29.464000000000002,
+     "y1": 175.89600000000002,
+     "x2": 965.1999999999999,
+     "y2": 462.076
+    }
+   ],
+   "source_title": "File:SNCASE Armagnac F-BAVD in flight c1953.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:SNCASE_Armagnac_F-BAVD_in_flight_c1953.jpg",
+   "artist": "USN",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "test/images/aircraft_aircraft_011.jpg",
+   "split": "test",
+   "pool_source": "aircraft/aircraft_011.jpg",
+   "sha256": "0df6261f6f24754f657319b36c190a8f955c37377bcf64cfd42f707cb351fa44",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 296.96000000000004,
+     "y1": 232.288,
+     "x2": 1111.04,
+     "y2": 540.582
+    }
+   ],
+   "source_title": "File:Stargazer and Pegasus F43 in flight over Atlantic (KSC-20161212-PH LAL01 0009).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Stargazer_and_Pegasus_F43_in_flight_over_Atlantic_(KSC-20161212-PH_LAL01_0009).jpg",
+   "artist": "NASA/Lori Losey",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "train/images/aircraft_aircraft_012.jpg",
+   "split": "train",
+   "pool_source": "aircraft/aircraft_012.jpg",
+   "sha256": "a98d9bbc7aa079f2d9c025ab010ceea5fa7057aa93bc2dca7082400cfee2d61b",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 328.96000000000004,
+     "y1": 330.007,
+     "x2": 1013.76,
+     "y2": 679.9540000000001
+    }
+   ],
+   "source_title": "File:TWA Boeing Sa-307B NC1940 'Cherokee' fleet number 401 in flight over mountains.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:TWA_Boeing_Sa-307B_NC1940_%27Cherokee%27_fleet_number_401_in_flight_over_mountains.jpg",
+   "artist": "SDASM Archives",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "train/images/aircraft_aircraft_017.jpg",
+   "split": "train",
+   "pool_source": "aircraft/aircraft_017.jpg",
+   "sha256": "471fdfdaf5152f8455d177dafaa304db293a06fa95803edb13a176d579ee2d20",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 89.60000000000001,
+     "y1": 111.6,
+     "x2": 851.2,
+     "y2": 590.4
+    }
+   ],
+   "source_title": "File:105 Polish Air Force MiG-29A Fulcrum ILA Berlin 2016 10.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:105_Polish_Air_Force_MiG-29A_Fulcrum_ILA_Berlin_2016_10.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Julian_Herzog\" title=\"User:Julian Herzog\">Julian Herzog</a> (<a rel=\"nofollow\" class=\"external text\" href=\"http://julianherzog.com\">Website</a>)<br>",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0"
+  },
+  {
+   "file": "train/images/aircraft_aircraft_019.jpg",
+   "split": "train",
+   "pool_source": "aircraft/aircraft_019.jpg",
+   "sha256": "454f5c7741d04c9b0d369a31cbcae57f923de86ef1e30d2ac5c6f43a6a8b67c0",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 144.64000000000001,
+     "y1": 104.066,
+     "x2": 1196.8000000000002,
+     "y2": 630.367
+    }
+   ],
+   "source_title": "File:Air-to-air photo of a Sukhoi Superjet 100 (97004) over Italy.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Air-to-air_photo_of_a_Sukhoi_Superjet_100_(97004)_over_Italy.jpg",
+   "artist": "Katsuhiko Tokunaga/<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/48440363@N06\">SuperJet  International</a>",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+   "file": "train/images/aircraft_aircraft_020.jpg",
+   "split": "train",
+   "pool_source": "aircraft/aircraft_020.jpg",
+   "sha256": "445158745d7d631c7cc0c894de0f0ba15b72c755de697d5824217c718f7dbe02",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 152.32,
+     "y1": 116.861,
+     "x2": 1181.44,
+     "y2": 762.582
+    }
+   ],
+   "source_title": "File:Airbus A320-232 'These Blues Were Made For Flying' (N760JB, cn 3659) (7-16-2025).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Airbus_A320-232_%27These_Blues_Were_Made_For_Flying%27_(N760JB,_cn_3659)_(7-16-2025).jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:ZLEA\" title=\"User:ZLEA\">ZLEA</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/images/aircraft_aircraft_021.jpg",
+   "split": "train",
+   "pool_source": "aircraft/aircraft_021.jpg",
+   "sha256": "315d1b142aca8199dab562e02cf6f87e241d9233b70748037af9e71fe781615c",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 12.8,
+     "y1": 255.89999999999998,
+     "x2": 1267.2,
+     "y2": 597.0999999999999
+    }
+   ],
+   "source_title": "File:BAC Jet Provost T.4 \u2018XP627\u2019 (38833995475).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:BAC_Jet_Provost_T.4_%E2%80%98XP627%E2%80%99_(38833995475).jpg",
+   "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/65001151@N03\">Alan Wilson</a> from Stilton, Peterborough, Cambs, UK",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+   "file": "train/images/aircraft_aircraft_022.jpg",
+   "split": "train",
+   "pool_source": "aircraft/aircraft_022.jpg",
+   "sha256": "4ec6acdb1064881e64674af057ae6a29974cc4212ae3613e6ccfd4e7e7d4106e",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 236.8,
+     "y1": 119.14000000000001,
+     "x2": 1280.0,
+     "y2": 829.725
+    },
+    {
+     "cls": 1,
+     "x1": 0.0,
+     "y1": 255.29999999999998,
+     "x2": 441.59999999999997,
+     "y2": 459.54
+    }
+   ],
+   "source_title": "File:British Aircraft Corporation Jet Provost T5A (41671343764).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:British_Aircraft_Corporation_Jet_Provost_T5A_(41671343764).jpg",
+   "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/16564965@N04\">Michael Gaylard</a> from Horsham, UK",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0"
+  },
+  {
+   "file": "train/images/aircraft_aircraft_023.jpg",
+   "split": "train",
+   "pool_source": "aircraft/aircraft_023.jpg",
+   "sha256": "2e12edbf5d3f7c448e4a07a70639c2028df9fbc0f0fcadee5e0bb74301f4a4e2",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 550.4,
+     "y1": 390.67400000000004,
+     "x2": 819.2,
+     "y2": 603.924
+    }
+   ],
+   "source_title": "File:Buisness Jet Over Las Vegas.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Buisness_Jet_Over_Las_Vegas.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Noah_Wulf\" title=\"User:Noah Wulf\">Noah Wulf</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "val/images/aircraft_aircraft_025.jpg",
+   "split": "val",
+   "pool_source": "aircraft/aircraft_025.jpg",
+   "sha256": "f0a34a94089e56496263f37871454be6f1b70e6158a24ad75f8c8ccd1335d604",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 112.63999999999999,
+     "y1": 310.75800000000004,
+     "x2": 1180.16,
+     "y2": 594.336
+    }
+   ],
+   "source_title": "File:Eastar Jet HL7797 Flying over Taipei Songshan Airport 20120529.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Eastar_Jet_HL7797_Flying_over_Taipei_Songshan_Airport_20120529.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:%E7%8E%84%E5%8F%B2%E7%94%9F\" title=\"User:\u7384\u53f2\u751f\">\u7384\u53f2\u751f</a>",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0"
+  },
+  {
+   "file": "val/images/aircraft_aircraft_026.jpg",
+   "split": "val",
+   "pool_source": "aircraft/aircraft_026.jpg",
+   "sha256": "8a721b50e9c3a5e50b3e829f360b2ebd953ddf91632810641c0de9fac769ac13",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 307.2,
+     "y1": 79.2,
+     "x2": 326.4,
+     "y2": 91.2
+    }
+   ],
+   "source_title": "File:Jumbo jet flying above Old Windsor - geograph.org.uk - 1643007.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Jumbo_jet_flying_above_Old_Windsor_-_geograph.org.uk_-_1643007.jpg",
+   "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.geograph.org.uk/profile/17822\">Basher Eyre</a>\u00a0<span class=\"mw-valign-text-top noprint\" typeof=\"mw:File/Frameless\"><a href=\"//commons.wikimedi",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+   "file": "val/images/aircraft_aircraft_027.jpg",
+   "split": "val",
+   "pool_source": "aircraft/aircraft_027.jpg",
+   "sha256": "f687d709b63410dcab75b739b77d7802abe30c01aaadb313724db6c1ba4290e8",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 403.2,
+     "y1": 193.44,
+     "x2": 417.92,
+     "y2": 199.2
+    }
+   ],
+   "source_title": "File:Low Flying Aircraft - geograph.org.uk - 789189.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Low_Flying_Aircraft_-_geograph.org.uk_-_789189.jpg",
+   "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.geograph.org.uk/profile/13639\">Ian Paterson</a>",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+   "file": "train/images/aircraft_aircraft_028.jpg",
+   "split": "train",
+   "pool_source": "aircraft/aircraft_028.jpg",
+   "sha256": "a1208add5172d1da9820591bcf7a8b43a55228484f187bd50175d7205811a0b1",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 34.56,
+     "y1": 40.944,
+     "x2": 1205.76,
+     "y2": 804.3789999999999
+    }
+   ],
+   "source_title": "File:Nose of Jet Provost T.3 \u2018E\u2019 -XN573- (50321188677).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Nose_of_Jet_Provost_T.3_%E2%80%98E%E2%80%99_-XN573-_(50321188677).jpg",
+   "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/65001151@N03\">Alan Wilson</a> from Peterborough, Cambs, UK",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+   "file": "train/images/aircraft_aircraft_029.jpg",
+   "split": "train",
+   "pool_source": "aircraft/aircraft_029.jpg",
+   "sha256": "7cf445db9e14f070d9b91a1f8badaa829f8b5093aa375da9cf6a7a07d96e1615",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 0.0,
+     "y1": 77.76,
+     "x2": 1015.0400000000001,
+     "y2": 720.0
+    }
+   ],
+   "source_title": "File:Spoilers on an American Eagle CRJ jet Note airplane flying in distance below.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Spoilers_on_an_American_Eagle_CRJ_jet_Note_airplane_flying_in_distance_below.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Northwalker&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Northwalker (page does not exist)\">Northwalker</a>",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  {
+   "file": "train/images/aircraft_aircraft_030.jpg",
+   "split": "train",
+   "pool_source": "aircraft/aircraft_030.jpg",
+   "sha256": "605a780a233f734b8f7dde0c28dba3cacf23b3b6c18b4fbdc7129e55648d97a5",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 56.31999999999999,
+     "y1": 254.194,
+     "x2": 1244.1599999999999,
+     "y2": 677.282
+    }
+   ],
+   "source_title": "File:Sukhoi SuperJet 100 (5114478300).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Sukhoi_SuperJet_100_(5114478300).jpg",
+   "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/48440363@N06\">SuperJet International</a>",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+   "file": "train/images/aircraft_aircraft_032.jpg",
+   "split": "train",
+   "pool_source": "aircraft/aircraft_032.jpg",
+   "sha256": "244b50e7441fecc0e31edf14523b1df6a1489238d9d55cca1e5e1308edc7a4b6",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 534.304,
+     "y1": 264.888,
+     "x2": 735.8000000000001,
+     "y2": 400.72799999999995
+    }
+   ],
+   "source_title": "File:Airplane flying in the sky.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Airplane_flying_in_the_sky.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Yannkemper\" title=\"User:Yannkemper\">Yann Kemper</a>",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  {
+   "file": "train/images/aircraft_aircraft_034.jpg",
+   "split": "train",
+   "pool_source": "aircraft/aircraft_034.jpg",
+   "sha256": "ee0fbdb30f75a1709ddd8d43f1c291528f23c4bf8fc127915bbc502f7e69f34e",
+   "boxes": [
+    {
+     "cls": 1,
+     "x1": 116.47999999999999,
+     "y1": 395.52,
+     "x2": 531.1999999999999,
+     "y2": 694.0799999999999
+    }
+   ],
+   "source_title": "File:Airplane in sky (4820389847).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Airplane_in_sky_(4820389847).jpg",
+   "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/18090920@N07\">Sean MacEntee</a> from Monaghan, Ireland",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0"
+  },
+  {
+   "file": "test/images/balloon_balloon_000.jpg",
+   "split": "test",
+   "pool_source": "balloon/balloon_000.jpg",
+   "sha256": "f6f36a07f19684bb95351358c70b487767e83525107ba02a6f7d6dcebc8cbf2e",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 0.0,
+     "y1": 112.33200000000001,
+     "x2": 1204.48,
+     "y2": 589.7429999999999
+    }
+   ],
+   "source_title": "File:20090502 Collapsing a balloon Yangshuo 5928.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:20090502_Collapsing_a_balloon_Yangshuo_5928.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Jakubhal\" title=\"User:Jakubhal\">Jakub Ha\u0142un</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/images/balloon_balloon_001.jpg",
+   "split": "test",
+   "pool_source": "balloon/balloon_001.jpg",
+   "sha256": "08917d38847a6dc46e58655b30b6c3533f59ceadecfd4206f6f521d7a8f83ede",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 134.4,
+     "y1": 81.60000000000001,
+     "x2": 476.15999999999997,
+     "y2": 518.5
+    }
+   ],
+   "source_title": "File:Balloon over Luxor - Egypt denoised.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Balloon_over_Luxor_-_Egypt_denoised.jpg",
+   "artist": "<ul><li><a href=\"//commons.wikimedia.org/wiki/File:Balloon_over_Luxor_-_Egypt.jpg\" title=\"File:Balloon over Luxor - Egypt.jpg\">Balloon_over_Luxor_-_Egypt.jpg</a>: <a href=\"//commons.wikimedia.org/wiki",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+   "file": "test/images/balloon_balloon_002.jpg",
+   "split": "test",
+   "pool_source": "balloon/balloon_002.jpg",
+   "sha256": "a2f0f998e5c50d84a72ad221aa893f91f81bb446df4e1a326eedd59fefcadcda",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 120.528,
+     "y1": 69.678,
+     "x2": 192.45600000000002,
+     "y2": 166.37400000000002
+    },
+    {
+     "cls": 3,
+     "x1": 420.876,
+     "y1": 187.704,
+     "x2": 899.1,
+     "y2": 548.892
+    }
+   ],
+   "source_title": "File:Early flight 02562u (1).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Early_flight_02562u_(1).jpg",
+   "artist": "Created/published: Paris\u00a0: Romanet &amp; Cie., imp. edit.,",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "test/images/balloon_balloon_003.jpg",
+   "split": "test",
+   "pool_source": "balloon/balloon_003.jpg",
+   "sha256": "c36d72364738ae70d7c865d0734120773823bfd498fe7c6a05eae0c407821afa",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 296.46,
+     "y1": 59.724000000000004,
+     "x2": 560.8439999999999,
+     "y2": 558.846
+    }
+   ],
+   "source_title": "File:Early flight 02562u (6).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Early_flight_02562u_(6).jpg",
+   "artist": "Created/published: Paris\u00a0: Romanet &amp; Cie., imp. edit.,",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "train/negatives/balloon_balloon_004.jpg",
+   "split": "negative_train",
+   "pool_source": "balloon/balloon_004.jpg",
+   "sha256": "167e6fba044d9f10791720c5dc043855a18beadea7f7ca4727bf97a1a8fa8586",
+   "boxes": [],
+   "source_title": "File:Hot-air balloon - 02.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Hot-air_balloon_-_02.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:%D0%A1%D0%B0%D0%BD%D1%8F_%D0%9D%D0%BE%D0%B2%D0%B8%D0%BA%D0%BE%D0%B2\" title=\"User:\u0421\u0430\u043d\u044f \u041d\u043e\u0432\u0438\u043a\u043e\u0432\">Alexander Novikov</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/negatives/balloon_balloon_005.jpg",
+   "split": "negative_test",
+   "pool_source": "balloon/balloon_005.jpg",
+   "sha256": "7aed3ae6bbb3d6b2406a2da84ba70270a2c9a86523e12e49bb70855ae2e1d063",
+   "boxes": [],
+   "source_title": "File:Hot-air balloon - 05.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Hot-air_balloon_-_05.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:%D0%A1%D0%B0%D0%BD%D1%8F_%D0%9D%D0%BE%D0%B2%D0%B8%D0%BA%D0%BE%D0%B2\" title=\"User:\u0421\u0430\u043d\u044f \u041d\u043e\u0432\u0438\u043a\u043e\u0432\">Alexander Novikov</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/negatives/balloon_balloon_006.jpg",
+   "split": "negative_test",
+   "pool_source": "balloon/balloon_006.jpg",
+   "sha256": "caa8c67f18471699e79754889991070e945af7886b15cca22b00cbd1ba67845c",
+   "boxes": [],
+   "source_title": "File:Hot-air balloon - 06.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Hot-air_balloon_-_06.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:%D0%A1%D0%B0%D0%BD%D1%8F_%D0%9D%D0%BE%D0%B2%D0%B8%D0%BA%D0%BE%D0%B2\" title=\"User:\u0421\u0430\u043d\u044f \u041d\u043e\u0432\u0438\u043a\u043e\u0432\">Alexander Novikov</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/images/balloon_balloon_007.jpg",
+   "split": "test",
+   "pool_source": "balloon/balloon_007.jpg",
+   "sha256": "d634910bdce80e61dff473a6641914f93b5127bab61f871960ed1f84e92f3c66",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 634.88,
+     "y1": 78.476,
+     "x2": 970.24,
+     "y2": 516.918
+    }
+   ],
+   "source_title": "File:Hot-air balloon in Tambov - 02.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Hot-air_balloon_in_Tambov_-_02.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:%D0%A1%D0%B0%D0%BD%D1%8F_%D0%9D%D0%BE%D0%B2%D0%B8%D0%BA%D0%BE%D0%B2\" title=\"User:\u0421\u0430\u043d\u044f \u041d\u043e\u0432\u0438\u043a\u043e\u0432\">Alexander Novikov</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/images/balloon_balloon_008.jpg",
+   "split": "test",
+   "pool_source": "balloon/balloon_008.jpg",
+   "sha256": "d703705b8579033f2550a92c668843180e3ae507c7cec325642e40f498967ae9",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 774.4,
+     "y1": 304.52099999999996,
+     "x2": 995.84,
+     "y2": 582.599
+    }
+   ],
+   "source_title": "File:Hot-air balloon in Tambov - 03.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Hot-air_balloon_in_Tambov_-_03.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:%D0%A1%D0%B0%D0%BD%D1%8F_%D0%9D%D0%BE%D0%B2%D0%B8%D0%BA%D0%BE%D0%B2\" title=\"User:\u0421\u0430\u043d\u044f \u041d\u043e\u0432\u0438\u043a\u043e\u0432\">Alexander Novikov</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/images/balloon_balloon_009.jpg",
+   "split": "test",
+   "pool_source": "balloon/balloon_009.jpg",
+   "sha256": "4d78cc845ab412a87894ba4937ae8933167604375d8c6f7604a6a9630cbb5163",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 266.24,
+     "y1": 238.07999999999998,
+     "x2": 1043.1999999999998,
+     "y2": 933.12
+    }
+   ],
+   "source_title": "File:Hot-air balloon in Tambov - 04.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Hot-air_balloon_in_Tambov_-_04.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:%D0%A1%D0%B0%D0%BD%D1%8F_%D0%9D%D0%BE%D0%B2%D0%B8%D0%BA%D0%BE%D0%B2\" title=\"User:\u0421\u0430\u043d\u044f \u041d\u043e\u0432\u0438\u043a\u043e\u0432\">Alexander Novikov</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/images/balloon_balloon_010.jpg",
+   "split": "test",
+   "pool_source": "balloon/balloon_010.jpg",
+   "sha256": "2f53bd9acece86701147ea94bf4cf620ccfa16034595ae83a65eb3146dc42bd8",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 189.44,
+     "y1": 207.50400000000002,
+     "x2": 1120.0,
+     "y2": 1422.66
+    }
+   ],
+   "source_title": "File:Hot air balloon IMGP0344a.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Hot_air_balloon_IMGP0344a.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:LexKurochkin\" title=\"User:LexKurochkin\">Alexey V. Kurochkin</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/images/balloon_balloon_011.jpg",
+   "split": "train",
+   "pool_source": "balloon/balloon_011.jpg",
+   "sha256": "36465d5f65cc6648c6a1b4bf9325726fffbd7c97ec6ae1a7fd80e8bc83fcd7e9",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 316.8,
+     "y1": 182.4,
+     "x2": 573.84,
+     "y2": 499.20000000000005
+    }
+   ],
+   "source_title": "File:Hot air balloon flight in Seattle, Washington, 2016.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Hot_air_balloon_flight_in_Seattle,_Washington,_2016.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:EliavCohen303&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:EliavCohen303 (page does not exist)\">EliavCohen303</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/images/balloon_balloon_013.jpg",
+   "split": "train",
+   "pool_source": "balloon/balloon_013.jpg",
+   "sha256": "e46e3c1cf1394cc0bb741ad42b201dd428f66b76ddf8da8d32d5573a1e09ded0",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 89.60000000000001,
+     "y1": 91.2,
+     "x2": 278.4,
+     "y2": 374.40000000000003
+    },
+    {
+     "cls": 3,
+     "x1": 252.8,
+     "y1": 168.0,
+     "x2": 348.8,
+     "y2": 331.2
+    },
+    {
+     "cls": 3,
+     "x1": 307.2,
+     "y1": 168.0,
+     "x2": 393.6,
+     "y2": 300.0
+    },
+    {
+     "cls": 3,
+     "x1": 384.0,
+     "y1": 151.2,
+     "x2": 496.0,
+     "y2": 309.6
+    }
+   ],
+   "source_title": "File:Tea time flight Bristol hot air balloon festival. - geograph.org.uk - 485144.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Tea_time_flight_Bristol_hot_air_balloon_festival._-_geograph.org.uk_-_485144.jpg",
+   "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.geograph.org.uk/profile/15341\">Steve  F</a>",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+   "file": "test/images/balloon_balloon_014.jpg",
+   "split": "test",
+   "pool_source": "balloon/balloon_014.jpg",
+   "sha256": "781c1564ce8daf4c9768f5a01bc7e9f02c54ac293c8f6054a96d64576268ceed",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 58.879999999999995,
+     "y1": 15.4,
+     "x2": 1208.32,
+     "y2": 1595.8249999999998
+    }
+   ],
+   "source_title": "File:2006 Ojiya balloon festival 011.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:2006_Ojiya_balloon_festival_011.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Kropsoq\" title=\"User:Kropsoq\">Kropsoq</a>",
+   "license": "CC BY-SA 3.0",
+   "license_url": "http://creativecommons.org/licenses/by-sa/3.0/"
+  },
+  {
+   "file": "train/images/balloon_balloon_015.jpg",
+   "split": "train",
+   "pool_source": "balloon/balloon_015.jpg",
+   "sha256": "936de61097d81516596ffe42b02257bf7e8fad6607df4216c2a55453845153ba",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 55.03999999999999,
+     "y1": 496.79999999999995,
+     "x2": 168.96,
+     "y2": 662.4
+    },
+    {
+     "cls": 3,
+     "x1": 154.88,
+     "y1": 536.4,
+     "x2": 264.96,
+     "y2": 637.2
+    },
+    {
+     "cls": 3,
+     "x1": 245.76,
+     "y1": 568.8000000000001,
+     "x2": 321.28,
+     "y2": 655.9200000000001
+    },
+    {
+     "cls": 3,
+     "x1": 312.32,
+     "y1": 548.64,
+     "x2": 409.6,
+     "y2": 663.12
+    },
+    {
+     "cls": 3,
+     "x1": 474.88,
+     "y1": 538.56,
+     "x2": 565.76,
+     "y2": 660.24
+    },
+    {
+     "cls": 3,
+     "x1": 558.08,
+     "y1": 535.68,
+     "x2": 670.72,
+     "y2": 662.4
+    },
+    {
+     "cls": 3,
+     "x1": 673.28,
+     "y1": 531.36,
+     "x2": 771.8399999999999,
+     "y2": 655.9200000000001
+    },
+    {
+     "cls": 3,
+     "x1": 773.12,
+     "y1": 530.64,
+     "x2": 878.08,
+     "y2": 661.6800000000001
+    },
+    {
+     "cls": 3,
+     "x1": 879.3600000000001,
+     "y1": 526.3199999999999,
+     "x2": 981.76,
+     "y2": 658.08
+    },
+    {
+     "cls": 3,
+     "x1": 979.2,
+     "y1": 533.52,
+     "x2": 1081.6,
+     "y2": 655.2
+    },
+    {
+     "cls": 3,
+     "x1": 1073.92,
+     "y1": 532.08,
+     "x2": 1172.48,
+     "y2": 653.04
+    },
+    {
+     "cls": 3,
+     "x1": 1169.92,
+     "y1": 531.36,
+     "x2": 1264.6399999999999,
+     "y2": 640.08
+    }
+   ],
+   "source_title": "File:2006 Ojiya balloon festival night 004.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:2006_Ojiya_balloon_festival_night_004.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Kropsoq\" title=\"User:Kropsoq\">Kropsoq</a>",
+   "license": "CC BY-SA 3.0",
+   "license_url": "http://creativecommons.org/licenses/by-sa/3.0/"
+  },
+  {
+   "file": "test/images/balloon_balloon_017.jpg",
+   "split": "test",
+   "pool_source": "balloon/balloon_017.jpg",
+   "sha256": "ca8bb2cdba93220139f1dcd4d097ffbfbc581d2675f76897496c00acf0538440",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 672.0,
+     "y1": 167.286,
+     "x2": 1103.36,
+     "y2": 699.87
+    },
+    {
+     "cls": 3,
+     "x1": 350.72,
+     "y1": 425.043,
+     "x2": 627.2,
+     "y2": 766.443
+    },
+    {
+     "cls": 3,
+     "x1": 96.0,
+     "y1": 865.449,
+     "x2": 641.28,
+     "y2": 1497.039
+    },
+    {
+     "cls": 3,
+     "x1": 232.95999999999998,
+     "y1": 1247.817,
+     "x2": 773.12,
+     "y2": 1568.7330000000002
+    },
+    {
+     "cls": 3,
+     "x1": 820.48,
+     "y1": 1302.441,
+     "x2": 1162.24,
+     "y2": 1543.1280000000002
+    },
+    {
+     "cls": 3,
+     "x1": 1143.04,
+     "y1": 1358.7720000000002,
+     "x2": 1280.0,
+     "y2": 1527.765
+    }
+   ],
+   "source_title": "File:Balloons at the Gatineau Hot Air Balloon Festival.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Balloons_at_the_Gatineau_Hot_Air_Balloon_Festival.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Pomakis\" title=\"User:Pomakis\">Keith Pomakis</a>",
+   "license": "CC BY-SA 2.5",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.5"
+  },
+  {
+   "file": "train/images/balloon_balloon_018.jpg",
+   "split": "train",
+   "pool_source": "balloon/balloon_018.jpg",
+   "sha256": "df5b0debe569b0dffbd6e22275ba45c0d3b1b487bf50f0dd9075752c710352dd",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 112.63999999999999,
+     "y1": 110.56800000000001,
+     "x2": 862.72,
+     "y2": 1126.818
+    },
+    {
+     "cls": 3,
+     "x1": 733.4399999999999,
+     "y1": 910.5600000000001,
+     "x2": 1053.44,
+     "y2": 1626.0
+    },
+    {
+     "cls": 3,
+     "x1": 942.0799999999999,
+     "y1": 817.878,
+     "x2": 1280.0,
+     "y2": 1626.0
+    }
+   ],
+   "source_title": "File:Darth vader hot air balloon.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Darth_vader_hot_air_balloon.jpg",
+   "artist": "Tomas Castelazo",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+   "file": "train/images/balloon_balloon_019.jpg",
+   "split": "train",
+   "pool_source": "balloon/balloon_019.jpg",
+   "sha256": "0445a694a7ad2434ec6d18ce44eb4876f6f221d4d543b51ec2cec0ec8286a3a3",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 138.24,
+     "y1": 102.245,
+     "x2": 1268.48,
+     "y2": 1525.81
+    }
+   ],
+   "source_title": "File:Hot Air Balloon Jubilee Festival, Decatur, Alabama.png",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Hot_Air_Balloon_Jubilee_Festival,_Decatur,_Alabama.png",
+   "artist": "<bdi><a href=\"https://en.wikipedia.org/wiki/en:Carol_M._Highsmith\" class=\"extiw\" title=\"w:en:Carol M. Highsmith\"><span title=\"American photographer (born 1946)\">Carol M. Highsmith</span></a></bdi>",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "val/images/balloon_balloon_020.jpg",
+   "split": "val",
+   "pool_source": "balloon/balloon_020.jpg",
+   "sha256": "a4706a30fc6df345c800011da4d4391c6ccd9542d426665d1f3cb87dced739da",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 0.0,
+     "y1": 240.56,
+     "x2": 1094.4,
+     "y2": 386.88
+    }
+   ],
+   "source_title": "File:Hot air balloon setting up, Strathaven Balloon Festival, Lanarkshire.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Hot_air_balloon_setting_up,_Strathaven_Balloon_Festival,_Lanarkshire.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Rosser1954\" title=\"User:Rosser1954\">Rosser1954</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "val/images/balloon_balloon_021.jpg",
+   "split": "val",
+   "pool_source": "balloon/balloon_021.jpg",
+   "sha256": "a10f2c9662f526f5e1541cd470a9548529c1d46b5ee65ecff70dc74bd6ad9ae7",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 202.24,
+     "y1": 432.471,
+     "x2": 311.03999999999996,
+     "y2": 609.895
+    },
+    {
+     "cls": 3,
+     "x1": 227.83999999999997,
+     "y1": 325.846,
+     "x2": 432.64000000000004,
+     "y2": 575.7750000000001
+    },
+    {
+     "cls": 3,
+     "x1": 363.52,
+     "y1": 394.939,
+     "x2": 468.48,
+     "y2": 571.51
+    },
+    {
+     "cls": 3,
+     "x1": 430.08000000000004,
+     "y1": 261.871,
+     "x2": 791.04,
+     "y2": 704.578
+    },
+    {
+     "cls": 3,
+     "x1": 721.92,
+     "y1": 332.67,
+     "x2": 884.4799999999999,
+     "y2": 534.831
+    },
+    {
+     "cls": 3,
+     "x1": 1006.08,
+     "y1": 459.76700000000005,
+     "x2": 1182.72,
+     "y2": 637.191
+    }
+   ],
+   "source_title": "File:Hot air balloons at Luyeh, Taitung 20130813.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Hot_air_balloons_at_Luyeh,_Taitung_20130813.jpg",
+   "artist": "Shang Ming Wang",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+   "file": "train/images/balloon_balloon_022.jpg",
+   "split": "train",
+   "pool_source": "balloon/balloon_022.jpg",
+   "sha256": "6a38a219f61c7a0e3f4c1310f5ef5e72ff53765636aeb3265e7b65e116262c84",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 134.4,
+     "y1": 641.024,
+     "x2": 163.84,
+     "y2": 673.792
+    },
+    {
+     "cls": 3,
+     "x1": 195.84,
+     "y1": 544.768,
+     "x2": 238.07999999999998,
+     "y2": 596.992
+    },
+    {
+     "cls": 3,
+     "x1": 523.52,
+     "y1": 681.984,
+     "x2": 551.68,
+     "y2": 716.8
+    },
+    {
+     "cls": 3,
+     "x1": 651.52,
+     "y1": 602.112,
+     "x2": 683.52,
+     "y2": 637.952
+    },
+    {
+     "cls": 3,
+     "x1": 660.48,
+     "y1": 367.616,
+     "x2": 707.84,
+     "y2": 423.936
+    },
+    {
+     "cls": 3,
+     "x1": 934.4,
+     "y1": 436.224,
+     "x2": 968.96,
+     "y2": 473.088
+    },
+    {
+     "cls": 3,
+     "x1": 972.8,
+     "y1": 323.584,
+     "x2": 1026.56,
+     "y2": 386.048
+    },
+    {
+     "cls": 3,
+     "x1": 1108.48,
+     "y1": 616.448,
+     "x2": 1139.2,
+     "y2": 650.24
+    },
+    {
+     "cls": 3,
+     "x1": 1166.08,
+     "y1": 695.296,
+     "x2": 1203.1999999999998,
+     "y2": 733.184
+    }
+   ],
+   "source_title": "File:Hot air balloons at the 2006 Kilkenny Balloon Festival.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Hot_air_balloons_at_the_2006_Kilkenny_Balloon_Festival.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:LikeThatWillHappen&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:LikeThatWillHappen (page does not exist)\">LikeThatWillHappen</a>",
+   "license": "CC BY-SA 3.0",
+   "license_url": "http://creativecommons.org/licenses/by-sa/3.0/"
+  },
+  {
+   "file": "train/images/balloon_balloon_023.jpg",
+   "split": "train",
+   "pool_source": "balloon/balloon_023.jpg",
+   "sha256": "cfa94ed865426c6bf72daf6d6c0c959583c5e7e34cb62cfd20861396b8f99b91",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 143.36,
+     "y1": 126.72,
+     "x2": 1213.44,
+     "y2": 1482.24
+    }
+   ],
+   "source_title": "File:Illuminated hot air balloon.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Illuminated_hot_air_balloon.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:LeavXC\" title=\"User:LeavXC\">LeavXC</a>",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+   "file": "train/images/balloon_balloon_024.jpg",
+   "split": "train",
+   "pool_source": "balloon/balloon_024.jpg",
+   "sha256": "e33b694e9d84c85d9ab104f3fe6513035d84de6936dc29d572ec6d1a91b04e1c",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 514.5600000000001,
+     "y1": 189.623,
+     "x2": 560.64,
+     "y2": 254.05800000000002
+    },
+    {
+     "cls": 3,
+     "x1": 793.6,
+     "y1": 191.464,
+     "x2": 834.5600000000001,
+     "y2": 263.263
+    },
+    {
+     "cls": 3,
+     "x1": 544.0,
+     "y1": 301.92400000000004,
+     "x2": 655.36,
+     "y2": 432.635
+    },
+    {
+     "cls": 3,
+     "x1": 875.5200000000001,
+     "y1": 412.384,
+     "x2": 968.96,
+     "y2": 541.254
+    },
+    {
+     "cls": 3,
+     "x1": 756.48,
+     "y1": 484.18300000000005,
+     "x2": 853.76,
+     "y2": 609.371
+    },
+    {
+     "cls": 3,
+     "x1": 691.2,
+     "y1": 695.898,
+     "x2": 852.48,
+     "y2": 870.793
+    },
+    {
+     "cls": 3,
+     "x1": 1004.8000000000001,
+     "y1": 730.8770000000001,
+     "x2": 1043.1999999999998,
+     "y2": 775.0609999999999
+    },
+    {
+     "cls": 3,
+     "x1": 856.32,
+     "y1": 984.9350000000001,
+     "x2": 994.5600000000001,
+     "y2": 1159.83
+    },
+    {
+     "cls": 3,
+     "x1": 724.4799999999999,
+     "y1": 1104.6,
+     "x2": 866.5600000000001,
+     "y2": 1285.0179999999998
+    },
+    {
+     "cls": 3,
+     "x1": 578.5600000000001,
+     "y1": 1261.085,
+     "x2": 765.4399999999999,
+     "y2": 1500.415
+    },
+    {
+     "cls": 3,
+     "x1": 0.0,
+     "y1": 1504.097,
+     "x2": 108.80000000000001,
+     "y2": 1758.155
+    },
+    {
+     "cls": 3,
+     "x1": 90.88,
+     "y1": 1509.62,
+     "x2": 295.68,
+     "y2": 1678.992
+    },
+    {
+     "cls": 3,
+     "x1": 79.36,
+     "y1": 1553.8039999999999,
+     "x2": 481.28,
+     "y2": 1820.749
+    },
+    {
+     "cls": 3,
+     "x1": 390.4,
+     "y1": 1570.373,
+     "x2": 467.2,
+     "y2": 1610.875
+    },
+    {
+     "cls": 3,
+     "x1": 423.68,
+     "y1": 1572.214,
+     "x2": 657.9200000000001,
+     "y2": 1815.2259999999999
+    },
+    {
+     "cls": 3,
+     "x1": 545.28,
+     "y1": 1480.164,
+     "x2": 609.28,
+     "y2": 1531.712
+    },
+    {
+     "cls": 3,
+     "x1": 471.03999999999996,
+     "y1": 1520.666,
+     "x2": 673.28,
+     "y2": 1708.448
+    },
+    {
+     "cls": 3,
+     "x1": 651.52,
+     "y1": 1577.737,
+     "x2": 719.3600000000001,
+     "y2": 1710.289
+    },
+    {
+     "cls": 3,
+     "x1": 651.52,
+     "y1": 1701.084,
+     "x2": 760.3199999999999,
+     "y2": 1782.088
+    },
+    {
+     "cls": 3,
+     "x1": 872.96,
+     "y1": 1518.8249999999998,
+     "x2": 1075.2,
+     "y2": 1767.36
+    },
+    {
+     "cls": 3,
+     "x1": 993.28,
+     "y1": 1609.034,
+     "x2": 1280.0,
+     "y2": 1815.2259999999999
+    }
+   ],
+   "source_title": "File:International hot air balloon festival in leon guanajuato mexico 2012.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:International_hot_air_balloon_festival_in_leon_guanajuato_mexico_2012.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Tomascastelazo\" title=\"User:Tomascastelazo\">Tomascastelazo</a>",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+   "file": "train/images/balloon_balloon_025.jpg",
+   "split": "train",
+   "pool_source": "balloon/balloon_025.jpg",
+   "sha256": "3d6ba08837c0a0c777183c024baa9b600d1f1059f3104dbadd0fa1ac347e74dd",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 87.04,
+     "y1": 175.48,
+     "x2": 471.03999999999996,
+     "y2": 754.4
+    },
+    {
+     "cls": 3,
+     "x1": 348.16,
+     "y1": 136.12,
+     "x2": 403.2,
+     "y2": 229.60000000000002
+    },
+    {
+     "cls": 3,
+     "x1": 439.04,
+     "y1": 178.76,
+     "x2": 465.91999999999996,
+     "y2": 218.94000000000003
+    },
+    {
+     "cls": 3,
+     "x1": 1185.28,
+     "y1": 32.8,
+     "x2": 1219.84,
+     "y2": 86.1
+    },
+    {
+     "cls": 3,
+     "x1": 879.3600000000001,
+     "y1": 230.42000000000002,
+     "x2": 908.8,
+     "y2": 274.7
+    },
+    {
+     "cls": 3,
+     "x1": 1004.8000000000001,
+     "y1": 252.56,
+     "x2": 1053.44,
+     "y2": 313.24
+    },
+    {
+     "cls": 3,
+     "x1": 628.48,
+     "y1": 291.09999999999997,
+     "x2": 654.08,
+     "y2": 319.8
+    },
+    {
+     "cls": 3,
+     "x1": 707.84,
+     "y1": 277.98,
+     "x2": 734.7199999999999,
+     "y2": 309.96
+    },
+    {
+     "cls": 3,
+     "x1": 711.6800000000001,
+     "y1": 435.42,
+     "x2": 736.0,
+     "y2": 470.67999999999995
+    },
+    {
+     "cls": 3,
+     "x1": 759.04,
+     "y1": 444.44000000000005,
+     "x2": 835.84,
+     "y2": 537.9200000000001
+    },
+    {
+     "cls": 3,
+     "x1": 487.68,
+     "y1": 540.38,
+     "x2": 512.0,
+     "y2": 571.54
+    },
+    {
+     "cls": 3,
+     "x1": 26.880000000000003,
+     "y1": 650.26,
+     "x2": 58.879999999999995,
+     "y2": 687.98
+    },
+    {
+     "cls": 3,
+     "x1": 227.83999999999997,
+     "y1": 620.74,
+     "x2": 291.84000000000003,
+     "y2": 668.3
+    },
+    {
+     "cls": 3,
+     "x1": 332.8,
+     "y1": 650.26,
+     "x2": 372.47999999999996,
+     "y2": 698.64
+    },
+    {
+     "cls": 3,
+     "x1": 398.08,
+     "y1": 637.96,
+     "x2": 455.67999999999995,
+     "y2": 703.56
+    },
+    {
+     "cls": 3,
+     "x1": 480.0,
+     "y1": 649.44,
+     "x2": 509.44000000000005,
+     "y2": 687.98
+    },
+    {
+     "cls": 3,
+     "x1": 578.5600000000001,
+     "y1": 647.8000000000001,
+     "x2": 592.64,
+     "y2": 665.84
+    },
+    {
+     "cls": 3,
+     "x1": 651.52,
+     "y1": 660.1,
+     "x2": 669.44,
+     "y2": 682.24
+    },
+    {
+     "cls": 3,
+     "x1": 778.24,
+     "y1": 555.96,
+     "x2": 808.96,
+     "y2": 597.78
+    },
+    {
+     "cls": 3,
+     "x1": 862.72,
+     "y1": 542.84,
+     "x2": 907.52,
+     "y2": 602.7
+    },
+    {
+     "cls": 3,
+     "x1": 968.96,
+     "y1": 612.54,
+     "x2": 992.0,
+     "y2": 644.52
+    },
+    {
+     "cls": 3,
+     "x1": 1062.3999999999999,
+     "y1": 576.4599999999999,
+     "x2": 1095.68,
+     "y2": 623.2
+    },
+    {
+     "cls": 3,
+     "x1": 1175.04,
+     "y1": 651.9,
+     "x2": 1207.04,
+     "y2": 689.62
+    }
+   ],
+   "source_title": "File:Leon hot air balloon festival 2010.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Leon_hot_air_balloon_festival_2010.jpg",
+   "artist": "Tomas Castelazo",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+   "file": "train/images/balloon_balloon_026.jpg",
+   "split": "train",
+   "pool_source": "balloon/balloon_026.jpg",
+   "sha256": "0544d2a8940c1e4fff227d55daebac13a6284aefed2f8b765974a91bdb5074b0",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 0.0,
+     "y1": 257.6,
+     "x2": 515.84,
+     "y2": 714.4
+    },
+    {
+     "cls": 3,
+     "x1": 481.28,
+     "y1": 405.6,
+     "x2": 739.8399999999999,
+     "y2": 683.1999999999999
+    },
+    {
+     "cls": 3,
+     "x1": 675.84,
+     "y1": 213.60000000000002,
+     "x2": 1080.32,
+     "y2": 640.0
+    },
+    {
+     "cls": 3,
+     "x1": 698.8800000000001,
+     "y1": 500.0,
+     "x2": 948.48,
+     "y2": 696.0
+    },
+    {
+     "cls": 3,
+     "x1": 483.84000000000003,
+     "y1": 608.0,
+     "x2": 645.12,
+     "y2": 712.8
+    },
+    {
+     "cls": 3,
+     "x1": 903.68,
+     "y1": 436.00000000000006,
+     "x2": 1280.0,
+     "y2": 723.2
+    },
+    {
+     "cls": 3,
+     "x1": 1182.72,
+     "y1": 395.2,
+     "x2": 1280.0,
+     "y2": 441.6
+    }
+   ],
+   "source_title": "File:Leon international hot air ballon festival nov 2012.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Leon_international_hot_air_ballon_festival_nov_2012.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Tomascastelazo\" title=\"User:Tomascastelazo\">Tomascastelazo</a>",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+   "file": "train/images/balloon_balloon_027.jpg",
+   "split": "train",
+   "pool_source": "balloon/balloon_027.jpg",
+   "sha256": "5e797694d257031eb594347edfce7eeb3f54484200222a2caa549cae0cad2db9",
+   "boxes": [
+    {
+     "cls": 3,
+     "x1": 368.64,
+     "y1": 226.56,
+     "x2": 568.32,
+     "y2": 506.88
+    },
+    {
+     "cls": 3,
+     "x1": 569.6,
+     "y1": 337.92,
+     "x2": 616.96,
+     "y2": 417.28000000000003
+    },
+    {
+     "cls": 3,
+     "x1": 683.52,
+     "y1": 413.44,
+     "x2": 715.5200000000001,
+     "y2": 454.4
+    },
+    {
+     "cls": 3,
+     "x1": 913.92,
+     "y1": 638.72,
+     "x2": 938.24,
+     "y2": 665.6
+    },
+    {
+     "cls": 3,
+     "x1": 373.76,
+     "y1": 572.16,
+     "x2": 705.2800000000001,
+     "y2": 851.2
+    },
+    {
+     "cls": 3,
+     "x1": 101.12,
+     "y1": 797.44,
+     "x2": 715.5200000000001,
+     "y2": 1109.76
+    },
+    {
+     "cls": 3,
+     "x1": 599.0400000000001,
+     "y1": 669.44,
+     "x2": 1198.0800000000002,
+     "y2": 1099.52
+    }
+   ],
+   "source_title": "File:M\u00fcnster, Montgolfiade (an den Aaseewiesen) -- 2019 -- 9668 (crop).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:M%C3%BCnster,_Montgolfiade_(an_den_Aaseewiesen)_--_2019_--_9668_(crop).jpg",
+   "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q34788025\" class=\"extiw\" title=\"d:Q34788025\"><span title=\"German photographer and mathematician\">Dietmar Rabich</span></a></bdi>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/images/bird_bird_000.jpg",
+   "split": "test",
+   "pool_source": "bird/bird_000.jpg",
+   "sha256": "370ebbabc26ee5487d6bbe4c987870d9fc80464be93043a0d2052ca7956f1874",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 134.4,
+     "y1": 267.842,
+     "x2": 1052.1599999999999,
+     "y2": 752.346
+    }
+   ],
+   "source_title": "File:001 Greater flamingo in flight in the Camargue Photo by Giles Laurent.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:001_Greater_flamingo_in_flight_in_the_Camargue_Photo_by_Giles_Laurent.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Giles_Laurent\" title=\"User:Giles Laurent\">Giles Laurent</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/images/bird_bird_001.jpg",
+   "split": "test",
+   "pool_source": "bird/bird_001.jpg",
+   "sha256": "39dd33b3107403887e00e3f5416b37c542e326d15940319e23042f268fefde6b",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 336.64,
+     "y1": 385.556,
+     "x2": 599.0400000000001,
+     "y2": 642.309
+    }
+   ],
+   "source_title": "File:003 Olive-bellied Sunbird in flight at Kibale forest National Park Photo by Giles Laurent.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:003_Olive-bellied_Sunbird_in_flight_at_Kibale_forest_National_Park_Photo_by_Giles_Laurent.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Giles_Laurent\" title=\"User:Giles Laurent\">Giles Laurent</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/images/bird_bird_002.jpg",
+   "split": "test",
+   "pool_source": "bird/bird_002.jpg",
+   "sha256": "63e474880e2c1a46564ec5c8f485d525bac3b299144363c2f7785ce7d364781b",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 126.72,
+     "y1": 197.89600000000002,
+     "x2": 487.68,
+     "y2": 635.485
+    },
+    {
+     "cls": 2,
+     "x1": 468.48,
+     "y1": 372.761,
+     "x2": 775.68,
+     "y2": 629.514
+    },
+    {
+     "cls": 2,
+     "x1": 738.56,
+     "y1": 206.426,
+     "x2": 1111.04,
+     "y2": 627.808
+    }
+   ],
+   "source_title": "File:019 Stacked images of an European Bee-eater in flight Photo by Giles Laurent.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:019_Stacked_images_of_an_European_Bee-eater_in_flight_Photo_by_Giles_Laurent.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Giles_Laurent\" title=\"User:Giles Laurent\">Giles Laurent</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/images/bird_bird_003.jpg",
+   "split": "test",
+   "pool_source": "bird/bird_003.jpg",
+   "sha256": "79cd73b41902babc85d725db4f655bc7b0601813c8be47e691183a9bc4965fe9",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 197.12,
+     "y1": 317.316,
+     "x2": 1136.64,
+     "y2": 667.046
+    },
+    {
+     "cls": 2,
+     "x1": 85.76,
+     "y1": 313.904,
+     "x2": 181.76,
+     "y2": 375.32
+    },
+    {
+     "cls": 2,
+     "x1": 556.8,
+     "y1": 83.59400000000001,
+     "x2": 674.5600000000001,
+     "y2": 206.426
+    },
+    {
+     "cls": 2,
+     "x1": 752.64,
+     "y1": 124.538,
+     "x2": 821.76,
+     "y2": 225.192
+    },
+    {
+     "cls": 2,
+     "x1": 821.76,
+     "y1": 75.064,
+     "x2": 908.8,
+     "y2": 155.246
+    },
+    {
+     "cls": 2,
+     "x1": 901.1199999999999,
+     "y1": 112.596,
+     "x2": 944.64,
+     "y2": 179.13
+    },
+    {
+     "cls": 2,
+     "x1": 808.96,
+     "y1": 164.629,
+     "x2": 931.8399999999999,
+     "y2": 249.076
+    },
+    {
+     "cls": 2,
+     "x1": 1006.08,
+     "y1": 110.037,
+     "x2": 1086.72,
+     "y2": 257.606
+    },
+    {
+     "cls": 2,
+     "x1": 1068.8,
+     "y1": 139.03900000000002,
+     "x2": 1203.1999999999998,
+     "y2": 209.838
+    }
+   ],
+   "source_title": "File:092 Wild Mute swan in flight at Lake Geneva during golden hour of sunset Photo by Giles Laurent.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:092_Wild_Mute_swan_in_flight_at_Lake_Geneva_during_golden_hour_of_sunset_Photo_by_Giles_Laurent.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Giles_Laurent\" title=\"User:Giles Laurent\">Giles Laurent</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/images/bird_bird_004.jpg",
+   "split": "test",
+   "pool_source": "bird/bird_004.jpg",
+   "sha256": "d1edcfafa3256eb65d9b45bded0d0553f417c10146d0e74c8f2d1fc103240a95",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 87.04,
+     "y1": 147.20000000000002,
+     "x2": 1107.2,
+     "y2": 492.8
+    }
+   ],
+   "source_title": "File:Brown booby (Sula leucogaster plotus) male in flight Michaelmas Cay.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Brown_booby_(Sula_leucogaster_plotus)_male_in_flight_Michaelmas_Cay.jpg",
+   "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q54800218\" class=\"extiw\" title=\"d:Q54800218\"><span title=\"Scottish wildlife photographer\">Charles J. Sharp</span></a></bdi>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/images/bird_bird_005.jpg",
+   "split": "test",
+   "pool_source": "bird/bird_005.jpg",
+   "sha256": "eaa095822a0cf2847dd5c3da575df7b26ca3a9b806b6669509e7802a2c3e533d",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 61.44,
+     "y1": 162.748,
+     "x2": 1248.0,
+     "y2": 473.57
+    }
+   ],
+   "source_title": "File:Canada goose flight cropped and NR.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Canada_goose_flight_cropped_and_NR.jpg",
+   "artist": "Image taken by Alan D. Wilson, and modified by <a href=\"//commons.wikimedia.org/wiki/User:Diliff\" title=\"User:Diliff\">Diliff</a> (cropped and noise reduction applied).",
+   "license": "CC BY-SA 2.5",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.5"
+  },
+  {
+   "file": "test/images/bird_bird_006.jpg",
+   "split": "test",
+   "pool_source": "bird/bird_006.jpg",
+   "sha256": "cfe004001839f4f34aed0d815bb710f1135494082ee771a6b84dd0086dd485f3",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 55.03999999999999,
+     "y1": 58.004000000000005,
+     "x2": 1140.48,
+     "y2": 812.909
+    }
+   ],
+   "source_title": "File:Female northern pintail in flight-1827.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Female_northern_pintail_in_flight-1827.jpg",
+   "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q57175365\" class=\"extiw\" title=\"d:Q57175365\"><span title=\"German-American photographer, Wikipedian, and Executive Director of the Wiki Education Foundation\"",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/images/bird_bird_007.jpg",
+   "split": "test",
+   "pool_source": "bird/bird_007.jpg",
+   "sha256": "1a485fa111925cd2e240ef84ee16464202cd05777c9ef30cd74e450573f9890f",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 312.32,
+     "y1": 151.04,
+     "x2": 803.84,
+     "y2": 1017.6
+    }
+   ],
+   "source_title": "File:Fork-tailed flycatcher (Tyrannus savana monachus) in flight Cayo.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Fork-tailed_flycatcher_(Tyrannus_savana_monachus)_in_flight_Cayo.jpg",
+   "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q54800218\" class=\"extiw\" title=\"d:Q54800218\"><span title=\"Scottish wildlife photographer\">Charles J. Sharp</span></a></bdi>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/images/bird_bird_008.jpg",
+   "split": "test",
+   "pool_source": "bird/bird_008.jpg",
+   "sha256": "047890de180f001d415136c753e324d41ceccdee6aac4e5e171d5c6481e93da3",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 87.04,
+     "y1": 94.09,
+     "x2": 1008.6400000000001,
+     "y2": 805.0999999999999
+    }
+   ],
+   "source_title": "File:Hyacinth macaw (Anodorhynchus hyacinthinus) in flight.JPG",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Hyacinth_macaw_(Anodorhynchus_hyacinthinus)_in_flight.JPG",
+   "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q54800218\" class=\"extiw\" title=\"d:Q54800218\"><span title=\"Scottish wildlife photographer\">Charles J. Sharp</span></a></bdi>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/images/bird_bird_009.jpg",
+   "split": "test",
+   "pool_source": "bird/bird_009.jpg",
+   "sha256": "73538284dfdb573e22de7fe3a9bff8962babf572eb28f37fc19a44aa023057b7",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 170.24,
+     "y1": 96.389,
+     "x2": 1187.8400000000001,
+     "y2": 612.454
+    }
+   ],
+   "source_title": "File:Larus californicus Palo Alto May 2011 001.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Larus_californicus_Palo_Alto_May_2011_001.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:King_of_Hearts\" title=\"User:King of Hearts\">King of Hearts</a>",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+   "file": "test/images/bird_bird_010.jpg",
+   "split": "test",
+   "pool_source": "bird/bird_010.jpg",
+   "sha256": "db28fc073cae0e3dc552551a7b8b783ddc9160db3c2c0720d572676a2a5517fb",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 120.32,
+     "y1": 106.75,
+     "x2": 1213.44,
+     "y2": 593.53
+    }
+   ],
+   "source_title": "File:Larus occidentalis in flight (Bodega Head).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Larus_occidentalis_in_flight_(Bodega_Head).jpg",
+   "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q57175365\" class=\"extiw\" title=\"d:Q57175365\"><span title=\"German-American photographer, Wikipedian, and Executive Director of the Wiki Education Foundation\"",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/images/bird_bird_011.jpg",
+   "split": "test",
+   "pool_source": "bird/bird_011.jpg",
+   "sha256": "8505e53b72090a5e07908e5d0b53296995b8d8cbcf0e17f121203b88e22543da",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 184.32,
+     "y1": 81.035,
+     "x2": 1107.2,
+     "y2": 581.7460000000001
+    }
+   ],
+   "source_title": "File:Male northern pintail in flight-8276.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Male_northern_pintail_in_flight-8276.jpg",
+   "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q57175365\" class=\"extiw\" title=\"d:Q57175365\"><span title=\"German-American photographer, Wikipedian, and Executive Director of the Wiki Education Foundation\"",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/images/bird_bird_012.jpg",
+   "split": "train",
+   "pool_source": "bird/bird_012.jpg",
+   "sha256": "b81e68febc07c58d76f6f135650c2c3e4e58ffb434e7afe8f30e96385ec7e0d3",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 294.40000000000003,
+     "y1": 63.974999999999994,
+     "x2": 951.04,
+     "y2": 682.4000000000001
+    }
+   ],
+   "source_title": "File:Marabou stork (Leptoptilos crumenifer) in flight 2.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Marabou_stork_(Leptoptilos_crumenifer)_in_flight_2.jpg",
+   "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q54800218\" class=\"extiw\" title=\"d:Q54800218\"><span title=\"Scottish wildlife photographer\">Charles J. Sharp</span></a></bdi>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/images/bird_bird_013.jpg",
+   "split": "train",
+   "pool_source": "bird/bird_013.jpg",
+   "sha256": "de1b6c0e1c2613655a3d25f26dd0d9485695ab11031204a9c037d8d9f30f2312",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 69.12,
+     "y1": 179.13,
+     "x2": 770.56,
+     "y2": 646.574
+    },
+    {
+     "cls": 2,
+     "x1": 416.0,
+     "y1": 166.335,
+     "x2": 1175.04,
+     "y2": 498.152
+    }
+   ],
+   "source_title": "File:Phoenicopterus roseus flight (Walvis bay).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Phoenicopterus_roseus_flight_(Walvis_bay).jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Yathin_sk\" title=\"User:Yathin sk\">Yathin S Krishnappa</a>",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+   "file": "train/images/bird_bird_014.jpg",
+   "split": "train",
+   "pool_source": "bird/bird_014.jpg",
+   "sha256": "8947cf3985fab03178f5fd92bbfa3af3a9809aed3fc144df584fcbd5251ace95",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 419.84000000000003,
+     "y1": 154.69799999999998,
+     "x2": 847.36,
+     "y2": 767.372
+    }
+   ],
+   "source_title": "File:Purple martin in flight (30977).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Purple_martin_in_flight_(30977).jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Rhododendrites\" title=\"User:Rhododendrites\">Rhododendrites</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/images/bird_bird_015.jpg",
+   "split": "train",
+   "pool_source": "bird/bird_015.jpg",
+   "sha256": "eb300b2258b3fb94ea20e12cea254ab4479812af4b7374c780b24f073c628cd0",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 492.8,
+     "y1": 262.08000000000004,
+     "x2": 1239.04,
+     "y2": 679.68
+    }
+   ],
+   "source_title": "File:The flight of a griffon.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:The_flight_of_a_griffon.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Artemy_Voikhansky\" title=\"User:Artemy Voikhansky\">Artemy Voikhansky</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/images/bird_bird_016.jpg",
+   "split": "train",
+   "pool_source": "bird/bird_016.jpg",
+   "sha256": "8d682935981b97a3cbe9af153d2799776a4414371b910112b0a4e4017a3f818a",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 128.0,
+     "y1": 239.22000000000003,
+     "x2": 672.0,
+     "y2": 580.33
+    }
+   ],
+   "source_title": "File:Volcano hummingbird (Selasphorus flammula) female in flight 2.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Volcano_hummingbird_(Selasphorus_flammula)_female_in_flight_2.jpg",
+   "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q54800218\" class=\"extiw\" title=\"d:Q54800218\"><span title=\"Scottish wildlife photographer\">Charles J. Sharp</span></a></bdi>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/images/bird_bird_017.jpg",
+   "split": "train",
+   "pool_source": "bird/bird_017.jpg",
+   "sha256": "1f7c3c549f49b8729eedf12d8e1139d846d597a9154d031b0967039f6d350563",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 211.20000000000002,
+     "y1": 220.074,
+     "x2": 1136.64,
+     "y2": 723.3439999999999
+    }
+   ],
+   "source_title": "File:White stork (Ciconia ciconia) in flight with transmitter.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:White_stork_(Ciconia_ciconia)_in_flight_with_transmitter.jpg",
+   "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q54800218\" class=\"extiw\" title=\"d:Q54800218\"><span title=\"Scottish wildlife photographer\">Charles J. Sharp</span></a></bdi>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/images/bird_bird_018.jpg",
+   "split": "train",
+   "pool_source": "bird/bird_018.jpg",
+   "sha256": "226c1436c6000cf1bb40c7989341698f06cf8459545c46ab59d83b3a0fc8d4d4",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 458.24,
+     "y1": 344.988,
+     "x2": 806.4,
+     "y2": 610.722
+    }
+   ],
+   "source_title": "File:Flying seagull neon installation in Tuwima Street, Lodz, Poland.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Flying_seagull_neon_installation_in_Tuwima_Street,_Lodz,_Poland.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Zorro2212\" title=\"User:Zorro2212\">Zorro2212</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/images/bird_bird_019.jpg",
+   "split": "train",
+   "pool_source": "bird/bird_019.jpg",
+   "sha256": "745ba354a38ebf957f33eccfac89881254e565f6e02536f278ab2c0cabfab1d4",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 673.28,
+     "y1": 507.84000000000003,
+     "x2": 823.04,
+     "y2": 592.3199999999999
+    }
+   ],
+   "source_title": "File:Free Flying Seagull Marthas Vineyard Steamship Authority Ferry Route.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Free_Flying_Seagull_Marthas_Vineyard_Steamship_Authority_Ferry_Route.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:EgorovaSvetlana\" title=\"User:EgorovaSvetlana\">EgorovaSvetlana</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/images/bird_bird_020.jpg",
+   "split": "train",
+   "pool_source": "bird/bird_020.jpg",
+   "sha256": "a4c6f140e42959121ae4eaef5ad745f5c6fd7fed4c2f215b01383076cff9b3fd",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 409.6,
+     "y1": 773.2710000000001,
+     "x2": 1021.44,
+     "y2": 1003.7159999999999
+    }
+   ],
+   "source_title": "File:Free Flying Seagull Marthas Vineyard Steamship Authority ferry Route.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Free_Flying_Seagull_Marthas_Vineyard_Steamship_Authority_ferry_Route.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:EgorovaSvetlana\" title=\"User:EgorovaSvetlana\">EgorovaSvetlana</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/images/bird_bird_021.jpg",
+   "split": "train",
+   "pool_source": "bird/bird_021.jpg",
+   "sha256": "466b4febd590913feb6b849c4e4e95582d1be0936290c44f4352620e569212b9",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 605.4399999999999,
+     "y1": 266.363,
+     "x2": 776.96,
+     "y2": 531.875
+    }
+   ],
+   "source_title": "File:Seagull Flying Over Water.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Seagull_Flying_Over_Water.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:NickW1129\" title=\"User:NickW1129\">NickW1129</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/images/bird_bird_022.jpg",
+   "split": "train",
+   "pool_source": "bird/bird_022.jpg",
+   "sha256": "89374bcda18d4dcc3fd8a5e68b431a14ef106a84785e81ca5f4003a351ad1b2c",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 588.8000000000001,
+     "y1": 326.784,
+     "x2": 757.76,
+     "y2": 452.732
+    }
+   ],
+   "source_title": "File:Seagull Flying Over Water 2.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Seagull_Flying_Over_Water_2.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:NickW1129\" title=\"User:NickW1129\">NickW1129</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/images/bird_bird_023.jpg",
+   "split": "train",
+   "pool_source": "bird/bird_023.jpg",
+   "sha256": "fd984375919a6fbd4c629fd03eb6cb302a764c982f1b66427eff7094ff7a1c38",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 413.44,
+     "y1": 309.639,
+     "x2": 785.92,
+     "y2": 447.82500000000005
+    }
+   ],
+   "source_title": "File:Seagull flying!!.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Seagull_flying!!.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Emad-madu&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Emad-madu (page does not exist)\">Emad-madu</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "val/images/bird_bird_024.jpg",
+   "split": "val",
+   "pool_source": "bird/bird_024.jpg",
+   "sha256": "c5c4faa4876c3193fc6bdb36155f9ca624bf7b3d894ffaf533ff47635171af3a",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 399.36,
+     "y1": 81.60000000000001,
+     "x2": 686.08,
+     "y2": 693.12
+    }
+   ],
+   "source_title": "File:Seagull flying (1).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Seagull_flying_(1).jpg",
+   "artist": "Arnold Paul",
+   "license": "CC BY-SA 2.5",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.5"
+  },
+  {
+   "file": "val/images/bird_bird_025.jpg",
+   "split": "val",
+   "pool_source": "bird/bird_025.jpg",
+   "sha256": "06a8493f7b5d12d57efbec54e4043a2d00404f0fea98196b6fb8ed3413290c2e",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 0.0,
+     "y1": 36.48,
+     "x2": 1168.64,
+     "y2": 840.0
+    }
+   ],
+   "source_title": "File:Seagull flying (4).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Seagull_flying_(4).jpg",
+   "artist": "Arnold Paul",
+   "license": "CC BY-SA 2.5",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.5"
+  },
+  {
+   "file": "val/images/bird_bird_026.jpg",
+   "split": "val",
+   "pool_source": "bird/bird_026.jpg",
+   "sha256": "ba4fe4a1fd4b684468395e5fa732510a05a7dcf65a4a87e3b7d285b90868612e",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 48.64,
+     "y1": 334.08,
+     "x2": 1163.52,
+     "y2": 670.0799999999999
+    }
+   ],
+   "source_title": "File:Seagull flying (5).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Seagull_flying_(5).jpg",
+   "artist": "Arnold Paul",
+   "license": "CC BY-SA 2.5",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.5"
+  },
+  {
+   "file": "val/images/bird_bird_027.jpg",
+   "split": "val",
+   "pool_source": "bird/bird_027.jpg",
+   "sha256": "153f930967e9aa1409ddfbee78a027758cbbc890add1b1a40a9115823cde3d69",
+   "boxes": [
+    {
+     "cls": 2,
+     "x1": 364.79999999999995,
+     "y1": 80.64,
+     "x2": 410.88,
+     "y2": 105.6
+    }
+   ],
+   "source_title": "File:Seagull flying over Camber Sands - geograph.org.uk - 1427674.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Seagull_flying_over_Camber_Sands_-_geograph.org.uk_-_1427674.jpg",
+   "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.geograph.org.uk/profile/27922\">Chris Whippet</a>",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0"
+  },
+  {
+   "file": "test/images/drone_drone_000.jpg",
+   "split": "test",
+   "pool_source": "drone/drone_000.jpg",
+   "sha256": "c519717d2bcde5460e333303fe49b2f39703d4efbf01a3e77044a262d6170b79",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 403.2,
+     "y1": 424.794,
+     "x2": 889.5999999999999,
+     "y2": 520.33
+    }
+   ],
+   "source_title": "File:332 ESFS sUAS division launches first quadcopter in AFCENT history (9384784).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:332_ESFS_sUAS_division_launches_first_quadcopter_in_AFCENT_history_(9384784).jpg",
+   "artist": "U.S. Air Force photo by Senior Airman <a rel=\"nofollow\" class=\"external text\" href=\"https://www.dvidshub.net/portfolio/1740345\">Karalyn Degraffenreed</a>",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "test/images/drone_drone_001.jpg",
+   "split": "test",
+   "pool_source": "drone/drone_001.jpg",
+   "sha256": "0fe0007aa96255d55d45459523849a6ca86241089592c5e1f5d4d58e7bcb8682",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 268.8,
+     "y1": 191.925,
+     "x2": 953.6,
+     "y2": 720.785
+    }
+   ],
+   "source_title": "File:DJI Phantom 4 in Flight March 2016.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:DJI_Phantom_4_in_Flight_March_2016.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Doodybutch&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Doodybutch (page does not exist)\">Doodybutch</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/images/drone_drone_002.jpg",
+   "split": "test",
+   "pool_source": "drone/drone_002.jpg",
+   "sha256": "aee4ec2880ffbcc47435e2b84b04715fc7e558cfbb7ea95e4abfd67e01fb1935",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 492.8,
+     "y1": 216.84,
+     "x2": 1068.8,
+     "y2": 529.59
+    }
+   ],
+   "source_title": "File:Gogbot, Enschede, CatCopter in flight.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Gogbot,_Enschede,_CatCopter_in_flight.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Kleuske\" title=\"User:Kleuske\">Kleuske</a>",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+   "file": "test/images/drone_drone_003.jpg",
+   "split": "test",
+   "pool_source": "drone/drone_003.jpg",
+   "sha256": "1f5363ac2c1d498cc9a523f15877fea994b03ed9a2c229108c80e973459b7111",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 0.0,
+     "y1": 265.594,
+     "x2": 1248.0,
+     "y2": 830.942
+    }
+   ],
+   "source_title": "File:HQ-90 aircraft arrived and assembled at NASA's Armstrong Flight Research Center (AFRC2020-0108-24).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:HQ-90_aircraft_arrived_and_assembled_at_NASA%27s_Armstrong_Flight_Research_Center_(AFRC2020-0108-24).jpg",
+   "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.nasa.gov/centers/armstrong/\">NASA Armstrong Flight Research Center / NASA/Ken Ulbrich</a>",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "test/images/drone_drone_004.jpg",
+   "split": "test",
+   "pool_source": "drone/drone_004.jpg",
+   "sha256": "6ce79813e74f04fdcd3646bd24fd1cdc0be2e86891d3c68e2538e53b61c7ff45",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 0.0,
+     "y1": 132.37,
+     "x2": 1184.0,
+     "y2": 747.25
+    }
+   ],
+   "source_title": "File:HQ-90 aircraft arrived and assembled at NASA's Armstrong Flight Research Center (AFRC2020-0108-25).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:HQ-90_aircraft_arrived_and_assembled_at_NASA%27s_Armstrong_Flight_Research_Center_(AFRC2020-0108-25).jpg",
+   "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.nasa.gov/centers/armstrong/\">NASA Armstrong Flight Research Center / NASA/Ken Ulbrich</a>",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "test/images/drone_drone_005.jpg",
+   "split": "test",
+   "pool_source": "drone/drone_005.jpg",
+   "sha256": "b37c427cd31ff1a22463f042bf090c0f46744f73223c48af9a9994236b3f99ba",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 350.72,
+     "y1": 157.99,
+     "x2": 1235.2,
+     "y2": 853.146
+    }
+   ],
+   "source_title": "File:HQ-90 aircraft arrived and assembled at NASA\u2019s Armstrong Flight Research Center (AFRC2020-0108-03).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:HQ-90_aircraft_arrived_and_assembled_at_NASA%E2%80%99s_Armstrong_Flight_Research_Center_(AFRC2020-0108-03).jpg",
+   "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.nasa.gov/centers/armstrong/\">NASA Armstrong Flight Research Center / NASA/Ken Ulbrich</a>",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "test/images/drone_drone_006.jpg",
+   "split": "test",
+   "pool_source": "drone/drone_006.jpg",
+   "sha256": "a3787269e0b022f495d40d80ae94ee2e1e006035ffb3dbefd593f30d93029bbe",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 0.0,
+     "y1": 0.0,
+     "x2": 1198.0800000000002,
+     "y2": 829.2339999999999
+    }
+   ],
+   "source_title": "File:HQ-90 aircraft arrived and assembled at NASA\u2019s Armstrong Flight Research Center (AFRC2020-0108-19).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:HQ-90_aircraft_arrived_and_assembled_at_NASA%E2%80%99s_Armstrong_Flight_Research_Center_(AFRC2020-0108-19).jpg",
+   "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.nasa.gov/centers/armstrong/\">NASA Armstrong Flight Research Center / NASA/Ken Ulbrich</a>",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "test/images/drone_drone_007.jpg",
+   "split": "test",
+   "pool_source": "drone/drone_007.jpg",
+   "sha256": "dae118ffa62bf632843d095f89eac2a12408032cb6554fc64f03c15e36afd25b",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 25.6,
+     "y1": 111.02000000000001,
+     "x2": 1260.8,
+     "y2": 742.98
+    }
+   ],
+   "source_title": "File:HQ-90 aircraft arrived and assembled at NASA\u2019s Armstrong Flight Research Center (AFRC2020-0108-27).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:HQ-90_aircraft_arrived_and_assembled_at_NASA%E2%80%99s_Armstrong_Flight_Research_Center_(AFRC2020-0108-27).jpg",
+   "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.nasa.gov/centers/armstrong/\">NASA Armstrong Flight Research Center / NASA/Ken Ulbrich</a>",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "test/images/drone_drone_008.jpg",
+   "split": "test",
+   "pool_source": "drone/drone_008.jpg",
+   "sha256": "0d1648501a8e9c1242582bcf6800e309361d38f9e9eb5272bbdd89b2357b7ed9",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 485.12,
+     "y1": 339.305,
+     "x2": 669.44,
+     "y2": 412.32
+    },
+    {
+     "cls": 0,
+     "x1": 680.96,
+     "y1": 304.945,
+     "x2": 825.6,
+     "y2": 352.19
+    },
+    {
+     "cls": 0,
+     "x1": 782.0799999999999,
+     "y1": 377.101,
+     "x2": 1008.6400000000001,
+     "y2": 458.706
+    }
+   ],
+   "source_title": "File:Novas in flight.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Novas_in_flight.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Lilykhinz&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Lilykhinz (page does not exist)\">Lilykhinz</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/images/drone_drone_009.jpg",
+   "split": "test",
+   "pool_source": "drone/drone_009.jpg",
+   "sha256": "be26df421fd7c4178d4d5b44cd978977111f6e0f5be6004ba8c18b25195de0e3",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 590.08,
+     "y1": 249.60000000000002,
+     "x2": 832.0,
+     "y2": 378.24
+    }
+   ],
+   "source_title": "File:Parrot Airborne MINIDRONE flight over Alameda, CA.JPG",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Parrot_Airborne_MINIDRONE_flight_over_Alameda,_CA.JPG",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Halftermeyer\" title=\"User:Halftermeyer\">Halftermeyer</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/images/drone_drone_010.jpg",
+   "split": "test",
+   "pool_source": "drone/drone_010.jpg",
+   "sha256": "2a0f67e4d04d7fba2721da225265a38430dc2cdc497d78aa2be9188fec94e91c",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 71.68,
+     "y1": 0.0,
+     "x2": 1276.16,
+     "y2": 960.0
+    }
+   ],
+   "source_title": "File:Quadcopter Bottom Removed.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Quadcopter_Bottom_Removed.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Ryan_Decker&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Ryan Decker (page does not exist)\">Ryan Decker</a>",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+   "file": "test/images/drone_drone_011.jpg",
+   "split": "test",
+   "pool_source": "drone/drone_011.jpg",
+   "sha256": "11e5cdc629b1cc9af7162a8f75e50a2274cce357cdd55872badaa6269f35166c",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 430.08000000000004,
+     "y1": 231.12,
+     "x2": 962.56,
+     "y2": 514.0799999999999
+    }
+   ],
+   "source_title": "File:Quadcopter Drone in flight.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Quadcopter_Drone_in_flight.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Keita.Honda\" title=\"User:Keita.Honda\">Project Kei</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/images/drone_drone_012.jpg",
+   "split": "train",
+   "pool_source": "drone/drone_012.jpg",
+   "sha256": "b3cffa0cb1c19e652e647744945caa9a8234548d95b3fede639979d7348465b8",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 104.96000000000001,
+     "y1": 193.631,
+     "x2": 1123.84,
+     "y2": 692.6360000000001
+    }
+   ],
+   "source_title": "File:Quadcopter camera drone in flight.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Quadcopter_camera_drone_in_flight.jpg",
+   "artist": "Josh Sorenson",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en"
+  },
+  {
+   "file": "train/images/drone_drone_013.jpg",
+   "split": "train",
+   "pool_source": "drone/drone_013.jpg",
+   "sha256": "618f2c38ccf7f4b7d6356146f95a129d509a483739d5277c4d742a6efedd2b5c",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 340.48,
+     "y1": 141.312,
+     "x2": 823.04,
+     "y2": 350.208
+    }
+   ],
+   "source_title": "File:Testing defense effectiveness with drone maneuvers in the U S Central Command AOR (8989522).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Testing_defense_effectiveness_with_drone_maneuvers_in_the_U_S_Central_Command_AOR_(8989522).jpg",
+   "artist": "U.S. Air Force photo by Master Sgt. <a rel=\"nofollow\" class=\"external text\" href=\"https://www.dvidshub.net/portfolio/1239731\">Luke Olson</a>",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "train/images/drone_drone_014.jpg",
+   "split": "train",
+   "pool_source": "drone/drone_014.jpg",
+   "sha256": "27640e8f549446287a91bece2be7539aa7f7c50c6714a15fc1fff5c35f1a8ea0",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 560.64,
+     "y1": 221.76500000000001,
+     "x2": 678.4000000000001,
+     "y2": 339.17
+    }
+   ],
+   "source_title": "File:UAV tethered flight.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:UAV_tethered_flight.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Stahlmann&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Stahlmann (page does not exist)\">Stahlmann</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/images/drone_drone_015.jpg",
+   "split": "train",
+   "pool_source": "drone/drone_015.jpg",
+   "sha256": "739913eabacd402f7e9be3f2fbd9847f4b3f2a2f1f9f7045e63fe684254fd62e",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 418.56,
+     "y1": 149.76,
+     "x2": 627.2,
+     "y2": 306.24
+    }
+   ],
+   "source_title": "File:A female researcher flying a drone in the field in Namibia.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:A_female_researcher_flying_a_drone_in_the_field_in_Namibia.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Miggan91&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Miggan91 (page does not exist)\">Miggan91</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/images/drone_drone_016.jpg",
+   "split": "train",
+   "pool_source": "drone/drone_016.jpg",
+   "sha256": "5b5fddfeae8ddb856e382e80e2c4ce023f495de02e1f94e223a76f4629a9fd9f",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 578.5600000000001,
+     "y1": 401.145,
+     "x2": 800.0,
+     "y2": 568.431
+    }
+   ],
+   "source_title": "File:Bebop Drone flying in blue sky.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Bebop_Drone_flying_in_blue_sky.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Nicolas_Halftermeyer\" title=\"User:Nicolas Halftermeyer\">Nicolas Halftermeyer</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/negatives/drone_drone_017.jpg",
+   "split": "negative_test",
+   "pool_source": "drone/drone_017.jpg",
+   "sha256": "3db5662f68a5cfdfb266480fec3f70ed6e41282c876dcf39e5c944d141d41c5f",
+   "boxes": [],
+   "source_title": "File:Children gathered outside a traditional thatched-roof house in Karamoja region while gazing at the flying drone in the clear sky.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Children_gathered_outside_a_traditional_thatched-roof_house_in_Karamoja_region_while_gazing_at_the_flying_drone_in_the_clear_sky.jpg",
+   "artist": "Sandra Aceng",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/images/drone_drone_018.jpg",
+   "split": "train",
+   "pool_source": "drone/drone_018.jpg",
+   "sha256": "2635fb2f769d41542a69f3c98c86303c48046c6e1fc6dda02bee5b48b1c73171",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 369.91999999999996,
+     "y1": 381.12,
+     "x2": 963.84,
+     "y2": 633.6
+    }
+   ],
+   "source_title": "File:Drone flying in the sky.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Drone_flying_in_the_sky.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Keita.Honda\" title=\"User:Keita.Honda\">Project Kei</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/images/drone_drone_019.jpg",
+   "split": "train",
+   "pool_source": "drone/drone_019.jpg",
+   "sha256": "2a757cd52b51449db381aaf686cda0088136328cdba3b54a3f334ced01232ffb",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 76.8,
+     "y1": 328.02,
+     "x2": 1158.4,
+     "y2": 566.58
+    }
+   ],
+   "source_title": "File:Sky Soldiers test FlyingBasket drone for transporting equipment and injuries (8913242).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Sky_Soldiers_test_FlyingBasket_drone_for_transporting_equipment_and_injuries_(8913242).jpg",
+   "artist": "U.S. Army photo by <a rel=\"nofollow\" class=\"external text\" href=\"https://www.dvidshub.net/portfolio/1215648\">Elena Baladelli</a>",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "train/images/drone_drone_020.jpg",
+   "split": "train",
+   "pool_source": "drone/drone_020.jpg",
+   "sha256": "9f1986e223d4562245734a32058a3dac7c2a33eebdefa26a081d1e008310a7c7",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 401.92,
+     "y1": 287.461,
+     "x2": 860.1600000000001,
+     "y2": 477.68000000000006
+    }
+   ],
+   "source_title": "File:Sky Soldiers test FlyingBasket drone for transporting equipment and injuries (8913243).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Sky_Soldiers_test_FlyingBasket_drone_for_transporting_equipment_and_injuries_(8913243).jpg",
+   "artist": "U.S. Army photo by <a rel=\"nofollow\" class=\"external text\" href=\"https://www.dvidshub.net/portfolio/1215648\">Elena Baladelli</a>",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "train/images/drone_drone_021.jpg",
+   "split": "train",
+   "pool_source": "drone/drone_021.jpg",
+   "sha256": "51804f68adeabc4bd96d45faa003a4cdc3146b0617d4f53800389af7e6d107b2",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 460.79999999999995,
+     "y1": 246.22799999999998,
+     "x2": 793.6,
+     "y2": 345.91200000000003
+    }
+   ],
+   "source_title": "File:Sky Soldiers test FlyingBasket drone for transporting equipment and injuries (8913248).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Sky_Soldiers_test_FlyingBasket_drone_for_transporting_equipment_and_injuries_(8913248).jpg",
+   "artist": "U.S. Army photo by <a rel=\"nofollow\" class=\"external text\" href=\"https://www.dvidshub.net/portfolio/1215648\">Elena Baladelli</a>",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "train/images/drone_drone_022.jpg",
+   "split": "train",
+   "pool_source": "drone/drone_022.jpg",
+   "sha256": "1dd08a32773eab672e1eead6c2c63f053390a16bbae17ba70788370150a09cac",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 128.0,
+     "y1": 170.4,
+     "x2": 1064.96,
+     "y2": 400.44
+    }
+   ],
+   "source_title": "File:Sky Soldiers test FlyingBasket drone for transporting equipment and injuries (8913254).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Sky_Soldiers_test_FlyingBasket_drone_for_transporting_equipment_and_injuries_(8913254).jpg",
+   "artist": "U.S. Army photo by <a rel=\"nofollow\" class=\"external text\" href=\"https://www.dvidshub.net/portfolio/1215648\">Elena Baladelli</a>",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "train/images/drone_drone_023.jpg",
+   "split": "train",
+   "pool_source": "drone/drone_023.jpg",
+   "sha256": "d82a9d53bc8fe035040c2141a52ac29234f50b47c14f02e2b617fb24a515e09a",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 194.56,
+     "y1": 148.422,
+     "x2": 945.92,
+     "y2": 380.438
+    }
+   ],
+   "source_title": "File:Sky Soldiers test FlyingBasket drone for transporting equipment and injuries (8913257).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Sky_Soldiers_test_FlyingBasket_drone_for_transporting_equipment_and_injuries_(8913257).jpg",
+   "artist": "U.S. Army photo by <a rel=\"nofollow\" class=\"external text\" href=\"https://www.dvidshub.net/portfolio/1215648\">Elena Baladelli</a>",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "val/images/drone_drone_024.jpg",
+   "split": "val",
+   "pool_source": "drone/drone_024.jpg",
+   "sha256": "d34551987a159e6babdf8b733b808641f54e5c9507ce697eeade48e7f38fd5da",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 0.0,
+     "y1": 362.525,
+     "x2": 1280.0,
+     "y2": 853.0
+    }
+   ],
+   "source_title": "File:Sky Soldiers test FlyingBasket drone for transporting equipment and injuries (8913258).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Sky_Soldiers_test_FlyingBasket_drone_for_transporting_equipment_and_injuries_(8913258).jpg",
+   "artist": "U.S. Army photo by <a rel=\"nofollow\" class=\"external text\" href=\"https://www.dvidshub.net/portfolio/1215648\">Elena Baladelli</a>",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "val/images/drone_drone_025.jpg",
+   "split": "val",
+   "pool_source": "drone/drone_025.jpg",
+   "sha256": "c0a425d225f764de68be36bafedc549d86eff37fff29fcf9f7b45b8f6f13e8b5",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 113.91999999999999,
+     "y1": 274.666,
+     "x2": 1027.8400000000001,
+     "y2": 578.3340000000001
+    }
+   ],
+   "source_title": "File:Sky Soldiers test FlyingBasket drone for transporting equipment and injuries (8913260).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Sky_Soldiers_test_FlyingBasket_drone_for_transporting_equipment_and_injuries_(8913260).jpg",
+   "artist": "U.S. Army photo by <a rel=\"nofollow\" class=\"external text\" href=\"https://www.dvidshub.net/portfolio/1215648\">Elena Baladelli</a>",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "train/negatives/drone_drone_026.jpg",
+   "split": "negative_train",
+   "pool_source": "drone/drone_026.jpg",
+   "sha256": "5bd8aec0b401ea10c134fb282536f23ced716ea0514b181ca0eda250bd9f74d8",
+   "boxes": [],
+   "source_title": "File:Sky Soldiers test FlyingBasket drone for transporting equipment and injuries (8913311).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Sky_Soldiers_test_FlyingBasket_drone_for_transporting_equipment_and_injuries_(8913311).jpg",
+   "artist": "U.S. Army photo by <a rel=\"nofollow\" class=\"external text\" href=\"https://www.dvidshub.net/portfolio/1215648\">Elena Baladelli</a>",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "val/images/drone_drone_027.jpg",
+   "split": "val",
+   "pool_source": "drone/drone_027.jpg",
+   "sha256": "a129ef8378bde00f1ed502bc566765f37d2564b33bcd8e1f13c416470e5dee72",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 473.6,
+     "y1": 52.824,
+     "x2": 561.92,
+     "y2": 97.98
+    }
+   ],
+   "source_title": "File:Sky Soldiers test FlyingBasket drone for transporting equipment and injuries (8913312).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Sky_Soldiers_test_FlyingBasket_drone_for_transporting_equipment_and_injuries_(8913312).jpg",
+   "artist": "U.S. Army photo by <a rel=\"nofollow\" class=\"external text\" href=\"https://www.dvidshub.net/portfolio/1215648\">Elena Baladelli</a>",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "train/images/drone_drone_028.jpg",
+   "split": "train",
+   "pool_source": "drone/drone_028.jpg",
+   "sha256": "ae2eda545253acf0b643cad2705d55a6325231a05711fb5082fa9c967ffb1301",
+   "boxes": [
+    {
+     "cls": 0,
+     "x1": 494.08000000000004,
+     "y1": 303.834,
+     "x2": 648.96,
+     "y2": 446.136
+    }
+   ],
+   "source_title": "File:Sky Soldiers test FlyingBasket drone for transporting equipment and injuries (8913315).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Sky_Soldiers_test_FlyingBasket_drone_for_transporting_equipment_and_injuries_(8913315).jpg",
+   "artist": "U.S. Army photo by <a rel=\"nofollow\" class=\"external text\" href=\"https://www.dvidshub.net/portfolio/1215648\">Elena Baladelli</a>",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "test/negatives/negative_negative_000.jpg",
+   "split": "negative_test",
+   "pool_source": "negative/negative_000.jpg",
+   "sha256": "7365ff35d6734f5297d21106b35d04401366b71f962eba58150e30d2fef2bebd",
+   "boxes": [],
+   "source_title": "File:Boats on the Mekong with dark clouds and blue sky in the late afternoon in Luang Prabang Laos.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Boats_on_the_Mekong_with_dark_clouds_and_blue_sky_in_the_late_afternoon_in_Luang_Prabang_Laos.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Basile_Morin\" title=\"User:Basile Morin\">Basile Morin</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/negatives/negative_negative_001.jpg",
+   "split": "negative_test",
+   "pool_source": "negative/negative_001.jpg",
+   "sha256": "7786303d6afde24bddedc637b07ddcbb72b4fc552762aa8974e5e322eb82bea8",
+   "boxes": [],
+   "source_title": "File:Cirrus uncinus clouds in the morning sky.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Cirrus_uncinus_clouds_in_the_morning_sky.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:ADARSHluck\" title=\"User:ADARSHluck\">ADARSHluck</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/negatives/negative_negative_002.jpg",
+   "split": "negative_test",
+   "pool_source": "negative/negative_002.jpg",
+   "sha256": "cf409c96b2638a725142a9a38501051c266b78a57b0da1264c8fbc4dadd319cd",
+   "boxes": [],
+   "source_title": "File:Clouds and blue sky in Russia. IMG 026.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Clouds_and_blue_sky_in_Russia._IMG_026.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Knopik-som\" title=\"User:Knopik-som\">Dmitry Makeev</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/negatives/negative_negative_003.jpg",
+   "split": "negative_test",
+   "pool_source": "negative/negative_003.jpg",
+   "sha256": "98e3108926cc50483e29425ed043f4d12d6f1b6ffcc190eea8906b5e3feb447a",
+   "boxes": [],
+   "source_title": "File:Clouds and blue sky in Russia. IMG 029.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Clouds_and_blue_sky_in_Russia._IMG_029.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Knopik-som\" title=\"User:Knopik-som\">Dmitry Makeev</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/negatives/negative_negative_004.jpg",
+   "split": "negative_test",
+   "pool_source": "negative/negative_004.jpg",
+   "sha256": "fffcc57c317ac88c8e4ef21bf74c816d9562afcd734ec9298bd5f907baf7f436",
+   "boxes": [],
+   "source_title": "File:Clouds and blue sky in Russia. IMG 110.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Clouds_and_blue_sky_in_Russia._IMG_110.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Knopik-som\" title=\"User:Knopik-som\">Dmitry Makeev</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/negatives/negative_negative_005.jpg",
+   "split": "negative_test",
+   "pool_source": "negative/negative_005.jpg",
+   "sha256": "8d1fbfd13a84db5e9e8aabffa6cd66ad9fa81427de702d897993cafe4ab6d00f",
+   "boxes": [],
+   "source_title": "File:Clouds and blue sky in Russia. IMG 115.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Clouds_and_blue_sky_in_Russia._IMG_115.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Knopik-som\" title=\"User:Knopik-som\">Dmitry Makeev</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/negatives/negative_negative_006.jpg",
+   "split": "negative_test",
+   "pool_source": "negative/negative_006.jpg",
+   "sha256": "cabd3edad0f68ffaf4b93ea6a4816ba64916473c5c2ac6f04075e5acebd261ca",
+   "boxes": [],
+   "source_title": "File:Colorful clouds and blue sky with water reflection of an island hosting trees at sunrise in Si Phan Don, Laos.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Colorful_clouds_and_blue_sky_with_water_reflection_of_an_island_hosting_trees_at_sunrise_in_Si_Phan_Don,_Laos.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Basile_Morin\" title=\"User:Basile Morin\">Basile Morin</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/negatives/negative_negative_007.jpg",
+   "split": "negative_test",
+   "pool_source": "negative/negative_007.jpg",
+   "sha256": "b6b9f2b4b721adc543569e31f6ecb1ccf587eaba073087cbe18d7a8508dea424",
+   "boxes": [],
+   "source_title": "File:Colorful sky with orange and pink clouds reflecting in the water of a paddy field at dusk in Don Det Laos.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Colorful_sky_with_orange_and_pink_clouds_reflecting_in_the_water_of_a_paddy_field_at_dusk_in_Don_Det_Laos.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Basile_Morin\" title=\"User:Basile Morin\">Basile Morin</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/negatives/negative_negative_008.jpg",
+   "split": "negative_test",
+   "pool_source": "negative/negative_008.jpg",
+   "sha256": "3937b3319e44bcc5b57b6538e30135b83e2969da2e890c75080a4fca64930613",
+   "boxes": [],
+   "source_title": "File:Colorful sky with orange clouds reflecting in the water of a paddy field, at sunset, Vang Vieng, Laos.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Colorful_sky_with_orange_clouds_reflecting_in_the_water_of_a_paddy_field,_at_sunset,_Vang_Vieng,_Laos.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Basile_Morin\" title=\"User:Basile Morin\">Basile Morin</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/negatives/negative_negative_009.jpg",
+   "split": "negative_test",
+   "pool_source": "negative/negative_009.jpg",
+   "sha256": "7ff9b074c135dd15ad9fd07e6e019e37cf1bcf87ea8049892c91832d200863fd",
+   "boxes": [],
+   "source_title": "File:Colorful sky with pink and blue clouds reflecting in the water of a paddy field at dusk in Don Det Laos.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Colorful_sky_with_pink_and_blue_clouds_reflecting_in_the_water_of_a_paddy_field_at_dusk_in_Don_Det_Laos.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Basile_Morin\" title=\"User:Basile Morin\">Basile Morin</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/negatives/negative_negative_010.jpg",
+   "split": "negative_test",
+   "pool_source": "negative/negative_010.jpg",
+   "sha256": "15333c21a5c514d43e6c6a595dedec4d8583c4a35adfb482666b0ae4c25dcbe5",
+   "boxes": [],
+   "source_title": "File:Colorful sky with pink clouds reflecting in the water of a paddy field and mountains at dusk Vang Vieng Laos.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Colorful_sky_with_pink_clouds_reflecting_in_the_water_of_a_paddy_field_and_mountains_at_dusk_Vang_Vieng_Laos.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Basile_Morin\" title=\"User:Basile Morin\">Basile Morin</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "test/negatives/negative_negative_011.jpg",
+   "split": "negative_test",
+   "pool_source": "negative/negative_011.jpg",
+   "sha256": "48331e606d6f08149ada779fad916a5deeda8e395b67640abb0cebd88e18e4a1",
+   "boxes": [],
+   "source_title": "File:Field, corn, Liechtenstein, Mountains, Alps, Vaduz, sky, clouds, landscape.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Field,_corn,_Liechtenstein,_Mountains,_Alps,_Vaduz,_sky,_clouds,_landscape.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Paranoid\" title=\"User:Paranoid\">Paranoid</a>",
+   "license": "Public domain",
+   "license_url": ""
+  },
+  {
+   "file": "train/negatives/negative_negative_012.jpg",
+   "split": "negative_train",
+   "pool_source": "negative/negative_012.jpg",
+   "sha256": "84d5ca7439b7e2d65c06ccf0a6ed3b3b7b3f34b93c87d84c44546fe5c49cfa89",
+   "boxes": [],
+   "source_title": "File:Leaning trees over the grassy hillock of Nodong-ri tombs clouds and blue sky in Gyeongju South Korea.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Leaning_trees_over_the_grassy_hillock_of_Nodong-ri_tombs_clouds_and_blue_sky_in_Gyeongju_South_Korea.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Basile_Morin\" title=\"User:Basile Morin\">Basile Morin</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/negatives/negative_negative_013.jpg",
+   "split": "negative_train",
+   "pool_source": "negative/negative_013.jpg",
+   "sha256": "6224048e94a23bf512c078a7fca86276d89de06511a5a2769a6131c95c75803f",
+   "boxes": [],
+   "source_title": "File:Li Phi falls at dusk with colorful sky and clouds in Don Khon Laos.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Li_Phi_falls_at_dusk_with_colorful_sky_and_clouds_in_Don_Khon_Laos.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Basile_Morin\" title=\"User:Basile Morin\">Basile Morin</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/negatives/negative_negative_014.jpg",
+   "split": "negative_train",
+   "pool_source": "negative/negative_014.jpg",
+   "sha256": "fbf55478a24007b8f57027793c17918473c6570288d9050e6708929402f1852f",
+   "boxes": [],
+   "source_title": "File:Beskid Wyspowy - panorama z Jaworzynki.JPG",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Beskid_Wyspowy_-_panorama_z_Jaworzynki.JPG",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Pudelek\" title=\"User:Pudelek\">Pudelek</a> (Marcin Szala)",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+   "file": "train/negatives/negative_negative_015.jpg",
+   "split": "negative_train",
+   "pool_source": "negative/negative_015.jpg",
+   "sha256": "e2047a38ffd710259dc103f664fcf462a2942dfbf8dec4b2156169ebb635808e",
+   "boxes": [],
+   "source_title": "File:Blue Mountains National Park (AU), Three Sisters -- 2019 -- 1987-9.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Blue_Mountains_National_Park_(AU),_Three_Sisters_--_2019_--_1987-9.jpg",
+   "artist": "<bdi><a href=\"https://www.wikidata.org/wiki/Q34788025\" class=\"extiw\" title=\"d:Q34788025\"><span title=\"German photographer and mathematician\">Dietmar Rabich</span></a></bdi>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/negatives/negative_negative_016.jpg",
+   "split": "negative_train",
+   "pool_source": "negative/negative_016.jpg",
+   "sha256": "c845386937165bdf1e2376a874e6ad4f284782a575e72b67ae2c47e74c032101",
+   "boxes": [],
+   "source_title": "File:Mallnitz Hagener H\u00fctte Panorama NO 01.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Mallnitz_Hagener_H%C3%BCtte_Panorama_NO_01.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Uoaei1\" title=\"User:Uoaei1\">Uoaei1</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/negatives/negative_negative_017.jpg",
+   "split": "negative_train",
+   "pool_source": "negative/negative_017.jpg",
+   "sha256": "fec924286da7d5ca9ed5558568da946c75f301f02e5d261e060130a927121a97",
+   "boxes": [],
+   "source_title": "File:Mountain massif of Fj\u00f8lhaugen at Knutevika in Senja, Troms, Norway, 2015 September.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Mountain_massif_of_Fj%C3%B8lhaugen_at_Knutevika_in_Senja,_Troms,_Norway,_2015_September.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Ximonic\" title=\"User:Ximonic\">Ximonic</a> (Simo R\u00e4s\u00e4nen)",
+   "license": "CC BY-SA 3.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0"
+  },
+  {
+   "file": "train/negatives/negative_negative_018.jpg",
+   "split": "negative_train",
+   "pool_source": "negative/negative_018.jpg",
+   "sha256": "1d1bc2371c9ed3ea9b441d84d1d57669c0c1341bdde8ef7e742b2ecbb0a76775",
+   "boxes": [],
+   "source_title": "File:Mountains in snow, Mountain lake, Chola Valley, Nepal, Himalayas.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Mountains_in_snow,_Mountain_lake,_Chola_Valley,_Nepal,_Himalayas.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Argenberg\" title=\"User:Argenberg\">Vyacheslav Argenberg</a>",
+   "license": "CC BY 4.0",
+   "license_url": "https://creativecommons.org/licenses/by/4.0"
+  },
+  {
+   "file": "train/negatives/negative_negative_019.jpg",
+   "split": "negative_train",
+   "pool_source": "negative/negative_019.jpg",
+   "sha256": "e96b21570f1dbbfb5f4f80c66838d25cda665f257e31064d90de37d6b756c010",
+   "boxes": [],
+   "source_title": "File:Oberfallenberg Rheintal Panorama 3.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Oberfallenberg_Rheintal_Panorama_3.jpg",
+   "artist": "Feel free to use my photos, but please mention me as the author and if you want send me a  <a class=\"external text\" data-mw-original-href=\"http://commons.wikimedia.org/w/index.php?title=User_talk:B\u00f6hr",
+   "license": "CC BY-SA 3.0 at",
+   "license_url": "https://creativecommons.org/licenses/by-sa/3.0/at/deed.en"
+  },
+  {
+   "file": "train/negatives/negative_negative_020.jpg",
+   "split": "negative_train",
+   "pool_source": "negative/negative_020.jpg",
+   "sha256": "732ef09cab29fa2c2231f9e39d7f6d19855f34e9177fdb31c783110365e24ddd",
+   "boxes": [],
+   "source_title": "File:Panorama of Himalayas from Ranikhet, Uttarakhand, India.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Panorama_of_Himalayas_from_Ranikhet,_Uttarakhand,_India.jpg",
+   "artist": "<ul><li><b>Original: </b> <a href=\"//commons.wikimedia.org/wiki/User:Harshit_SR\" title=\"User:Harshit SR\">Harshit SR</a></li>\n<li><small style=\"font-size:85%;\"><b>Derivative work: </b> <a href=\"//commo",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/negatives/negative_negative_021.jpg",
+   "split": "negative_train",
+   "pool_source": "negative/negative_021.jpg",
+   "sha256": "819bc2e559c6b56cd3bc2b49c4a96baeeae9ff11858692be8479122538d07519",
+   "boxes": [],
+   "source_title": "File:Panorama of the mountains south of Zermatt.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Panorama_of_the_mountains_south_of_Zermatt.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Carsten_Steger\" title=\"User:Carsten Steger\">Carsten Steger</a>",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/negatives/negative_negative_022.jpg",
+   "split": "negative_train",
+   "pool_source": "negative/negative_022.jpg",
+   "sha256": "b0785749132745279ac48662943685c5577a137d084f0c3180213178be0bdb47",
+   "boxes": [],
+   "source_title": "File:Tasman Lake panorama (03-05-06-07).jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Tasman_Lake_panorama_(03-05-06-07).jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/wiki/User:Tournasol7\" title=\"User:Tournasol7\">Krzysztof Golik</a>, panorama merge and fix <a href=\"//commons.wikimedia.org/wiki/User:W.carter\" title=\"User:W.carter\">Ca",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  {
+   "file": "train/negatives/negative_negative_023.jpg",
+   "split": "negative_train",
+   "pool_source": "negative/negative_023.jpg",
+   "sha256": "2bbf9f32d66d6d516c05792bc5c834a039dd024e4499a78acd2bee7e6b82da2e",
+   "boxes": [],
+   "source_title": "File:Tatry - panorama z Polskiego Spiszu.jpg",
+   "source_page": "https://commons.wikimedia.org/wiki/File:Tatry_-_panorama_z_Polskiego_Spiszu.jpg",
+   "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Qvidemus&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Qvidemus (page does not exist)\">Qvidemus</a>",
+   "license": "CC BY 3.0",
+   "license_url": "https://creativecommons.org/licenses/by/3.0"
+  }
+ ],
+ "counts": {
+  "test": 46,
+  "boxes:aircraft:test": 12,
+  "train": 47,
+  "boxes:aircraft:train": 13,
+  "val": 12,
+  "boxes:aircraft:val": 3,
+  "boxes:balloon:test": 16,
+  "negative_train": 14,
+  "negative_test": 15,
+  "boxes:balloon:train": 89,
+  "boxes:balloon:val": 7,
+  "boxes:bird:test": 22,
+  "boxes:bird:train": 13,
+  "boxes:bird:val": 4,
+  "boxes:drone:test": 14,
+  "boxes:drone:train": 12,
+  "boxes:drone:val": 3
+ }
+}

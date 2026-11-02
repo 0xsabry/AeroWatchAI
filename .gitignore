@@ -44,6 +44,10 @@ dataset_check_output.txt
 # ==============================================================================
 data/
 !data/README.md
+# Phase 5: the license-verified dataset is a tracked deliverable —
+# its disappearance is exactly how the original training data was lost.
+!data/verified_v1/
+!data/verified_v1/**
 runs/train/
 runs/detect/
 runs/predict/

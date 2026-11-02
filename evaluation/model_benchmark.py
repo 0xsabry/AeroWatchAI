@@ -62,14 +62,26 @@ IOU_THRESHOLDS = [0.5 + 0.05 * i for i in range(10)]
 OP_IOU = 0.5
 
 
-def load_gt() -> list[dict]:
-    """Ground truth from the artifact label files (YOLO normalised xywh)."""
+def load_gt(dataset_dir: Path | None = None) -> list[dict]:
+    """Ground truth from YOLO label files (normalised xywh).
+
+    Default: the Phase 2 artifact set (tests/artifacts). With
+    ``dataset_dir`` (Phase 5): <dir>/images/*.jpg + <dir>/labels/*.txt
+    and optional <dir>/negatives/*.jpg (no labels expected).
+    """
     from PIL import Image
 
     items = []
-    img_dir = PROJECT_ROOT / "tests" / "artifacts" / "images"
-    for label in sorted(img_dir.glob("*.txt")):
-        img = label.with_suffix(".jpg")
+    if dataset_dir is not None:
+        img_dir = dataset_dir / "images"
+        lbl_dir = dataset_dir / "labels"
+        neg_dir = dataset_dir / "negatives"
+    else:
+        img_dir = PROJECT_ROOT / "tests" / "artifacts" / "images"
+        lbl_dir = img_dir
+        neg_dir = PROJECT_ROOT / "tests" / "artifacts" / "negative_cases"
+    for label in sorted(lbl_dir.glob("*.txt")):
+        img = img_dir / (label.stem + ".jpg")
         if not img.exists():
             continue
         with Image.open(img) as im:
@@ -94,7 +106,6 @@ def load_gt() -> list[dict]:
                 }
             )
         items.append({"image": str(img), "w": w, "h": h, "gt": gts})
-    neg_dir = PROJECT_ROOT / "tests" / "artifacts" / "negative_cases"
     for img in sorted(neg_dir.glob("*.jpg")):
         with Image.open(img) as im:
             w, h = im.size
@@ -317,8 +328,9 @@ def run_benchmark(
     op_conf: float = 0.25,
     canonical_dedup: bool = False,
     backend: str = "pytorch",
+    dataset_dir: str | None = None,
 ) -> dict:
-    dataset = load_gt()
+    dataset = load_gt(Path(dataset_dir) if dataset_dir else None)
     mm = ModelManager()
     t0 = time.perf_counter()
     if backend == "onnxruntime":
@@ -412,12 +424,14 @@ def main() -> None:
     ap.add_argument("--op-conf", type=float, default=0.25)
     ap.add_argument("--canonical-dedup", action="store_true")
     ap.add_argument("--backend", choices=["pytorch", "onnxruntime"], default="pytorch")
+    ap.add_argument("--dataset-dir", default=None,
+                    help="External dataset dir (images/ + labels/ + negatives/); default: tests/artifacts")
     ap.add_argument("--out", default=None)
     args = ap.parse_args()
 
     result = run_benchmark(
         args.weights, args.imgsz, args.nms_iou, args.op_conf, args.canonical_dedup,
-        backend=args.backend,
+        backend=args.backend, dataset_dir=args.dataset_dir,
     )
     suffix = ("_dedup" if args.canonical_dedup else "") + ("_onnx" if args.backend == "onnxruntime" else "")
     out = args.out or str(

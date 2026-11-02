@@ -231,6 +231,10 @@ def run_audit(phash_threshold: int = 6) -> dict:
                 )
 
     training_side = PROJECT_ROOT / "data"
+    # Phase 5: data/ now exists but contains ONLY the license-verified
+    # verified_v1 set. The original builders' datasets (real_aerial_*)
+    # remain absent — keep the two facts separate.
+    original_training = sorted(training_side.glob("real_aerial_*")) if training_side.exists() else []
     return {
         "images_scanned": len(records),
         "unreadable": [r["path"] for r in records if "error" in r],
@@ -244,13 +248,18 @@ def run_audit(phash_threshold: int = 6) -> dict:
         "manifest": audit_manifest(),
         "training_side": {
             "data_dir_present": training_side.exists(),
+            "original_training_data_present": bool(original_training),
             "note": (
-                "Training datasets (data/real_aerial_*) are gitignored and "
-                "absent from this repository, so direct train-vs-eval image "
-                "comparison is IMPOSSIBLE from the repo alone. Overlap can "
-                "only be assessed at source level: the builders pull from "
-                "the same Hugging Face datasets that supplied these "
-                "evaluation artifacts (see docs/DATASET_PROVENANCE.md)."
+                "The original training datasets (data/real_aerial_*) are "
+                "gitignored and absent from this repository, so direct "
+                "train-vs-eval image comparison against them is IMPOSSIBLE "
+                "from the repo alone. Overlap can only be assessed at "
+                "source level: the builders pull from the same Hugging "
+                "Face datasets that supplied these evaluation artifacts "
+                "(see docs/DATASET_PROVENANCE.md). Since Phase 5, data/ "
+                "contains only the license-verified verified_v1 dataset, "
+                "which was hash-checked to have zero overlap with these "
+                "artifacts (tests/test_verified_dataset.py)."
             ),
         },
         "records": records,
