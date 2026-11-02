@@ -53,6 +53,7 @@ runs/detect/
 runs/predict/
 runs/interceptor_runs/
 runs/history/
+release_validation/
 
 # ==============================================================================
 # IDE, OS & Streamlit Local Secrets

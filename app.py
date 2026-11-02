@@ -1293,7 +1293,10 @@ def _checkpoint_info():
     name = Path(path).name if path else ""
     sha = ""
     try:
-        sha = mm.checkpoint_sha256() or ""
+        # ModelManager exposes checkpoint_sha256 as a property
+        # (Optional[str]); accept a method too, defensively.
+        _val = mm.checkpoint_sha256
+        sha = (_val() if callable(_val) else _val) or ""
     except Exception:
         sha = ""
     backend = ""

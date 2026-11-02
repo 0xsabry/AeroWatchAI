@@ -41,6 +41,15 @@ evidence: `docs/LICENSE_AUDIT.md` and `docs/DATASET_PROVENANCE.md`.
 - Whether v7's training data included material that restricts the
   checkpoint itself.
 
+## Final decision matrix (Phase 11)
+
+| Route | Code distribution | Weight distribution | Commercial use | Blocking uncertainty |
+|---|---|---|---|---|
+| A. Personal/research | None (no distribution) | None | No | None — available today |
+| B. AGPL compliance | Yes, under AGPL-3.0 copyleft | Only as AGPL/counsel determines | Constrained by copyleft | Whether AGPL reaches trained weights; v7 dataset rights |
+| C. Ultralytics Enterprise | Per licence terms | Per licence terms | Yes, for covered use | v7 training-data provenance remains unverified |
+| D. Clean-room rebuild | Yes (verified inputs only) | Yes (verified-data model) | Yes | None on inputs; model currently weaker than v7 |
+
 ## Recommendation on record (unchanged from Phase 3)
 
 Remain on **Route A** until a distribution need is real; if

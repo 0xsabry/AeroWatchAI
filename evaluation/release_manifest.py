@@ -59,6 +59,24 @@ def build(test_summary: str) -> dict:
         "optional_backend": "onnx (opt-in)",
         "default_checkpoint": "weights/aerowatch_v7_balanced.pt",
         "test_summary": test_summary,
+        "release_status": {
+            "technical_verification": "TECHNICALLY VERIFIED",
+            "owner_validation": "OWNER VALIDATION PENDING",
+            "distribution": "DISTRIBUTION NOT CLEARED",
+            "hardware_verification": (
+                "NOT VERIFIED — RTX 3050 benchmark is an owner-side "
+                "run (evaluation/hardware_benchmark.py)"),
+            "camera_verification": (
+                "NOT VERIFIED — no physical camera in the development "
+                "environment (evaluation/camera_check.py --model)"),
+            "licensing": (
+                "UNRESOLVED — see docs/LICENSING_DECISION.md; LICENSE "
+                "unchanged; no commercial clearance claimed"),
+            "ci_workflow": (
+                "NOT APPLIED — token lacks workflow scope; owner "
+                "copies docs/ci_workflow_phase4.yml to "
+                ".github/workflows/ci.yml"),
+        },
         "known_restrictions": [
             "Licensing unresolved (docs/LICENSING_DECISION.md): "
             "not cleared for commercial distribution; weights are "
