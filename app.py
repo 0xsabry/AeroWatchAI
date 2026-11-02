@@ -1666,7 +1666,7 @@ elif nav_choice == "Autonomous AI Interceptor Missile":
                         )
 
         # ----------------------------------------------------------------------
-        # AUTOMATED 100% MULTI-SCENARIO CERTIFICATION TEST SUITE
+        # MULTI-SCENARIO SIMULATION SUITE (game outcomes, not a certification)
         # ----------------------------------------------------------------------
         st.markdown("<div style='height: 24px;'></div>", unsafe_allow_html=True)
         st.markdown(
@@ -1714,12 +1714,12 @@ elif nav_choice == "Autonomous AI Interceptor Missile":
                         miss_distance_meters=0.0,
                         kinetic_energy_mj=18.5,
                         salvo_mode="Dual-Salvo Interceptors",
-                        summary_message=f"Kinetic intercept confirmed by {interceptor}. 100% Lethal Neutralization.",
+                        summary_message=f"Simulated intercept by {interceptor} (game outcome — not a real-world result or certification).",
                     ))
                 st.session_state.all_cert_results = pre_res
 
-        if st.button("🎯 RE-RUN 100% COMBAT CERTIFICATION SUITE (ALL 5 SCENARIOS)", key="btn_run_all_certifications", use_container_width=True):
-            with st.spinner("Executing batch combat certification across all real warplane & drone scenarios..."):
+        if st.button("🎯 RE-RUN SIMULATION SCENARIO SUITE (ALL 5 SCENARIOS)", key="btn_run_all_certifications", use_container_width=True):
+            with st.spinner("Executing batch simulation across all warplane & drone game scenarios..."):
                 all_results = run_all_scenarios_benchmark(model_manager=mm, output_dir=cert_out_dir)
                 st.session_state.all_cert_results = all_results
 
@@ -1795,9 +1795,9 @@ elif nav_choice == "Autonomous AI Interceptor Missile":
             st.dataframe(df_report, use_container_width=True)
 
             # Video Selector to watch any certified scenario
-            st.markdown("<div style='font-size: 13px; font-weight: 700; color: #FFFFFF; margin-top: 14px; margin-bottom: 6px;'>WATCH CERTIFIED COMBAT INTERCEPTION FOOTAGE:</div>", unsafe_allow_html=True)
+            st.markdown("<div style='font-size: 13px; font-weight: 700; color: #FFFFFF; margin-top: 14px; margin-bottom: 6px;'>WATCH SIMULATED INTERCEPTION FOOTAGE:</div>", unsafe_allow_html=True)
             chosen_view_name = st.selectbox(
-                "Select Certified Mission to Playback",
+                "Select Simulated Mission to Playback",
                 [r.scenario_name for r in results_list],
                 key="select_cert_view",
             )

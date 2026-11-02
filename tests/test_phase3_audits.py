@@ -109,7 +109,10 @@ def test_no_guaranteed_outcome_claims_in_user_facing_code(rel):
     text = (ROOT / rel).read_text()
     for banned in ("CERTIFIED 100% Pk", "• 100% Pk", "[100% Pk]",
                    "100.0% Pk", "neutralization is guaranteed",
-                   "Guaranteed Evasion Intercept"):
+                   "Guaranteed Evasion Intercept",
+                   # Phase 6: fabricated pre-populated "certification" results
+                   "100% Lethal Neutralization", "CERTIFIED COMBAT",
+                   "100% COMBAT CERTIFICATION"):
         assert banned not in text, f"{rel} still contains claim: {banned}"
 
 

@@ -436,7 +436,7 @@ def run_video_missile_interception(
         miss_distance_meters=0.0 if is_intercepted else 14.0,
         kinetic_energy_mj=18.5,
         salvo_mode="Dual-Salvo Interceptors" if salvo_mode == "salvo" else "Single Sprint Interceptor",
-        summary_message=f"Kinetic intercept confirmed by {intercepting_missile}. 100% Lethal Neutralization.",
+        summary_message=f"Simulated intercept by {intercepting_missile} (game outcome — not a real-world result or certification).",
     )
 
 

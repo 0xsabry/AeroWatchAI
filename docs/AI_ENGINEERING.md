@@ -3,6 +3,13 @@
 What the AI in this repository actually is, what was verified, what was
 broken, and what changed in the `feat/ai-safety-reliability` work.
 
+> **Phase 6 update (2026-11-02):** the "no LLM" finding below was
+> re-verified exhaustively and is now enforced by
+> `tests/test_llm_boundary.py`. See
+> [LLM_PROMPT_AUDIT_PHASE6.md](LLM_PROMPT_AUDIT_PHASE6.md) for the full
+> audit, the design-only architecture/governance/schemas any future LLM
+> layer would require, and the list of uses an LLM must never have here.
+
 ## 1. The actual AI architecture (as found)
 
 There is **no LLM, no prompt layer, and no external AI API** in this
