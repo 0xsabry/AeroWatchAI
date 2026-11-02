@@ -1,0 +1,95 @@
+name: AeroWatch AI — Continuous Integration
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    name: Build & Verify C2 Suite
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
+
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libgl1 libglib2.0-0
+
+      # Phase 4: install the *locked* dependency set (requirements-lock.txt
+      # carries the PyTorch CPU index for the +cpu torch builds). This
+      # replaces the previous unpinned install, which could resolve
+      # different versions on every run.
+      - name: Install Python Dependencies (locked)
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-lock.txt
+          pip install --upgrade setuptools
+          pip install flake8==7.5.0 pip-audit==2.10.1
+
+      - name: Lockfile Consistency Check
+        run: |
+          pip check
+          python -c "import importlib.metadata as m; print('ultralytics', m.version('ultralytics')); print('torch', m.version('torch'))"
+
+      # Fail the build on any known vulnerability in the installed
+      # (locked) environment. No ignore list: a finding must be fixed
+      # by bumping the lock, not hidden here.
+      - name: Dependency Vulnerability Scan (pip-audit)
+        run: |
+          pip-audit --progress-spinner off
+
+      # The committed license inventory must cover the locked runtime
+      # set and must record the AGPL-3.0 position of ultralytics.
+      - name: License Inventory Validation
+        run: |
+          python evaluation/license_inventory.py --out /tmp/licenses_inventory_ci.json
+          python - << 'PYEOF'
+          import json
+          inv = json.load(open('/tmp/licenses_inventory_ci.json'))
+          names = {d['name'].lower().replace('_', '-') for d in inv['distributions']}
+          required = {'ultralytics', 'streamlit', 'opencv-python', 'pillow', 'pyyaml', 'pandas', 'imageio', 'imageio-ffmpeg'}
+          missing = required - names
+          assert not missing, f'license inventory missing: {missing}'
+          ultra = next(d for d in inv['distributions'] if d['name'] == 'ultralytics')
+          assert 'AGPL' in ultra['license_declared'], 'ultralytics AGPL not recorded'
+          print('license inventory OK:', inv['count'], 'distributions')
+          PYEOF
+
+      - name: Syntax & Lint Inspection
+        run: |
+          # Stop the build if there are Python syntax errors or undefined names in core files
+          flake8 app.py ai_safety.py onnx_backend.py model_manager.py interceptor_sim.py video_interceptor_testbench.py camera_manager.py video_processor.py diagnostics.py predict_image.py evaluate_videos.py --count --select=E9,F63,F7,F82 --show-source --statistics
+
+      - name: Verify Neural Model Imports & Interceptor Sim
+        run: |
+          python -c "import interceptor_sim; import video_interceptor_testbench; import model_manager; import onnx_backend; print('ALL CORE MODULES IMPORTED SUCCESSFULLY')"
+
+      # Includes the Phase 1 safety tests, Phase 3 audit tests and the
+      # Phase 4 ONNX parity gates (which use the committed .onnx export).
+      - name: Run Test Suite
+        env:
+          PYTHONPATH: .
+        run: |
+          python -m pytest tests/ -v -k "not test_physical_webcam"
+
+      - name: AI Contract Evaluation
+        env:
+          PYTHONPATH: .
+        run: |
+          python evaluation/run_evaluation.py
