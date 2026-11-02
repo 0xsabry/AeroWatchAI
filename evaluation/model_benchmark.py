@@ -316,11 +316,15 @@ def run_benchmark(
     nms_iou: float = 0.7,
     op_conf: float = 0.25,
     canonical_dedup: bool = False,
+    backend: str = "pytorch",
 ) -> dict:
     dataset = load_gt()
     mm = ModelManager()
     t0 = time.perf_counter()
-    mm.load_model(weights, device="cpu")
+    if backend == "onnxruntime":
+        mm.load_onnx_model(weights, device="cpu")
+    else:
+        mm.load_model(weights, device="cpu")
     load_s = time.perf_counter() - t0
 
     preds_by_image: list[list[dict]] = []
@@ -332,7 +336,7 @@ def run_benchmark(
         img = np.asarray(Image.open(d["image"]).convert("RGB"))[:, :, ::-1]
         start = time.perf_counter()
         res = mm.model.predict(
-            img, conf=0.001, iou=nms_iou, imgsz=imgsz, device="cpu", verbose=False
+            img, conf=0.001, iou=nms_iou, imgsz=imgsz, verbose=False
         )[0]
         latencies.append(time.perf_counter() - start)
         preds = []
@@ -365,6 +369,7 @@ def run_benchmark(
     warm = latencies[3:] or latencies
     result = {
         "weights": str(weights),
+        "backend": backend,
         "checkpoint_sha256": mm.checkpoint_sha256,
         "declared_classes": getattr(mm, "raw_names", None)
         or (mm.model.names if mm.model is not None else None),
@@ -406,13 +411,15 @@ def main() -> None:
     ap.add_argument("--nms-iou", type=float, default=0.7)
     ap.add_argument("--op-conf", type=float, default=0.25)
     ap.add_argument("--canonical-dedup", action="store_true")
+    ap.add_argument("--backend", choices=["pytorch", "onnxruntime"], default="pytorch")
     ap.add_argument("--out", default=None)
     args = ap.parse_args()
 
     result = run_benchmark(
-        args.weights, args.imgsz, args.nms_iou, args.op_conf, args.canonical_dedup
+        args.weights, args.imgsz, args.nms_iou, args.op_conf, args.canonical_dedup,
+        backend=args.backend,
     )
-    suffix = "_dedup" if args.canonical_dedup else ""
+    suffix = ("_dedup" if args.canonical_dedup else "") + ("_onnx" if args.backend == "onnxruntime" else "")
     out = args.out or str(
         PROJECT_ROOT / "evaluation" / "results" / f"bench_{Path(args.weights).stem}_s{args.imgsz}_iou{args.nms_iou}{suffix}.json"
     )

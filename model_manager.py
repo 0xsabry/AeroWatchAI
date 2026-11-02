@@ -253,6 +253,7 @@ class ModelManager:
         self._checkpoint_sha256 = digest
         self._device = resolved_device
         self._is_half = use_half
+        self._backend = "pytorch"
         self._metadata = CheckpointMetadata(
             path=path,
             raw_names=raw_names,
@@ -262,6 +263,73 @@ class ModelManager:
         )
 
         return self._model
+
+    def load_onnx_model(
+        self,
+        onnx_path: Union[str, Path],
+        device: str = "cpu",
+        imgsz: int = 640,
+    ):
+        """Load an ONNX export via ONNX Runtime (Phase 4, opt-in).
+
+        The ONNX backend avoids pickle deserialization entirely. It is
+        NOT the default: the PyTorch backend remains the production
+        path until parity gates (tests/test_onnx_parity.py) and an
+        explicit owner decision say otherwise. Detections produced by
+        either backend pass through the identical ai_safety contract in
+        filter_airspace_detections — the backend only supplies raw
+        candidate boxes.
+
+        Returns the OnnxYoloWrapper. Raises RuntimeError with install
+        guidance when onnxruntime is missing.
+        """
+        import hashlib
+
+        from onnx_backend import OnnxYoloWrapper
+
+        path = Path(onnx_path).resolve()
+        if not path.exists():
+            raise FileNotFoundError(f"Cannot load missing ONNX model: {path}")
+        if path.suffix.lower() != ".onnx":
+            raise ValueError(f"ONNX backend requires a .onnx file, got: {path.name}")
+        size = path.stat().st_size
+        if size < 1000 or size > 2 * 1024 * 1024 * 1024:
+            raise ValueError(f"ONNX model size out of expected window ({size} bytes): {path.name}")
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+
+        wrapper = OnnxYoloWrapper(path, device=device)
+        raw_names: Dict[int, str] = dict(wrapper.names)
+        if len(raw_names) == 80 and raw_names.get(0) == "person":
+            m_type = ModelType.PRETRAINED_COCO
+        elif any("drone" in n.lower() for n in raw_names.values()):
+            m_type = ModelType.CUSTOM_CIVILIAN
+        else:
+            m_type = ModelType.UNKNOWN
+
+        # Warm-up through the real predict path.
+        dummy_input = np.zeros((imgsz, imgsz, 3), dtype=np.uint8)
+        wrapper.predict(source=dummy_input, imgsz=imgsz, verbose=False)
+
+        self._model = wrapper  # type: ignore[assignment]
+        self._current_path = path
+        self._checkpoint_sha256 = digest
+        self._device = wrapper.device
+        self._is_half = False
+        self._backend = "onnxruntime"
+        self._metadata = CheckpointMetadata(
+            path=path,
+            raw_names=raw_names,
+            model_type=m_type,
+            device=wrapper.device,
+            is_half=False,
+        )
+        logger.info(f"Loaded ONNX model: {path.name} (sha256 {digest[:12]}…, device={wrapper.device})")
+        return wrapper
+
+    @property
+    def backend(self) -> str:
+        """Active inference backend: 'pytorch' (default) or 'onnxruntime'."""
+        return getattr(self, "_backend", "pytorch")
 
     def ensure_model_loaded(self, checkpoint_path: Optional[Union[str, Path]] = None) -> YOLO:
         """Ensures that a valid model is loaded, defaulting to aerowatch_v7_balanced.pt."""
