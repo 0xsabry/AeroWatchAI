@@ -166,7 +166,7 @@ Per-class AP50: **Aircraft 0.785 · Drone 0.537 · Bird 0.515 · Balloon 0.151**
 |---|---|
 | **Technical verification** | ✅ TECHNICALLY VERIFIED — 169 tests, contract evaluation 19/19, real-browser QA, clean-room install |
 | **Owner validation** | ⏳ PENDING — RTX 3050 benchmark, physical-camera run, and first PowerShell execution happen on the owner's machine |
-| **Distribution** | ⛔ NOT CLEARED — licensing unresolved (below) |
+| **Distribution** | ⛔ DISTRIBUTION NOT CLEARED — licensing unresolved (below) |
 
 Known limitations: weak balloon detection, no persistent tracking, small verified dataset, single-user local storage. Release freeze details: [docs/FINAL_RELEASE_GUIDE.md](docs/FINAL_RELEASE_GUIDE.md) · [docs/RELEASE_MANIFEST.json](docs/RELEASE_MANIFEST.json).
 

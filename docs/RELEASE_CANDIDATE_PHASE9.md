@@ -1,5 +1,10 @@
 # AeroWatch AI — Release Candidate Notes (Phase 9, 2026-11-02)
 
+> **Frozen status (Phase 11, authoritative):** TECHNICALLY VERIFIED ·
+> OWNER VALIDATION PENDING · DISTRIBUTION NOT CLEARED — see
+> `docs/RELEASE_MANIFEST.json` and `docs/FINAL_RELEASE_GUIDE.md`.
+> These Phase 9 notes are the historical RC record.
+
 Status: **release candidate for local/internal evaluation. NOT
 cleared for commercial distribution** — the licensing decisions in
 `docs/LICENSE_AUDIT.md` §6 remain open, and the LICENSE file is

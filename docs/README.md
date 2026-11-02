@@ -11,6 +11,7 @@ for reproducibility.
 | Document | What it covers |
 |---|---|
 | [Final Release Guide](FINAL_RELEASE_GUIDE.md) *(authoritative)* | The whole product: install → workflows → history → backup → licensing status |
+| [Owner Finalization Checklist](OWNER_FINALIZATION_CHECKLIST.md) | Every remaining owner action: hardware acceptance, GitHub settings, licensing decision, sign-off |
 | [Windows Guide](WINDOWS_GUIDE.md) | Windows install/launch, CPU & GPU paths, offline mode, troubleshooting |
 | [Release Candidate Notes (Phase 9)](RELEASE_CANDIDATE_PHASE9.md) | RC checklist, storage behaviour, known limitations |
 | [Release Manifest](RELEASE_MANIFEST.json) | Machine-readable freeze record: hashes, versions, three-state status |
