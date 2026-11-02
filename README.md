@@ -270,22 +270,33 @@ demonstration.
 
 The Streamlit dashboard (`app.py`) runs at `http://localhost:8501/`:
 
-1. **Optical Image Analysis:** upload or pick a sample image; detections
+1. **Dashboard:** an overview computed from the local detection
+   history (sessions, detections, class mix, confidence distribution,
+   model/runtime) — empty until you process something; nothing is
+   fabricated.
+2. **Optical Image Analysis:** upload or pick a sample image; detections
    are drawn with posture banners (civilian = non-hostile; drone =
-   operator verification required).
-2. **Interceptor Simulation:** the radar/dogfight game and the video
+   operator verification required), a per-prediction explainability
+   panel, and automatic recording into local history.
+3. **Detection History:** searchable past sessions with filters, human
+   verification marking, retention/deletion controls, and CSV/JSON/
+   Markdown exports (all labelled as unverified predictions). History
+   stores metadata only — never your images or videos.
+4. **Analytics & Reports:** history charts, per-session comparisons,
+   human-review tallies, and the documented benchmark results.
+5. **Interceptor Simulation:** the radar/dogfight game and the video
    testbench described above, both clearly labelled as simulation.
-3. **Real-Time Sensor Stream:** camera frames analysed per frame.
-4. **Video Flight Intelligence:** per-frame detection over video with
+6. **Real-Time Sensor Stream:** camera frames analysed per frame.
+7. **Video Flight Intelligence:** per-frame detection over video with
    bounding-box smoothing and H.264 export. Two bundled presets are
    **AI-generated demonstration videos** (Gemini-generated) and are
    labelled as synthetic footage in the UI — they are not real camera
    recordings.
-5. **Neural Architecture & Weights:** checkpoint inventory and metadata.
-6. **Hardware & Latency Benchmarks:** project-reported pipeline figures
+8. **Neural Architecture & Weights:** checkpoint inventory and metadata.
+9. **Hardware & Latency Benchmarks:** project-reported pipeline figures
    (labelled in the UI as not independently audited).
-7. **System & Device Diagnostics:** local environment and dataset
-   diagnostics.
+10. **System & Device Diagnostics:** local environment and dataset
+    diagnostics.
 
 **Deployment note:** the app has no authentication. Run it locally, or
 internally behind an authenticating proxy/VPN only — see

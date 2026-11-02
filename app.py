@@ -16,6 +16,7 @@ High-Performance Defense & Civilian Airspace Architecture:
 """
 from __future__ import annotations
 
+import json
 import os
 import tempfile
 import time
@@ -41,7 +42,9 @@ from ai_safety import (
 )
 from camera_manager import CameraBackend, CameraManager, CameraState
 from diagnostics import run_full_diagnostics
+from history_store import HistoryStore
 from interceptor_sim import get_interceptor_sim_html
+import reporting
 from model_manager import (
     CANONICAL_CIVILIAN_MAP,
     CANONICAL_COLORS,
@@ -1128,7 +1131,10 @@ with st.sidebar:
         st.session_state.pending_nav = None
 
     nav_options = [
+        "Dashboard",
         "Optical Image Analysis",
+        "Detection History",
+        "Analytics & Reports",
         "Autonomous AI Interceptor Missile",
         "Real-Time Sensor Stream",
         "Video Flight Intelligence",
@@ -1137,9 +1143,9 @@ with st.sidebar:
         "System & Device Diagnostics",
         "Dataset Distribution & Splits",
     ]
-    curr_nav = st.session_state.get("nav_module", "Optical Image Analysis")
+    curr_nav = st.session_state.get("nav_module", "Dashboard")
     if curr_nav not in nav_options:
-        curr_nav = "Optical Image Analysis"
+        curr_nav = "Dashboard"
 
     curr_idx = nav_options.index(curr_nav)
     nav_choice = st.radio(
@@ -1258,9 +1264,370 @@ st.markdown(
 
 
 # ==============================================================================
+# PHASE 8: HISTORY / REPORTING HELPERS + DASHBOARD, HISTORY, ANALYTICS MODULES
+# ==============================================================================
+
+
+@st.cache_resource
+def get_history_store() -> HistoryStore:
+    """One local history database for the whole app (see history_store.py).
+
+    Metadata only: no image/video bytes, no full paths, no operator IDs.
+    """
+    return HistoryStore()
+
+
+def _checkpoint_info():
+    path = st.session_state.get("selected_checkpoint_path", "")
+    name = Path(path).name if path else ""
+    sha = ""
+    try:
+        sha = mm.checkpoint_sha256() or ""
+    except Exception:
+        sha = ""
+    backend = ""
+    try:
+        backend = mm.backend
+    except Exception:
+        backend = ""
+    return name, sha, backend
+
+
+def _page_header(kicker: str, title: str, desc: str) -> None:
+    st.markdown(
+        f"""
+        <div class="c2-section-header">
+            <div class="c2-breadcrumb">{kicker}</div>
+            <h1 class="c2-page-title">{title}</h1>
+            <p class="c2-page-desc">{desc}</p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def _record_session_once(fingerprint: str, kind: str, source_label: str,
+                         rows, frame_w: int = 0, frame_h: int = 0,
+                         class_counts=None, notes: str = "") -> None:
+    """Record a processing session in history, at most once per unique
+    fingerprint (Streamlit reruns must not duplicate history)."""
+    if st.session_state.get("last_history_fingerprint") == fingerprint:
+        return
+    st.session_state.last_history_fingerprint = fingerprint
+    try:
+        store = get_history_store()
+        name, sha, backend = _checkpoint_info()
+        sid = store.start_session(
+            kind=kind, source_label=source_label, checkpoint_name=name,
+            checkpoint_sha256=sha, backend=backend, notes=notes,
+        )
+        if rows:
+            stored = store.add_detections(
+                sid, rows, frame_width=frame_w, frame_height=frame_h)
+        elif class_counts:
+            store.record_class_counts(sid, class_counts)
+            stored = sum(class_counts.values())
+        else:
+            stored = 0
+        st.session_state.hist_recorded_this_session = (
+            st.session_state.get("hist_recorded_this_session", 0) + stored)
+    except Exception:
+        # History is an aid, never a blocker for detection itself.
+        pass
+
+
+if nav_choice == "Dashboard":
+    _page_header(
+        "OVERVIEW // LOCAL OPERATIONS",
+        "Dashboard",
+        "Actual recorded activity from this machine's detection history. "
+        "All detections are unverified model predictions — never confirmed "
+        "threats or identifications.",
+    )
+    _store = get_history_store()
+    if not st.session_state.get("hist_pruned_once"):
+        st.session_state.hist_pruned_once = True
+        try:
+            _store.prune(int(st.session_state.get("hist_retention_days", 30)))
+        except Exception:
+            pass
+    _metrics = reporting.dashboard_metrics(_store)
+    _tot = _metrics["totals"]
+    _name, _sha, _backend = _checkpoint_info()
+
+    st.caption(
+        "This browser session: "
+        f"{st.session_state.get('hist_recorded_this_session', 0)} detections "
+        "recorded since the app was opened. Long-term history below is the "
+        "persistent local record (all sessions on this machine)."
+    )
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("Processing sessions (history)", _tot["sessions"])
+    c2.metric("Stored detections", _tot["stored_detections"])
+    c3.metric("Unverified detections", _tot["unverified_detections"])
+    c4.metric("Detections incl. video aggregates",
+              _tot["total_detections_including_aggregates"])
+
+    if not _metrics["has_data"]:
+        st.info(
+            "📭 **No history yet.** Run an image analysis or a video "
+            "processing job and the results will be recorded here "
+            "automatically. Nothing is uploaded anywhere — history is a "
+            "local database on this machine (metadata only, no images)."
+        )
+    else:
+        col_a, col_b = st.columns(2)
+        with col_a:
+            st.subheader("Detections by class (stored records)")
+            _dist = _metrics["class_distribution"]
+            if _dist:
+                st.bar_chart(pd.DataFrame(
+                    {"class": list(_dist.keys()),
+                     "detections": list(_dist.values())}),
+                    x="class", y="detections")
+            else:
+                st.info("No individual detection rows stored yet "
+                        "(video sessions store aggregate counts).")
+        with col_b:
+            st.subheader("Confidence distribution (detector scores)")
+            _hist = _metrics["confidence_histogram"]
+            st.bar_chart(pd.DataFrame(
+                {"score band": [f"{i / 10:.1f}–{(i + 1) / 10:.1f}"
+                                for i in range(10)],
+                 "detections": _hist}),
+                x="score band", y="detections")
+            st.caption("Detector scores are not certainties and not "
+                       "probabilities of hostility.")
+        st.subheader("Recent processing sessions")
+        _recent = _metrics["recent_sessions"]
+        if _recent:
+            st.dataframe(pd.DataFrame([{
+                "Started (UTC)": s["started_at"], "Kind": s["kind"],
+                "Source": s["source_label"], "Checkpoint": s["checkpoint_name"],
+                "Backend": s["backend"], "Detections": s["detection_count"],
+            } for s in _recent]), use_container_width=True)
+        _by_day = _metrics["detections_by_day"]
+        if _by_day:
+            st.subheader("Detections over time")
+            st.line_chart(pd.DataFrame(
+                {"day": list(_by_day.keys()),
+                 "detections": list(_by_day.values())}),
+                x="day", y="detections")
+
+    st.subheader("Model & runtime")
+    mc1, mc2, mc3 = st.columns(3)
+    mc1.metric("Checkpoint", _name or "(none selected)")
+    mc2.metric("Backend", _backend or "(not loaded)")
+    mc3.metric("Checkpoint SHA-256 (prefix)", (_sha[:12] or "n/a"))
+    st.caption(
+        "System health: if the checkpoint loads and this page renders, "
+        "the local pipeline is operational. Full environment diagnostics "
+        "live under System & Device Diagnostics."
+    )
+
+
+elif nav_choice == "Detection History":
+    _page_header(
+        "RECORDS // LOCAL DATABASE",
+        "Detection History",
+        "A searchable record of past processing sessions and their "
+        "unverified model predictions. This is history, not object "
+        "tracking: records are never linked into real-world tracks.",
+    )
+    _store = get_history_store()
+    _sessions = _store.list_sessions(limit=200)
+    if not _sessions:
+        st.info("📭 **No recorded sessions yet.** Process an image or a "
+                "video and it will appear here.")
+    else:
+        f1, f2, f3, f4 = st.columns(4)
+        with f1:
+            _classes = st.multiselect(
+                "Class filter",
+                ["Drone", "Aircraft", "Bird", "Balloon", "unknown"],
+                default=[])
+        with f2:
+            _conf_range = st.slider("Confidence range", 0.0, 1.0,
+                                    (0.0, 1.0), step=0.05)
+        with f3:
+            _search = st.text_input("Search (class, label, source file)",
+                                    value="")
+        with f4:
+            _session_filter = st.selectbox(
+                "Session", ["All sessions"] + [s.session_id for s in _sessions])
+        _dets = _store.query_detections(
+            classes=_classes or None,
+            min_confidence=_conf_range[0], max_confidence=_conf_range[1],
+            search=_search,
+            session_id=None if _session_filter == "All sessions" else _session_filter,
+            limit=500,
+        )
+        st.caption(f"{len(_dets)} stored detection(s) match "
+                   "(aggregate-only video sessions have no individual rows).")
+        if _dets:
+            st.dataframe(pd.DataFrame([{
+                "ID": d.detection_id, "When (UTC)": d.created_at,
+                "Class": d.display_label or d.canonical_class,
+                "Confidence": round(d.confidence, 3), "Posture": d.posture,
+                "Box": str([round(v) for v in d.box_xyxy]),
+                "Verification": d.verification_status,
+                "Session": d.session_id,
+            } for d in _dets]), use_container_width=True)
+            st.download_button(
+                "⬇️ Export filtered detections (CSV)",
+                data=reporting.detections_to_csv(_dets),
+                file_name="aerowatch_detections_export.csv",
+                mime="text/csv",
+            )
+            with st.expander("Mark a detection's verification status "
+                             "(explicit human review)"):
+                vc1, vc2, vc3 = st.columns(3)
+                _vid = vc1.number_input("Detection ID", min_value=1, step=1)
+                _vstatus = vc2.selectbox(
+                    "Status", ["unverified", "verified", "rejected"])
+                if vc3.button("Apply status"):
+                    try:
+                        _store.set_verification(int(_vid), _vstatus)
+                        st.success(f"Detection {int(_vid)} marked {_vstatus}.")
+                    except Exception as e:
+                        st.error(f"Could not update: {e}")
+        st.subheader("Sessions")
+        st.dataframe(pd.DataFrame([{
+            "Session": s.session_id, "Started (UTC)": s.started_at,
+            "Kind": s.kind, "Source": s.source_label,
+            "Checkpoint": s.checkpoint_name, "Backend": s.backend,
+            "Detections": s.detection_count,
+            "Classes": ", ".join(f"{k}:{v}" for k, v in s.class_counts.items()),
+        } for s in _sessions]), use_container_width=True)
+        _chosen = st.selectbox("Open a session",
+                               [s.session_id for s in _sessions])
+        _sess = _store.get_session(_chosen)
+        if _sess is not None:
+            _srows = _store.session_detections(_chosen)
+            dc1, dc2, dc3 = st.columns(3)
+            dc1.download_button(
+                "⬇️ Session report (Markdown)",
+                data=reporting.session_report_markdown(_sess, _srows),
+                file_name=f"aerowatch_session_{_chosen}.md",
+                mime="text/markdown",
+            )
+            dc2.download_button(
+                "⬇️ Session record (JSON)",
+                data=reporting.session_to_json(_sess, _srows),
+                file_name=f"aerowatch_session_{_chosen}.json",
+                mime="application/json",
+            )
+            dc3.download_button(
+                "⬇️ Full history (JSON)",
+                data=reporting.history_to_json(_store),
+                file_name="aerowatch_history.json",
+                mime="application/json",
+            )
+            with st.expander("⚠️ Delete data"):
+                _confirm = st.checkbox(
+                    f"I understand: delete session {_chosen} permanently")
+                if st.button("Delete this session", disabled=not _confirm):
+                    _store.delete_session(_chosen)
+                    st.success("Session deleted.")
+                    st.rerun()
+                _confirm_all = st.checkbox(
+                    "I understand: delete the ENTIRE history permanently")
+                if st.button("Delete entire history",
+                             disabled=not _confirm_all):
+                    _store.clear_all()
+                    st.success("History cleared.")
+                    st.rerun()
+        with st.expander("Retention settings"):
+            _days = st.number_input(
+                "Keep history for (days)", min_value=1, max_value=3650,
+                value=int(st.session_state.get("hist_retention_days", 30)))
+            st.session_state.hist_retention_days = int(_days)
+            if st.button("Apply retention now (delete older sessions)"):
+                _removed = _store.prune(int(_days))
+                st.success(f"Retention applied: {_removed} session(s) removed.")
+                st.rerun()
+
+
+elif nav_choice == "Analytics & Reports":
+    _page_header(
+        "ANALYTICS // MEASURED, NOT INVENTED",
+        "Analytics & Reports",
+        "Charts computed from your recorded history, plus the project's "
+        "documented evaluation results. Operational history has no ground "
+        "truth, so no precision/recall is calculated from it — model "
+        "performance figures come only from the documented benchmarks.",
+    )
+    _store = get_history_store()
+    _metrics = reporting.dashboard_metrics(_store)
+    if not _metrics["has_data"]:
+        st.info("📭 **No history yet.** Analytics appear here after you "
+                "process images or videos.")
+    else:
+        a1, a2 = st.columns(2)
+        with a1:
+            st.subheader("Class distribution (stored detections)")
+            _dist = _metrics["class_distribution"]
+            if _dist:
+                st.bar_chart(pd.DataFrame(
+                    {"class": list(_dist.keys()),
+                     "detections": list(_dist.values())}),
+                    x="class", y="detections")
+            else:
+                st.info("Only aggregate video counts exist so far.")
+        with a2:
+            st.subheader("Confidence histogram (detector scores)")
+            st.bar_chart(pd.DataFrame(
+                {"score band": [f"{i / 10:.1f}–{(i + 1) / 10:.1f}"
+                                for i in range(10)],
+                 "detections": _metrics["confidence_histogram"]}),
+                x="score band", y="detections")
+        st.subheader("Per-session comparison")
+        _all = _store.list_sessions(limit=50)
+        st.dataframe(pd.DataFrame([{
+            "Session": s.session_id, "Started (UTC)": s.started_at,
+            "Kind": s.kind, "Detections": s.detection_count,
+            "Checkpoint": s.checkpoint_name, "Backend": s.backend,
+        } for s in _all]), use_container_width=True)
+        _reviewed = _store.query_detections(limit=5000)
+        _verified_n = sum(1 for d in _reviewed
+                          if d.verification_status == "verified")
+        _rejected_n = sum(1 for d in _reviewed
+                          if d.verification_status == "rejected")
+        st.caption(
+            f"Human review so far: {_verified_n} detection(s) marked "
+            f"verified, {_rejected_n} marked rejected, out of "
+            f"{len(_reviewed)} stored. Review marks are operator "
+            "judgements recorded in History — not ground-truth labels."
+        )
+    st.subheader("Documented model performance (independent test set)")
+    _bench_path = PROJECT_ROOT / "evaluation" / "results" / "bench_v7_independent_test.json"
+    if _bench_path.exists():
+        try:
+            _bench = json.loads(_bench_path.read_text())
+            _m = _bench.get("metrics", {})
+            _op = _bench.get("operating_point", {}).get("overall", {})
+            b1, b2, b3, b4 = st.columns(4)
+            b1.metric("mAP50", f"{_m.get('map50', 0):.3f}")
+            b2.metric("mAP50-95", f"{_m.get('map50_95', 0):.3f}")
+            b3.metric("Precision @0.25", f"{_op.get('precision', 0):.3f}")
+            b4.metric("Recall @0.25", f"{_op.get('recall', 0):.3f}")
+            st.caption(
+                "Source: evaluation/results/bench_v7_independent_test.json "
+                "(Phase 5, license-verified independent test set, 46 images "
+                "/ 64 ground-truth boxes). Small set — differences under "
+                "~0.05 mAP are noise. Full record: "
+                "docs/VERIFIED_DATASET_PHASE5.md."
+            )
+        except Exception:
+            st.warning("Benchmark artifact exists but could not be parsed.")
+    else:
+        st.info("No benchmark artifact found in evaluation/results/.")
+
+
+# ==============================================================================
 # MODULE 1: OPTICAL IMAGE ANALYSIS
 # ==============================================================================
-if nav_choice == "Optical Image Analysis":
+elif nav_choice == "Optical Image Analysis":
     st.markdown(
         """
         <div class="c2-section-header">
@@ -1274,6 +1641,8 @@ if nav_choice == "Optical Image Analysis":
 
     src_mode = st.radio("Image Source", ["Interactive Benchmark Presets", "Upload Custom Imagery"], horizontal=True)
     img_to_process = None
+    img_source_label = ""
+    img_source_identity = ""
 
     if src_mode == "Upload Custom Imagery":
         uploaded = st.file_uploader("Upload aerial photograph (JPG, PNG, WEBP)", type=["jpg", "png", "jpeg", "webp"])
@@ -1281,6 +1650,8 @@ if nav_choice == "Optical Image Analysis":
             try:
                 validate_upload(uploaded.name, uploaded.size, kind="image")
                 img_to_process = Image.open(uploaded).convert("RGB")
+                img_source_label = uploaded.name
+                img_source_identity = f"upload:{uploaded.name}:{uploaded.size}"
             except DetectionValidationError as e:
                 st.error(f"Upload rejected: {e}")
             except Exception as e:
@@ -1295,6 +1666,8 @@ if nav_choice == "Optical Image Analysis":
         sample_path = PROJECT_ROOT / sample_options[chosen_sample]
         if sample_path.exists():
             img_to_process = Image.open(sample_path).convert("RGB")
+            img_source_label = sample_path.name
+            img_source_identity = f"sample:{sample_path.name}"
         else:
             st.warning(f"Sample {sample_path.name} not found in workspace.")
 
@@ -1405,6 +1778,37 @@ if nav_choice == "Optical Image Analysis":
                     (det, assess_posture(det["internal_name"], det["conf"], uncertainty_threshold=uncertain_thresh))
                     for det in verified_dets
                 ]
+                # Phase 8: record this analysis in local history (once per
+                # unique image + settings; reruns must not duplicate it).
+                _record_session_once(
+                    HistoryStore.content_fingerprint(
+                        f"{img_source_identity}|{conf_thresh}|{uncertain_thresh}|"
+                        f"{st.session_state.get('selected_checkpoint_path', '')}"),
+                    kind="image",
+                    source_label=img_source_label,
+                    rows=[{**d, "posture": p.posture.value}
+                          for d, p in posture_items],
+                    frame_w=int(img_w), frame_h=int(img_h),
+                )
+                with st.expander("🔍 Prediction details — what the model "
+                                 "reported, and why it is labelled this way"):
+                    _ck_name, _ck_sha, _ck_backend = _checkpoint_info()
+                    st.caption(
+                        f"Checkpoint: {_ck_name} (SHA-256 prefix "
+                        f"{_ck_sha[:12] or 'n/a'}) · Backend: {_ck_backend} · "
+                        "Every row is an unverified model prediction; the "
+                        "score is a detector score, not a certainty."
+                    )
+                    for _d, _p in posture_items:
+                        st.markdown(
+                            f"**{_d['display_label']}** — score "
+                            f"{_d['conf']:.2f} · posture "
+                            f"`{_p.posture.value}` · box "
+                            f"{[round(v) for v in _d['box']]} · frame "
+                            f"coverage {_d['cov_pct']:.1f}%"
+                        )
+                        st.caption(reporting.confidence_band(
+                            float(_d["conf"]), float(uncertain_thresh)))
                 verify_items = [(d, p) for d, p in posture_items if p.posture == ThreatPosture.REQUIRES_VERIFICATION]
                 civilian_items = [(d, p) for d, p in posture_items if p.posture == ThreatPosture.NON_HOSTILE]
                 if civilian_items:
@@ -2003,7 +2407,15 @@ elif nav_choice == "Video Flight Intelligence":
     else:
         v_file = st.file_uploader("Upload video file (MP4, AVI, MOV)", type=["mp4", "avi", "mov"])
         if v_file:
-            target_video_path = _store_uploaded_video(v_file, "vp_upload_temp_path")
+            try:
+                validate_upload(v_file.name, v_file.size, kind="video")
+                st.caption(f"Selected: {v_file.name} · "
+                           f"{v_file.size / (1024 * 1024):.1f} MB · "
+                           "validated against the 200 MB upload limit. "
+                           "Processed locally; never uploaded anywhere.")
+                target_video_path = _store_uploaded_video(v_file, "vp_upload_temp_path")
+            except DetectionValidationError as e:
+                st.error(f"Upload rejected: {e}")
 
     if target_video_path:
         st.write("---")
@@ -2027,9 +2439,9 @@ elif nav_choice == "Video Flight Intelligence":
             imgsz_choice = st.selectbox(
                 "Inference Resolution",
                 [
-                    "1280 (HD — Optimal for Small Drones)",
-                    "960 (Balanced Precision)",
-                    "640 (Standard High Speed)",
+                    "640 (Trained resolution — measured best for this checkpoint)",
+                    "960 (Balanced)",
+                    "1280 (HD — slower; measured worse for this checkpoint)",
                 ],
                 index=0,
             )
@@ -2068,6 +2480,20 @@ elif nav_choice == "Video Flight Intelligence":
             st.session_state.last_processed_metrics = metrics
             p_bar.progress(1.0)
             status_text.success("Airspace processing and telemetry completed successfully!")
+            # Phase 8: record the run in local history as aggregate class
+            # counts (individual per-frame rows are not stored for video).
+            _record_session_once(
+                HistoryStore.content_fingerprint(
+                    f"video:{target_video_path.name}:{metrics.total_frames_in_file}:"
+                    f"{metrics.frames_processed}:{sum(metrics.detections_by_class.values())}"),
+                kind="video",
+                source_label=target_video_path.name,
+                rows=None,
+                class_counts=dict(metrics.detections_by_class),
+                notes=(f"frames processed {metrics.frames_processed}/"
+                       f"{metrics.total_frames_in_file}; aggregate counts "
+                       "only — individual detections not stored"),
+            )
 
     # Display profiling results
     metrics = st.session_state.last_processed_metrics
