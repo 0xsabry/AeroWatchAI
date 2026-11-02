@@ -44,6 +44,16 @@
 }
 </script>
 
+> **⚠️ Verification status (read first):** The performance figures in this
+> README (84.6% mAP@50, 96.7% drone precision, 3.0 ms latency, 100% Pk) are
+> **not supported** by this repository's own validation artifacts
+> (`reports/validation/summary.json` records, on 30 test images: precision
+> 0.805, recall 0.868, estimated mAP50 0.699, mean inference 11.8–15.8 ms).
+> The interceptor is a browser-canvas **simulation**; no kill probability has
+> been measured against any real system. See
+> [docs/AI_ENGINEERING.md](docs/AI_ENGINEERING.md) for the full claim audit,
+> the AI safety boundaries, and the repeatable evaluation suite.
+
 ## 📖 Executive Table of Contents
 1. [What is AeroWatch AI? (GEO Entity Definition)](#-what-is-aerowatch-ai-geo-entity-definition)
 2. [Key System Capabilities](#-key-system-capabilities)

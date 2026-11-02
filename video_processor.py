@@ -31,6 +31,7 @@ import numpy as np
 import torch
 from ultralytics import YOLO
 
+from ai_safety import DEFAULT_MAX_VIDEO_FRAMES, sanitize_detections, validate_imgsz
 from model_manager import ModelManager
 
 logger = logging.getLogger("AeroWatch.VideoProcessor")
@@ -72,6 +73,8 @@ class VideoProfileMetrics:
     detections_by_class: Dict[str, int] = field(default_factory=dict)
     output_video_path: Optional[str] = None
     output_verified: bool = False
+    malformed_detections_dropped: int = 0
+    frame_limit_reached: bool = False
 
 
 class BoxStabilizer:
@@ -164,10 +167,14 @@ class VideoProcessor:
         uncertainty_threshold: float = 0.40,
         enable_stabilization: bool = True,
         imgsz: int = 640,
+        max_frames: int = DEFAULT_MAX_VIDEO_FRAMES,
         on_progress: Optional[Callable[[int, int, float, VideoProfileMetrics], None]] = None,
         on_frame_rendered: Optional[Callable[[np.ndarray, int], None]] = None,
     ) -> VideoProfileMetrics:
         """Processes a video file with complete stage-by-stage profiling and optional H.264 export."""
+        validate_imgsz(imgsz)
+        if max_frames < 1:
+            raise ValueError(f"max_frames must be a positive integer >= 1, got {max_frames}")
         if vid_stride < 1:
             raise ValueError(f"vid_stride must be a positive integer >= 1, got {vid_stride}")
         if not (0.0 <= detection_threshold <= 1.0):
@@ -188,6 +195,14 @@ class VideoProcessor:
         input_fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
         width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
         height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+        if width <= 0 or height <= 0:
+            cap.release()
+            raise IOError(
+                f"Video reports invalid frame dimensions {width}x{height}: {v_path}"
+            )
+        if not (0.0 < input_fps <= 1000.0):
+            logger.warning(f"Video reports implausible FPS {input_fps}; falling back to 25.0")
+            input_fps = 25.0
 
         # Handle video length anomalies
         if total_frames <= 0:
@@ -224,6 +239,8 @@ class VideoProcessor:
         frame_idx = 0
         processed_count = 0
         skipped_count = 0
+        malformed_dropped = 0
+        frame_limit_reached = False
 
         t_overall_start = time.perf_counter()
 
@@ -231,6 +248,12 @@ class VideoProcessor:
             while True:
                 if self._is_cancelled:
                     logger.info("Video processing cancelled by user.")
+                    break
+                if frame_idx >= max_frames:
+                    # Resource-exhaustion guard: a hostile or pathological
+                    # container must not keep the pipeline running forever.
+                    frame_limit_reached = True
+                    logger.warning(f"Stopping at max_frames={max_frames} resource limit.")
                     break
 
                 t0 = time.perf_counter()
@@ -267,14 +290,30 @@ class VideoProcessor:
 
                 # Stage 4: Postprocessing & Label Normalization
                 t3 = time.perf_counter()
+                if not results or results[0].boxes is None:
+                    raise RuntimeError("Model returned no result object for a decoded frame")
                 res = results[0]
                 boxes = res.boxes
                 raw_dets = []
                 for b in boxes:
-                    cid = int(b.cls.item())
-                    conf = float(b.conf.item())
-                    xyxy = b.xyxy[0].tolist()
-                    raw_dets.append({"cls": cid, "conf": conf, "xyxy": xyxy})
+                    try:
+                        raw_dets.append(
+                            {
+                                "cls": int(b.cls.item()),
+                                "conf": float(b.conf.item()),
+                                "xyxy": [float(v) for v in b.xyxy[0].tolist()],
+                            }
+                        )
+                    except Exception:
+                        malformed_dropped += 1
+                # Contract validation: NaN/out-of-range confidences and
+                # malformed boxes are dropped here, never rendered or counted.
+                sanitized = sanitize_detections(raw_dets, width, height)
+                malformed_dropped += sanitized.dropped_total
+                raw_dets = [
+                    {"cls": d.cls_id, "conf": d.conf, "xyxy": [float(v) for v in d.box]}
+                    for d in sanitized.detections
+                ]
 
                 if enable_stabilization:
                     norm_dets = self.stabilizer.update(raw_dets)
@@ -410,6 +449,8 @@ class VideoProcessor:
             detections_by_class=class_counts,
             output_video_path=str(final_out_path) if final_out_path else None,
             output_verified=verified_ok,
+            malformed_detections_dropped=malformed_dropped,
+            frame_limit_reached=frame_limit_reached,
         )
 
         return metrics

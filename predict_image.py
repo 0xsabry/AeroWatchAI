@@ -15,24 +15,53 @@ from pathlib import Path
 import cv2
 import torch
 
+from ai_safety import DetectionValidationError, validate_confidence, validate_imgsz
 from model_manager import ModelManager
+
+
+def _conf_arg(value: str) -> float:
+    try:
+        return validate_confidence(float(value))
+    except (ValueError, DetectionValidationError) as e:
+        raise argparse.ArgumentTypeError(str(e))
+
+
+def _imgsz_arg(value: str) -> int:
+    try:
+        return validate_imgsz(int(value))
+    except (ValueError, DetectionValidationError) as e:
+        raise argparse.ArgumentTypeError(str(e))
+
+
+def _name_arg(value: str) -> str:
+    # The experiment name becomes a directory name; reject anything that
+    # could escape the output project directory (e.g. --name ../../tmp/x).
+    if not value or value in {".", ".."} or "/" in value or "\\" in value:
+        raise argparse.ArgumentTypeError(
+            f"--name must be a single directory name without path separators, got {value!r}"
+        )
+    return value
 
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description="AeroWatch AI Image Prediction")
     parser.add_argument("--source", required=True, help="Path to input image file")
     parser.add_argument("--weights", default="weights/aerowatch_v7_balanced.pt", help="Path to model weights (.pt)")
-    parser.add_argument("--conf", type=float, default=0.25, help="Confidence detection threshold (0.0 to 1.0)")
-    parser.add_argument("--uncertain", type=float, default=0.40, help="Confidence threshold below which detections are flagged Uncertain")
-    parser.add_argument("--imgsz", type=int, default=640, help="Inference image resolution")
+    parser.add_argument("--conf", type=_conf_arg, default=0.25, help="Confidence detection threshold (0.0 to 1.0)")
+    parser.add_argument("--uncertain", type=_conf_arg, default=0.40, help="Confidence threshold below which detections are flagged Uncertain")
+    parser.add_argument("--imgsz", type=_imgsz_arg, default=640, help="Inference image resolution")
     parser.add_argument("--device", default="auto", help="Compute device ('auto', '0', 'cpu')")
     parser.add_argument("--project", default="runs/predict", help="Output directory root")
-    parser.add_argument("--name", default="exp", help="Inference experiment subfolder")
+    parser.add_argument("--name", type=_name_arg, default="exp", help="Inference experiment subfolder")
     parser.add_argument("--save-txt", action="store_true", help="Save YOLO label text file")
     return parser.parse_args()
 
 
 def predict_image(args):
+    if args.uncertain < args.conf:
+        raise SystemExit(
+            f"[ERROR] --uncertain ({args.uncertain}) must be >= --conf ({args.conf})"
+        )
     img_path = Path(args.source).resolve()
     if not img_path.is_file():
         raise SystemExit(f"[ERROR] Input image not found: {img_path}")
@@ -84,16 +113,22 @@ def predict_image(args):
 
     h, w = img_bgr.shape[:2]
 
-    for i, b in enumerate(boxes, start=1):
-        cid = int(b.cls.item())
-        conf = float(b.conf.item())
-        x1, y1, x2, y2 = [int(v) for v in b.xyxy[0].tolist()]
+    # Route through the same validated filter the app uses (contract
+    # validation + geometric/human-clutter suppression) instead of trusting
+    # raw model tensors directly.
+    verified = mm.filter_airspace_detections(
+        frame=img_bgr,
+        raw_boxes=boxes,
+        conf_thresh=args.conf,
+        uncertain_thresh=args.uncertain,
+    )
 
-        internal_name, display_label, hex_color = mm.map_detection_label(
-            cid, conf, args.conf, args.uncertain
-        )
-        if display_label is None:
-            continue
+    for det in verified:
+        cid = det["cid"]
+        conf = det["conf"]
+        x1, y1, x2, y2 = det["box"]
+        display_label = det["display_label"]
+        hex_color = det["hex_color"]
 
         detected_count += 1
         hex_clean = (hex_color or "#00D4FF").lstrip("#")

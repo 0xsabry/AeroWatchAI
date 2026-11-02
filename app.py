@@ -30,6 +30,14 @@ import streamlit as st
 import streamlit.components.v1 as components
 import torch
 
+from ai_safety import (
+    CONFIRMATION_PHRASE,
+    DetectionValidationError,
+    EngagementGate,
+    ThreatPosture,
+    assess_posture,
+    validate_upload,
+)
 from camera_manager import CameraBackend, CameraManager, CameraState
 from diagnostics import run_full_diagnostics
 from interceptor_sim import get_interceptor_sim_html
@@ -51,6 +59,34 @@ PROJECT_ROOT = Path(__file__).resolve().parent
 WEIGHTS_DIR = PROJECT_ROOT / "weights"
 VIDEOS_DIR = PROJECT_ROOT / "videos"
 DATA_DIR = PROJECT_ROOT / "data"
+ENGAGEMENT_AUDIT_LOG = PROJECT_ROOT / "runs" / "engagement_audit.jsonl"
+
+
+def _store_uploaded_video(uploaded_file, session_key: str) -> Optional[Path]:
+    """Validate and store an uploaded video; clean up the previous upload.
+
+    Previously every upload was written in full to a ``.mp4`` temp file
+    regardless of its real container (AVI/MOV included), with no size limit
+    and no cleanup (``delete=False`` files leaked on every rerun).
+    """
+    try:
+        suffix = validate_upload(uploaded_file.name, uploaded_file.size, kind="video")
+    except DetectionValidationError as e:
+        st.error(f"Upload rejected: {e}")
+        return None
+    previous = st.session_state.get(session_key)
+    if previous:
+        try:
+            Path(previous).unlink(missing_ok=True)
+        except OSError:
+            pass
+    tfile = tempfile.NamedTemporaryFile(delete=False, suffix=suffix)
+    try:
+        tfile.write(uploaded_file.getbuffer())
+    finally:
+        tfile.close()
+    st.session_state[session_key] = tfile.name
+    return Path(tfile.name)
 
 st.set_page_config(
     page_title="AEROWATCH // Airspace Defense C2",
@@ -1238,7 +1274,13 @@ if nav_choice == "Optical Image Analysis":
     if src_mode == "Upload Custom Imagery":
         uploaded = st.file_uploader("Upload aerial photograph (JPG, PNG, WEBP)", type=["jpg", "png", "jpeg", "webp"])
         if uploaded:
-            img_to_process = Image.open(uploaded).convert("RGB")
+            try:
+                validate_upload(uploaded.name, uploaded.size, kind="image")
+                img_to_process = Image.open(uploaded).convert("RGB")
+            except DetectionValidationError as e:
+                st.error(f"Upload rejected: {e}")
+            except Exception as e:
+                st.error(f"Could not decode uploaded image: {e}")
     else:
         sample_options = {
             "Field Benchmark 01 — Low-Altitude Drone Flight": "videos/test_soldier_drone_photo.jpg",
@@ -1340,28 +1382,60 @@ if nav_choice == "Optical Image Analysis":
                 st.markdown("<div style='height: 10px;'></div>", unsafe_allow_html=True)
                 st.dataframe(pd.DataFrame(detections), use_container_width=True)
 
-                # Check for hostile airborne targets (Drone / Aircraft)
-                hostiles = [d for d in detections if d.get("Target Classification") in ["Drone", "Aircraft"]]
-                if hostiles:
+                # Threat posture policy (ai_safety.assess_posture): a model
+                # classification is NEVER a hostility determination. Civilian
+                # classes (Aircraft — including airliners — Bird, Balloon)
+                # are non-hostile and get no engagement prompt; only a
+                # confident Drone detection asks a human to verify, and
+                # launching even the *simulation* requires the operator
+                # confirmation gate + audit log below. (Previously every
+                # "Aircraft" detection was labelled "Hostile … confirmed"
+                # with a one-click ENGAGE button.)
+                posture_items = [
+                    (det, assess_posture(det["internal_name"], det["conf"], uncertainty_threshold=uncertain_thresh))
+                    for det in verified_dets
+                ]
+                verify_items = [(d, p) for d, p in posture_items if p.posture == ThreatPosture.REQUIRES_VERIFICATION]
+                civilian_items = [(d, p) for d, p in posture_items if p.posture == ThreatPosture.NON_HOSTILE]
+                if civilian_items:
+                    labels = ", ".join(sorted({d["display_label"] for d, _ in civilian_items}))
+                    st.info(
+                        f"Civilian / non-hostile classification detected ({labels}). "
+                        "A model classification alone never establishes hostility — no engagement action is offered for these classes."
+                    )
+                if verify_items:
                     st.markdown("<div style='height: 12px;'></div>", unsafe_allow_html=True)
-                    tgt_name = hostiles[0]["Target Classification"]
+                    tgt_name = "Drone"
                     st.markdown(
-                        f"""
-                        <div style='background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.35); border-top: 1.5px solid rgba(255, 255, 255, 0.35); border-radius: 18px; padding: 16px 20px; box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);'>
-                            <div style='display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;'>
-                                <span style='font-size: 11px; font-weight: 800; color: #EF4444; letter-spacing: 0.12em; text-transform: uppercase;'>AIRSPACE THREAT IDENTIFIED</span>
-                                <span style='font-size: 10px; font-family: monospace; color: #FFFFFF; background: rgba(239, 68, 68, 0.3); padding: 2px 8px; border-radius: 6px; font-weight: 700;'>INTERCEPT READY</span>
-                            </div>
-                            <div style='font-size: 14px; font-weight: 700; color: #FFFFFF;'>Hostile {tgt_name} confirmed in tactical optical field.</div>
-                            <div style='font-size: 11.5px; color: #C7C7CC; margin-top: 4px;'>Autonomous Interceptor Missile standing by with Proportional Navigation terminal homing.</div>
+                        """
+                        <div style='background: rgba(245, 158, 11, 0.10); border: 1px solid rgba(245, 158, 11, 0.35); border-radius: 18px; padding: 16px 20px;'>
+                            <div style='font-size: 11px; font-weight: 800; color: #F59E0B; letter-spacing: 0.12em; text-transform: uppercase;'>DRONE DETECTION — OPERATOR VERIFICATION REQUIRED</div>
+                            <div style='font-size: 14px; font-weight: 700; color: #FFFFFF; margin-top: 6px;'>Unverified drone classification in the optical field.</div>
+                            <div style='font-size: 11.5px; color: #C7C7CC; margin-top: 4px;'>This is a model output, not a confirmed threat. Verify visually before opening the (simulation-only) interceptor demo. Every launch is audit-logged.</div>
                         </div>
                         """,
                         unsafe_allow_html=True,
                     )
-                    if st.button(f"🚀 ENGAGE {tgt_name.upper()} // LAUNCH AI INTERCEPTOR ROCKET", key="btn_engage_opt_threat", use_container_width=True):
-                        st.session_state.pending_sim_target = tgt_name
-                        st.session_state.pending_nav = "Autonomous AI Interceptor Missile"
-                        st.rerun()
+                    operator_id = st.text_input("Operator ID (required for audit log)", key="engage_operator_id")
+                    confirm_phrase = st.text_input(
+                        f"Type {CONFIRMATION_PHRASE} to confirm you visually verified this detection",
+                        key="engage_confirm_phrase",
+                    )
+                    if st.button("Open Interceptor Simulation (simulation only)", key="btn_engage_opt_threat", use_container_width=True):
+                        try:
+                            record = EngagementGate().authorize(
+                                action="open_interceptor_simulation",
+                                target_label=tgt_name,
+                                posture=verify_items[0][1],
+                                operator=operator_id,
+                                confirmation=confirm_phrase,
+                            )
+                            EngagementGate.append_audit_log(ENGAGEMENT_AUDIT_LOG, record)
+                            st.session_state.pending_sim_target = tgt_name
+                            st.session_state.pending_nav = "Autonomous AI Interceptor Missile"
+                            st.rerun()
+                        except PermissionError as e:
+                            st.error(str(e))
             else:
                 st.info("No targets detected above current confidence threshold.")
 
@@ -1501,10 +1575,7 @@ elif nav_choice == "Autonomous AI Interceptor Missile":
         else:
             up_v = st.file_uploader("Upload Real Combat Aircraft / Drone Video (MP4, AVI, MOV)", type=["mp4", "avi", "mov"], key="tb_upload_v")
             if up_v:
-                tfile = tempfile.NamedTemporaryFile(delete=False, suffix=".mp4")
-                tfile.write(up_v.read())
-                tfile.close()
-                selected_real_video_path = Path(tfile.name)
+                selected_real_video_path = _store_uploaded_video(up_v, "tb_upload_temp_path")
 
         if selected_real_video_path and selected_real_video_path.exists():
             st.markdown("<div style='height: 8px;'></div>", unsafe_allow_html=True)
@@ -1905,10 +1976,7 @@ elif nav_choice == "Video Flight Intelligence":
     else:
         v_file = st.file_uploader("Upload video file (MP4, AVI, MOV)", type=["mp4", "avi", "mov"])
         if v_file:
-            tfile = tempfile.NamedTemporaryFile(delete=False, suffix=".mp4")
-            tfile.write(v_file.read())
-            tfile.close()
-            target_video_path = Path(tfile.name)
+            target_video_path = _store_uploaded_video(v_file, "vp_upload_temp_path")
 
     if target_video_path:
         st.write("---")

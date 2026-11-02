@@ -58,3 +58,7 @@ runs/interceptor_runs/
 Thumbs.db
 desktop.ini
 .streamlit/secrets.toml
+
+# AI evaluation run outputs
+evaluation/results/
+runs/engagement_audit.jsonl

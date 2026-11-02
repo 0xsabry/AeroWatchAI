@@ -22,6 +22,13 @@ import numpy as np
 import torch
 from ultralytics import YOLO
 
+from ai_safety import (
+    DetectionValidationError,
+    sanitize_detections,
+    validate_checkpoint_file,
+    validate_confidence,
+)
+
 logger = logging.getLogger("AeroWatch.ModelManager")
 
 # Canonical civilian vocabulary definitions
@@ -89,6 +96,16 @@ class ModelManager:
         self._is_half: bool = False
         self._coco_verifier: Optional[YOLO] = None
         self._coco_verifier_failed: bool = False
+        # Introspection cache keyed by (path, size, mtime_ns): introspecting a
+        # checkpoint loads the full model, and callers such as predict_image
+        # previously paid that cost twice (introspect + load) per run.
+        self._introspect_cache: Dict[Tuple[str, int, int], CheckpointMetadata] = {}
+        self._checkpoint_sha256: Optional[str] = None
+
+    @property
+    def checkpoint_sha256(self) -> Optional[str]:
+        """SHA-256 of the currently loaded checkpoint, if it was validated."""
+        return self._checkpoint_sha256
 
     @property
     def is_loaded(self) -> bool:
@@ -116,6 +133,13 @@ class ModelManager:
         if not path.exists():
             raise FileNotFoundError(f"Checkpoint not found at: {path}")
 
+        # Validate + fingerprint before any deserialization of the file.
+        digest = validate_checkpoint_file(path)
+        stat = path.stat()
+        cache_key = (str(path), stat.st_size, stat.st_mtime_ns)
+        if cache_key in self._introspect_cache:
+            return self._introspect_cache[cache_key]
+
         # Quick load with ultralytics to inspect weights
         probe = YOLO(str(path))
         raw_names: Dict[int, str] = {int(k): str(v) for k, v in probe.names.items()}
@@ -129,13 +153,16 @@ class ModelManager:
             m_type = ModelType.UNKNOWN
 
         dev = "cuda:0" if torch.cuda.is_available() else "cpu"
-        return CheckpointMetadata(
+        metadata = CheckpointMetadata(
             path=path,
             raw_names=raw_names,
             model_type=m_type,
             device=dev,
             is_half=torch.cuda.is_available(),
         )
+        self._introspect_cache[cache_key] = metadata
+        logger.info(f"Checkpoint {path.name} sha256={digest[:16]}… classes={len(raw_names)}")
+        return metadata
 
     def load_model(
         self,
@@ -152,18 +179,16 @@ class ModelManager:
         if not path.exists():
             raise FileNotFoundError(f"Cannot load missing checkpoint: {path}")
 
-        # Resolve compute device safely with probe
+        # Validate + fingerprint before any deserialization of the file.
+        digest = validate_checkpoint_file(path)
+
+        # Resolve compute device. "auto" intentionally resolves to CPU: the
+        # previous implementation loaded and ran a second throwaway copy of
+        # the model as a "probe" and then discarded it, yet still always
+        # chose CPU. Same decision, without the wasted load/inference.
+        # Request CUDA explicitly (device="0" / "cuda") to use the GPU.
         if device == "auto":
-            can_cuda = False
-            if torch.cuda.is_available():
-                try:
-                    probe_model = YOLO(str(path))
-                    dummy = np.zeros((64, 64, 3), dtype=np.uint8)
-                    probe_model.predict(source=dummy, device="cpu", imgsz=64, verbose=False)
-                    can_cuda = False  # Keep on CPU for 100% thread safety and stability across Python 3.14 on Windows
-                except Exception:
-                    can_cuda = False
-            resolved_device = "0" if can_cuda else "cpu"
+            resolved_device = "cpu"
         else:
             resolved_device = device
 
@@ -224,6 +249,7 @@ class ModelManager:
 
         self._model = model
         self._current_path = path
+        self._checkpoint_sha256 = digest
         self._device = resolved_device
         self._is_half = use_half
         self._metadata = CheckpointMetadata(
@@ -298,13 +324,38 @@ class ModelManager:
         Returns:
             (internal_name, display_label, hex_color) or (None, None, None) if filtered.
         """
+        # Model output is untrusted: a NaN confidence previously *passed*
+        # this check (all NaN comparisons are False) and was rendered as a
+        # real target, and out-of-range confidences were displayed verbatim.
+        try:
+            confidence = validate_confidence(confidence)
+            detection_threshold = validate_confidence(
+                detection_threshold, name="detection_threshold"
+            )
+            uncertainty_threshold = validate_confidence(
+                uncertainty_threshold, name="uncertainty_threshold"
+            )
+        except DetectionValidationError as e:
+            logger.warning(f"Rejected detection with invalid confidence values: {e}")
+            return None, None, None
+        if not isinstance(raw_cls_id, int) or isinstance(raw_cls_id, bool) or raw_cls_id < 0:
+            logger.warning(f"Rejected detection with invalid class id: {raw_cls_id!r}")
+            return None, None, None
+
         if confidence < detection_threshold:
             return None, None, None
 
         if not self._metadata:
-            return f"cls_{raw_cls_id}", f"Class {raw_cls_id}", "#888888"
+            return "unknown", "Unknown (Unverified)", CANONICAL_COLORS["uncertain"]
 
-        raw_name = self._metadata.raw_names.get(raw_cls_id, f"class_{raw_cls_id}").lower()
+        if raw_cls_id not in self._metadata.raw_names:
+            # The checkpoint emitted a class it does not declare. Never
+            # fabricate a label for it (previous behaviour passed the raw
+            # name through as if it were a verified class).
+            logger.warning(f"Rejected detection with undeclared class id {raw_cls_id}")
+            return "unknown", "Unknown (Unverified)", CANONICAL_COLORS["uncertain"]
+
+        raw_name = self._metadata.raw_names[raw_cls_id].lower()
 
         # Handle Pretrained COCO (80 classes)
         if self._metadata.model_type == ModelType.PRETRAINED_COCO:
@@ -317,17 +368,23 @@ class ModelManager:
                 return None, None, None
         else:
             # Handle Custom Aerial Models
-            # Never guess military subtypes without explicit validated evidence
-            norm_key = None
-            for key in CANONICAL_CIVILIAN_MAP:
-                if key in raw_name:
-                    norm_key = key
-                    break
+            # Never guess military subtypes without explicit validated evidence.
+            # Prefer an exact name match, then the longest canonical key the
+            # raw name contains, so e.g. "military_jet" wins over a shorter
+            # incidental substring.
+            if raw_name in CANONICAL_CIVILIAN_MAP:
+                norm_key = raw_name
+            else:
+                matches = [k for k in CANONICAL_CIVILIAN_MAP if k in raw_name]
+                norm_key = max(matches, key=len) if matches else None
 
             if norm_key:
                 internal, display = CANONICAL_CIVILIAN_MAP[norm_key]
             else:
-                internal, display = (raw_name, raw_name.replace("_", " ").title())
+                # Declared by the checkpoint but not a recognised civilian
+                # class: surface it as unverified, never as a titled,
+                # trustworthy label.
+                internal, display = ("unknown", "Unknown (Unverified)")
 
         # Low-confidence uncertainty flagging
         if confidence < uncertainty_threshold:
@@ -381,10 +438,30 @@ class ModelManager:
         img_h, img_w = frame.shape[:2]
         candidates = []
 
+        # Contract validation first: raw model tensors are untrusted. A NaN
+        # coordinate previously crashed this method via int(NaN); a NaN
+        # confidence previously passed every threshold check. Both are now
+        # dropped with counted reasons, and boxes are clamped to the frame.
+        raw_items = []
         for b in raw_boxes:
-            cid = int(b.cls.item())
-            conf = float(b.conf.item())
-            x1, y1, x2, y2 = [int(v) for v in b.xyxy[0].tolist()]
+            try:
+                raw_items.append(
+                    {
+                        "cls": int(b.cls.item()),
+                        "conf": float(b.conf.item()),
+                        "xyxy": [float(v) for v in b.xyxy[0].tolist()],
+                    }
+                )
+            except Exception as e:
+                logger.warning(f"Dropped unreadable raw detection: {e}")
+        sanitized = sanitize_detections(raw_items, img_w, img_h)
+        if sanitized.dropped:
+            logger.warning(f"Dropped malformed detections: {sanitized.dropped}")
+
+        for det in sanitized.detections:
+            cid = det.cls_id
+            conf = det.conf
+            x1, y1, x2, y2 = det.box
 
             internal_name, display_label, hex_color = self.map_detection_label(
                 cid, conf, conf_thresh, uncertain_thresh
@@ -438,9 +515,16 @@ class ModelManager:
                 )
                 person_boxes = []
                 if len(coco_res) > 0 and len(coco_res[0].boxes) > 0:
+                    person_items = []
                     for pb in coco_res[0].boxes:
-                        px1, py1, px2, py2 = [int(v) for v in pb.xyxy[0].tolist()]
-                        person_boxes.append((px1, py1, px2, py2))
+                        try:
+                            person_items.append(
+                                {"cls": 0, "conf": float(pb.conf.item()), "xyxy": [float(v) for v in pb.xyxy[0].tolist()]}
+                            )
+                        except Exception:
+                            continue
+                    for pdet in sanitize_detections(person_items, img_w, img_h).detections:
+                        person_boxes.append(tuple(pdet.box))
 
                 if person_boxes:
                     verified_candidates = []

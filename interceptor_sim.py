@@ -12,6 +12,8 @@ Interactive tactical simulation featuring:
 
 from typing import Optional
 
+from ai_safety import clamp_finite, js_literal, validate_sim_target
+
 
 def get_interceptor_sim_html(
     target_type: str = "Warplane",
@@ -20,7 +22,18 @@ def get_interceptor_sim_html(
     nav_gain: float = 4.5,
     sound_enabled: bool = True,
 ) -> str:
-    """Generates the self-contained 60 FPS HTML5/Canvas simulation widget."""
+    """Generates the self-contained 60 FPS HTML5/Canvas simulation widget.
+
+    Input hardening (ai_safety): the target label is allowlisted and embedded
+    as a JSON literal — previously it was interpolated raw into a JavaScript
+    string (``type: '{target_type}'``), so a label containing a quote could
+    break out of the string and inject arbitrary script into the C2 page.
+    Numeric parameters are clamped to finite, in-range values.
+    """
+    target_type = validate_sim_target(target_type)
+    target_type_js = js_literal(target_type)
+    evasion_g = clamp_finite(evasion_g, 0.0, 20.0, 6.0)
+    sound_enabled = bool(sound_enabled)
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -522,7 +535,7 @@ window.addEventListener('resize', resizeCanvas);
 
 // Target State
 let target = {{
-  type: '{target_type}',
+  type: {target_type_js},
   x: 0,
   y: 0,
   vx: 0,
