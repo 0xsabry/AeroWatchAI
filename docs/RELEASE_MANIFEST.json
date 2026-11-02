@@ -1,8 +1,8 @@
 {
   "project": "AeroWatchAI",
-  "generated_at_utc": "2026-11-02T19:49:41.219646+00:00",
-  "git_commit": "385014fb5088d01468e09ce321183640211d6049",
-  "git_branch": "feat/rc-packaging-phase10",
+  "generated_at_utc": "2026-11-02T20:23:14.472477+00:00",
+  "git_commit": "fcd75da1260811f2f9ba659740483526672e5150",
+  "git_branch": "feat/final-acceptance-phase11",
   "python_version": "3.12.3",
   "platform": "Linux-7.0.0-39-generic-x86_64-with-glibc2.39",
   "requirements_lock_sha256": "24a2f3eeec87edec996fa7947f50df8afab8824e9283894a0dfda4fb4a6a83b5",
@@ -11,7 +11,16 @@
   "default_backend": "pytorch",
   "optional_backend": "onnx (opt-in)",
   "default_checkpoint": "weights/aerowatch_v7_balanced.pt",
-  "test_summary": "163 passed, 1 skipped (pytest); contract evaluation 19/19; CI mirror ALL CHECKS PASSED; clean-venv install from requirements-lock.txt verified",
+  "test_summary": "169 passed, 1 skipped (pytest); contract evaluation 19/19; CI mirror ALL CHECKS PASSED; release_validation quick mode: 6 PASS, 3 NOT VERIFIED (benchmark/camera/offline unrequested)",
+  "release_status": {
+    "technical_verification": "TECHNICALLY VERIFIED",
+    "owner_validation": "OWNER VALIDATION PENDING",
+    "distribution": "DISTRIBUTION NOT CLEARED",
+    "hardware_verification": "NOT VERIFIED \u2014 RTX 3050 benchmark is an owner-side run (evaluation/hardware_benchmark.py)",
+    "camera_verification": "NOT VERIFIED \u2014 no physical camera in the development environment (evaluation/camera_check.py --model)",
+    "licensing": "UNRESOLVED \u2014 see docs/LICENSING_DECISION.md; LICENSE unchanged; no commercial clearance claimed",
+    "ci_workflow": "NOT APPLIED \u2014 token lacks workflow scope; owner copies docs/ci_workflow_phase4.yml to .github/workflows/ci.yml"
+  },
   "known_restrictions": [
     "Licensing unresolved (docs/LICENSING_DECISION.md): not cleared for commercial distribution; weights are not redistributed by this project",
     "No authentication: localhost or authenticating proxy only",
