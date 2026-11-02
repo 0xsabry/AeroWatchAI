@@ -114,6 +114,85 @@ class HistoryStore:
             self._local.conn = conn
         return conn
 
+    # -- backup / restore / integrity (Phase 10) ----------------------
+
+    def verify_integrity(self) -> Dict[str, object]:
+        """PRAGMA integrity_check + row counts. Read-only."""
+        result = self._conn.execute("PRAGMA integrity_check").fetchone()[0]
+        sessions = self._conn.execute(
+            "SELECT COUNT(*) FROM sessions").fetchone()[0]
+        detections = self._conn.execute(
+            "SELECT COUNT(*) FROM detections").fetchone()[0]
+        return {"integrity": result, "sessions": sessions,
+                "detections": detections,
+                "ok": result == "ok"}
+
+    def backup_to(self, dest) -> Path:
+        """Consistent online backup via SQLite's backup API — safe to
+        call while the database is in WAL mode and in use (unlike a
+        raw file copy). Returns the backup path."""
+        dest = Path(dest)
+        if dest.resolve() == self.db_path.resolve():
+            raise ValueError("backup destination must differ from the "
+                             "live database path")
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        target = sqlite3.connect(str(dest))
+        try:
+            self._conn.backup(target)
+        finally:
+            target.close()
+        return dest
+
+    def restore_from(self, src, *, confirm: bool = False) -> Dict[str, str]:
+        """Replace the live database with a validated backup.
+
+        Safety contract: the source must pass integrity_check and
+        carry the expected schema; the current database is first
+        preserved as ``<name>.pre-restore-<timestamp>.bak`` beside the
+        live file; and the caller must pass ``confirm=True`` — there
+        is no implicit destructive path.
+        """
+        if not confirm:
+            raise ValueError(
+                "restore replaces the current history database; pass "
+                "confirm=True to acknowledge the destructive operation")
+        src = Path(src)
+        if not src.exists():
+            raise FileNotFoundError(f"backup not found: {src}")
+        probe = sqlite3.connect(f"file:{src}?mode=ro", uri=True)
+        try:
+            integrity = probe.execute("PRAGMA integrity_check").fetchone()[0]
+            if integrity != "ok":
+                raise ValueError(f"backup failed integrity check: {integrity}")
+            tables = {r[0] for r in probe.execute(
+                "SELECT name FROM sqlite_master WHERE type='table'")}
+            if not {"sessions", "detections"} <= tables:
+                raise ValueError(
+                    f"backup schema mismatch: tables present {sorted(tables)}")
+        finally:
+            probe.close()
+
+        stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+        protected = self.db_path.with_name(
+            f"{self.db_path.name}.pre-restore-{stamp}.bak")
+        if self.db_path.exists():
+            self.backup_to(protected)
+        self.close()
+        for suffix in ("-wal", "-shm"):
+            sidecar = Path(str(self.db_path) + suffix)
+            if sidecar.exists():
+                sidecar.unlink()
+        tmp = self.db_path.with_name(self.db_path.name + ".restoring")
+        source = sqlite3.connect(f"file:{src}?mode=ro", uri=True)
+        dest_conn = sqlite3.connect(str(tmp))
+        try:
+            source.backup(dest_conn)
+        finally:
+            dest_conn.close()
+            source.close()
+        os.replace(tmp, self.db_path)
+        return {"restored_from": str(src), "protected_copy": str(protected)}
+
     # -- lifecycle ---------------------------------------------------
 
     def close(self) -> None:

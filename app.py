@@ -42,6 +42,13 @@ from ai_safety import (
 )
 from camera_manager import CameraBackend, CameraManager, CameraState
 from camera_session import CameraSessionTracker
+import offline_guard
+
+# Phase 10: opt-in offline mode — blocks non-loopback outbound sockets
+# for the whole process when AEROWATCH_OFFLINE=1. Default off.
+if offline_guard.offline_requested():
+    offline_guard.enable_offline_mode()
+    os.environ.setdefault("HF_HUB_OFFLINE", "1")
 from diagnostics import run_full_diagnostics
 from history_store import HistoryStore
 from interceptor_sim import get_interceptor_sim_html
@@ -1593,6 +1600,23 @@ elif nav_choice == "Detection History":
                 _removed = _store.prune(int(_days))
                 st.success(f"Retention applied: {_removed} session(s) removed.")
                 st.rerun()
+            st.markdown("**Backup**")
+            st.caption("Creates a consistent snapshot of the history "
+                       "database (SQLite online backup — safe while "
+                       "the app is running). Restore is a maintenance "
+                       "operation via history_store.restore_from "
+                       "(explicit confirmation required; the current "
+                       "database is preserved first).")
+            if st.button("Create backup now"):
+                _stamp = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
+                _dest = _store.db_path.with_name(
+                    f"aerowatch_history_backup_{_stamp}.db")
+                try:
+                    _store.backup_to(_dest)
+                    st.success(f"Backup written: {_dest.name} "
+                               "(in the history folder)")
+                except Exception as _e:  # backup must never break the page
+                    st.error(f"Backup failed: {_e}")
 
 
 elif nav_choice == "Analytics & Reports":
