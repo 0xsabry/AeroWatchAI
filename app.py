@@ -41,6 +41,7 @@ from ai_safety import (
     validate_upload,
 )
 from camera_manager import CameraBackend, CameraManager, CameraState
+from camera_session import CameraSessionTracker
 from diagnostics import run_full_diagnostics
 from history_store import HistoryStore
 from interceptor_sim import get_interceptor_sim_html
@@ -96,7 +97,10 @@ st.set_page_config(
     page_title="AEROWATCH // Airspace Defense C2",
     page_icon="✈️",
     layout="wide",
-    initial_sidebar_state="expanded",
+    # "auto": expanded on desktop, collapsed on small screens — the
+    # forced-expanded sidebar overlays and obscures content on phones
+    # (Phase 9 browser QA at 360/390 px).
+    initial_sidebar_state="auto",
 )
 
 # ==============================================================================
@@ -1089,7 +1093,7 @@ def init_session_state():
     if "last_processed_metrics" not in st.session_state:
         st.session_state.last_processed_metrics = None
     if "nav_module" not in st.session_state:
-        st.session_state.nav_module = "Optical Image Analysis"
+        st.session_state.nav_module = "Dashboard"
 
 
 init_session_state()
@@ -1336,6 +1340,39 @@ def _record_session_once(fingerprint: str, kind: str, source_label: str,
         pass
 
 
+def _finalize_camera_session() -> None:
+    """Record a finished camera session into history (Phase 9).
+
+    Runs lazily on page load: a streaming loop that was killed by a
+    rerun never executes its own cleanup, so finalisation happens here
+    whenever a tracker exists and the camera is no longer running.
+    Sessions that were never explicitly stopped are recorded as
+    interrupted — never silently lost, never dressed up as clean.
+    """
+    tracker = st.session_state.get("cam_tracker")
+    if tracker is None or cm.is_running:
+        return
+    if tracker.is_active:
+        summary = tracker.interrupt()
+    else:
+        summary = tracker.summary()
+    st.session_state.last_camera_summary = summary
+    del st.session_state["cam_tracker"]
+    _record_session_once(
+        "camera:" + summary["tracker_session_id"],
+        kind="camera",
+        source_label=summary["source_label"],
+        rows=None,
+        class_counts=summary["class_counts"],
+        notes=(
+            f"duration {summary['duration_sec']}s; frames processed "
+            f"{summary['frames_processed']}; ended_cleanly="
+            f"{summary['ended_cleanly']}; per-frame prediction "
+            "aggregates only (not tracking); no frames stored"
+        ),
+    )
+
+
 if nav_choice == "Dashboard":
     _page_header(
         "OVERVIEW // LOCAL OPERATIONS",
@@ -1455,12 +1492,22 @@ elif nav_choice == "Detection History":
         with f4:
             _session_filter = st.selectbox(
                 "Session", ["All sessions"] + [s.session_id for s in _sessions])
+        f5, f6, f7 = st.columns(3)
+        with f5:
+            _date_from = st.date_input("From date (optional)", value=None)
+        with f6:
+            _date_to = st.date_input("To date (optional)", value=None)
+        with f7:
+            _limit = st.selectbox("Max results", [100, 500, 1000, 5000],
+                                  index=1)
         _dets = _store.query_detections(
             classes=_classes or None,
             min_confidence=_conf_range[0], max_confidence=_conf_range[1],
             search=_search,
             session_id=None if _session_filter == "All sessions" else _session_filter,
-            limit=500,
+            date_from=(f"{_date_from}T00:00:00+00:00" if _date_from else None),
+            date_to=(f"{_date_to}T23:59:59+00:00" if _date_to else None),
+            limit=int(_limit),
         )
         st.caption(f"{len(_dets)} stored detection(s) match "
                    "(aggregate-only video sessions have no individual rows).")
@@ -1742,9 +1789,9 @@ elif nav_choice == "Optical Image Analysis":
                 st.markdown(
                     f"""
                     <div class="bento-card">
-                        <div class="bento-card-title">INFERENCE LATENCY <span class="delta-badge-pos">TENSOR FP16</span></div>
+                        <div class="bento-card-title">INFERENCE LATENCY <span class="delta-badge-pos">{"TENSOR FP16" if cuda_on else "CPU FP32"}</span></div>
                         <div class="bento-card-val">{infer_latency:.1f} <span style="font-size: 14px; color: #64748B;">ms</span></div>
-                        <div class="bento-card-desc">Forward pass on RTX 3050</div>
+                        <div class="bento-card-desc">Forward pass on {html_escape(str(getattr(mm, "device", "cpu")))} (this machine)</div>
                     </div>
                     """,
                     unsafe_allow_html=True,
@@ -2226,6 +2273,31 @@ elif nav_choice == "Real-Time Sensor Stream":
         unsafe_allow_html=True,
     )
 
+    # Phase 9: camera session lifecycle — finalise any ended session
+    # into history, show the last session's summary, and surface the
+    # active session's live aggregates.
+    _finalize_camera_session()
+    _active_tracker = st.session_state.get("cam_tracker")
+    if _active_tracker is not None:
+        _live = _active_tracker.summary()
+        st.success(
+            f"📷 **Camera session active** — {_live['frames_processed']} "
+            f"frames processed, {_live['total_detections']} predictions "
+            "so far (per-frame aggregates, not tracking). Stop the "
+            "sensor to record the session into history."
+        )
+    _last_cam = st.session_state.get("last_camera_summary")
+    if _last_cam:
+        st.info(
+            f"📼 **Last camera session recorded:** "
+            f"{_last_cam['duration_sec']}s · "
+            f"{_last_cam['frames_processed']} frames · "
+            f"{_last_cam['total_detections']} predictions · "
+            f"classes {_last_cam['class_counts']} · "
+            f"ended cleanly: {_last_cam['ended_cleanly']}. "
+            "See Detection History for the stored record."
+        )
+
     col_c1, col_c2, col_c3 = st.columns(3)
     with col_c1:
         cam_idx = st.number_input("Sensor Port (Index)", min_value=0, max_value=5, value=0, step=1)
@@ -2266,6 +2338,10 @@ elif nav_choice == "Real-Time Sensor Stream":
                 if not ok:
                     st.error(cm.error_message or "Could not initialize video capture.")
                 else:
+                    _tracker = CameraSessionTracker(f"camera {int(cam_idx)}")
+                    _tracker.start()
+                    st.session_state.cam_tracker = _tracker
+                    st.session_state.last_camera_summary = None
                     st.rerun()
 
     with btn_col2:
@@ -2318,6 +2394,7 @@ elif nav_choice == "Real-Time Sensor Stream":
                 annotated = frame.copy()
                 lat = 0.0
                 det_count = 0
+                verified_dets = []
 
                 if model is not None:
                     t0 = time.perf_counter()
@@ -2353,6 +2430,9 @@ elif nav_choice == "Real-Time Sensor Stream":
                         cv2.rectangle(annotated, (x1, max(0, y1 - th - 6)), (x1 + tw + 6, max(0, y1)), bgr_col, -1)
                         cv2.putText(annotated, lbl_text, (x1 + 3, max(12, y1 - 4)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (15, 15, 15), 1)
 
+                _tracker = st.session_state.get("cam_tracker")
+                if _tracker is not None:
+                    _tracker.observe(verified_dets)
                 frame_rgb = cv2.cvtColor(annotated, cv2.COLOR_BGR2RGB)
                 frame_placeholder.image(frame_rgb, use_container_width=True)
                 stat_placeholder.caption(
@@ -2361,6 +2441,13 @@ elif nav_choice == "Real-Time Sensor Stream":
             elif frame is None:
                 stat_placeholder.info("Awaiting video stream from optical device...")
             time.sleep(0.015)
+
+        # Loop exited (sensor stopped): close the session cleanly; the
+        # lazy finaliser on the next page load does the history write.
+        _tracker = st.session_state.get("cam_tracker")
+        if _tracker is not None and _tracker.is_active:
+            _tracker.stop()
+        _finalize_camera_session()
 
 
 # ==============================================================================

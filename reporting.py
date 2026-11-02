@@ -45,6 +45,20 @@ def dashboard_metrics(store: HistoryStore) -> Dict:
     }
 
 
+def _csv_safe(value) -> str:
+    """Neutralise spreadsheet formula injection: a text cell beginning
+    with =, +, -, @ (or whitespace/control before them) is executed as
+    a formula by Excel/Sheets. Prefix such cells with a single quote,
+    the standard mitigation. Class labels and source names are
+    model/user-influenced text, so every text field goes through here.
+    """
+    text = str(value)
+    stripped = text.lstrip(" \t\r\n")
+    if stripped[:1] in ("=", "+", "-", "@"):
+        return "'" + text
+    return text
+
+
 def detections_to_csv(detections: Sequence[DetectionRecord]) -> str:
     buf = io.StringIO()
     writer = csv.writer(buf)
@@ -59,10 +73,12 @@ def detections_to_csv(detections: Sequence[DetectionRecord]) -> str:
     for d in detections:
         writer.writerow(
             [
-                d.detection_id, d.session_id, d.created_at,
-                d.canonical_class, d.display_label, f"{d.confidence:.4f}",
-                d.posture, *[f"{v:.1f}" for v in d.box_xyxy],
-                d.frame_width, d.frame_height, d.verification_status,
+                d.detection_id, _csv_safe(d.session_id), d.created_at,
+                _csv_safe(d.canonical_class), _csv_safe(d.display_label),
+                f"{d.confidence:.4f}",
+                _csv_safe(d.posture), *[f"{v:.1f}" for v in d.box_xyxy],
+                d.frame_width, d.frame_height,
+                _csv_safe(d.verification_status),
             ]
         )
     return buf.getvalue()
