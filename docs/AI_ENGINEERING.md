@@ -59,6 +59,8 @@ added to the README pointing here.
 | 7 | **Medium** | No resource limits in `VideoProcessor`: unbounded frame loop, `width/height = 0` from a corrupt header caused division by zero in coverage maths | `video_processor.py` legacy code path |
 | 8 | **Low (perf)** | `load_model(device="auto")` loaded and ran a second throwaway copy of the model as a "probe", then always chose CPU anyway; `predict_image` paid a full extra model load via `introspect_checkpoint` + `load_model` | `model_manager.py` legacy code |
 | 9 | **Low** | `predict_image.py` accepted out-of-range `--conf`, non-multiple `--imgsz`, and a path-traversing `--name` (`../../`) | CLI argument definitions |
+| 9b | **Medium** | `evaluate_videos.py` crashed with an unhandled `KeyError` for any class id ≥ 5 (e.g. an 80-class COCO checkpoint), trusted raw boxes like the other paths, and silently swallowed H.264 re-encode failures, presenting mp4v output as browser-ready | `evaluate_videos.py` legacy code (found by the security audit round) |
+| 9c | **Medium** | Model/file-derived strings (`target_class`, checkpoint filename) were interpolated unescaped into `unsafe_allow_html` blocks; ffmpeg subprocesses had no timeout; the video temp path was predictable (`temp_<name>`) | `app.py` / `video_processor.py` legacy code |
 | 10 | **Info** | Checkpoints are PyTorch pickle (`.pt`) loaded via Ultralytics with no integrity check — a malicious `.pt` is code execution. Mitigation is procedural (trusted sources + hash pinning), not eliminable while using `.pt` | `model_manager.py` load path |
 
 ## 4. What changed
@@ -129,6 +131,10 @@ the pull request / engineering report for this branch.
 - `app.py` remains a 2,300-line monolith; the posture panel is fixed, but
   other tabs still present simulation output with marketing language
   ("100% Pk" salvo labels) that should be relabelled as simulation results.
+- `.streamlit/config.toml` ships with `enableCORS = false` and
+  `enableXsrfProtection = false`, which weakens browser-side protections if
+  the app is network-served; re-enable them if the deployment does not
+  require cross-origin embedding.
 - No authentication exists in the Streamlit app; anyone who can reach the
   port can use it. Deploy only on trusted networks or behind an
   authenticating proxy.

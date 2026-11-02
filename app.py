@@ -19,6 +19,7 @@ from __future__ import annotations
 import os
 import tempfile
 import time
+from html import escape as html_escape
 from pathlib import Path
 from typing import Optional
 
@@ -1626,7 +1627,7 @@ elif nav_choice == "Autonomous AI Interceptor Missile":
                             f"""
                             <div class="bento-card">
                                 <div class="bento-card-title">REAL TARGET CLASSIFICATION</div>
-                                <div class="bento-card-val" style="font-size: 20px; color: #FFFFFF;">{engagement_res.target_class}</div>
+                                <div class="bento-card-val" style="font-size: 20px; color: #FFFFFF;">{html_escape(str(engagement_res.target_class))}</div>
                                 <div class="bento-card-desc">Neural Seeker Track Continuity: 100.0%</div>
                             </div>
                             <div class="bento-card">
@@ -2140,7 +2141,7 @@ elif nav_choice == "Neural Architecture & Weights":
                 f"""
                 <div class="bento-card">
                     <div class="bento-card-title">CHECKPOINT ARCHITECTURE</div>
-                    <div style="font-size: 18px; font-weight: 700; color: #FFFFFF; margin-bottom: 12px;">{curr_meta.path.name}</div>
+                    <div style="font-size: 18px; font-weight: 700; color: #FFFFFF; margin-bottom: 12px;">{html_escape(str(curr_meta.path.name))}</div>
                     <div style="font-size: 12px; color: #94A3B8; line-height: 1.8;">
                         <div><b>Model Classification:</b> <span style="color: #FFFFFF; font-weight: 600;">{curr_meta.model_type.value}</span></div>
                         <div><b>Total Raw Classes:</b> <span style="font-family: monospace; color: #FFFFFF;">{curr_meta.num_classes}</span></div>

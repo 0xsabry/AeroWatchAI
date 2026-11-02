@@ -216,8 +216,11 @@ class VideoProcessor:
             out_target = Path(output_path) if output_path else v_path.parent / f"annotated_{v_path.name}"
             out_target.parent.mkdir(parents=True, exist_ok=True)
             final_out_path = out_target
-            # Write to a temporary file first to avoid corruption on cancel
-            temp_output_path = out_target.parent / f"temp_{out_target.name}"
+            # Write to a unique temporary file first to avoid corruption on
+            # cancel — and to avoid the predictable "temp_<name>" path,
+            # which concurrent runs (or a pre-planted symlink) could collide
+            # with in a shared output directory.
+            temp_output_path = out_target.parent / f"temp_{os.getpid()}_{time.time_ns()}_{out_target.name}"
             fourcc = cv2.VideoWriter_fourcc(*"mp4v")
             effective_fps = input_fps / vid_stride if vid_stride > 1 else input_fps
             writer = cv2.VideoWriter(str(temp_output_path), fourcc, effective_fps, (width, height))
@@ -479,7 +482,7 @@ class VideoProcessor:
                 "+faststart",
                 str(final_mp4),
             ]
-            subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+            subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True, timeout=300)
             if temp_mp4.exists():
                 temp_mp4.unlink()
         except Exception as e:

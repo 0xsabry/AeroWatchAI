@@ -15,6 +15,8 @@ import cv2
 import numpy as np
 from ultralytics import YOLO
 
+from ai_safety import sanitize_detections
+
 # Tactical Color Scheme (BGR)
 CLASS_COLORS = {
     0: (0, 140, 255),    # Drone: Tactical Orange
@@ -90,12 +92,31 @@ def annotate_frame_tactical(
 
     if results and len(results.boxes) > 0:
         boxes = results.boxes
+        # Contract validation (ai_safety): malformed model output (NaN
+        # confidence/box, out-of-range values) is dropped here instead of
+        # flowing into rendering, tracking history, or metrics.
+        raw_items = []
+        track_ids = []
         for b in boxes:
-            cls_id = int(b.cls[0])
-            conf = float(b.conf[0])
-            track_id = int(b.id[0]) if b.id is not None else -1
-
-            x1, y1, x2, y2 = map(int, b.xyxy[0].tolist())
+            try:
+                raw_items.append(
+                    {
+                        "cls": int(b.cls[0]),
+                        "conf": float(b.conf[0]),
+                        "xyxy": [float(v) for v in b.xyxy[0].tolist()],
+                    }
+                )
+                track_ids.append(int(b.id[0]) if b.id is not None else -1)
+            except Exception:
+                continue
+        for raw_item, track_id in zip(raw_items, track_ids):
+            clean = sanitize_detections([raw_item], fw, fh).detections
+            if not clean:
+                continue
+            d = clean[0]
+            cls_id = d.cls_id
+            conf = d.conf
+            x1, y1, x2, y2 = d.box
             xc = (x1 + x2) // 2
             yc = (y1 + y2) // 2
 
@@ -210,7 +231,10 @@ def process_video_tactical(video_path: Path, model: YOLO, output_dir: Path) -> d
             detected_frames += 1
             for d in dets:
                 conf_scores.append(d["conf"])
-                class_detections[d["cls_id"]] += 1
+                # .get() guard: previously a class id >= 5 (e.g. from an
+                # 80-class COCO checkpoint) raised an unhandled KeyError
+                # here and killed the whole evaluation run.
+                class_detections[d["cls_id"]] = class_detections.get(d["cls_id"], 0) + 1
 
         frame_idx += 1
 
@@ -233,11 +257,14 @@ def process_video_tactical(video_path: Path, model: YOLO, output_dir: Path) -> d
             "-an",
             str(tmp_h264),
         ]
-        res = subprocess.run(cmd, capture_output=True, text=True)
+        res = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
         if res.returncode == 0 and tmp_h264.exists() and tmp_h264.stat().st_size > 0:
             shutil.move(str(tmp_h264), str(out_path))
-    except Exception:
-        pass
+        else:
+            print(f"[WARN] H.264 re-encode failed (rc={res.returncode}); keeping raw mp4v output: {out_path}")
+    except Exception as e:
+        # Previously silent: an mp4v file was presented as browser-ready H.264.
+        print(f"[WARN] H.264 re-encode unavailable ({e}); keeping raw mp4v output: {out_path}")
 
     elapsed = max(0.001, time.time() - t0)
     process_fps = frame_idx / elapsed
