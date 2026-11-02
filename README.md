@@ -316,6 +316,18 @@ internally behind an authenticating proxy/VPN only — see
 
 ### Install & run
 
+**Windows one-command path (Phase 10):**
+
+```powershell
+powershell -ExecutionPolicy Bypass -File setup_windows.ps1   # once
+powershell -ExecutionPolicy Bypass -File launch_windows.ps1  # every run
+```
+
+See [docs/WINDOWS_GUIDE.md](docs/WINDOWS_GUIDE.md) for the GPU path,
+offline mode, backup/restore and troubleshooting, and
+[docs/RELEASE_MANIFEST.json](docs/RELEASE_MANIFEST.json) for the
+release manifest (hashes, versions, restrictions).
+
 ```bash
 git clone https://github.com/0xsabry/AeroWatchAI.git
 cd AeroWatchAI
